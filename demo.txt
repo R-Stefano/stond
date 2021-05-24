@@ -1,0 +1,5 @@
+sudo nmap -sn 192.168.1.0/24
+
+ssh pi@192.168.1.105
+raspberry
+
