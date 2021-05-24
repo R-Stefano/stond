@@ -17,7 +17,7 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'stoned-api', '--image', 'gcr.io/beyondborders/stoned-api', '--region', 'europe-west2', '--platform', 'managed', '--timeout', '899']
+  args: ['run', 'deploy', 'stoned-api', '--image', 'gcr.io/stefano-lab/stoned-api', '--region', 'europe-west2', '--platform', 'managed', '--timeout', '899']
 
 images:
-- gcr.io/beyondborders/stoned-api
+- gcr.io/stefano-lab/stoned-api
