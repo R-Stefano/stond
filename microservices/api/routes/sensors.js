@@ -6,7 +6,9 @@ const service = require('../services/main')
 router.post("/", function(req, response) {
     const {timestamp, env_temperature, env_humidity, cpu_temperature} = req.body
 
-    service.sensors.add(timestamp, env_temperature, env_humidity, cpu_temperature)
+    Promise.all([
+        service.sensors.add(timestamp, env_temperature, env_humidity, cpu_temperature)
+    ])
     .then(results => {
         response.status(200).json("ok")
     })
