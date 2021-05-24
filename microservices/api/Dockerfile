@@ -10,9 +10,7 @@ WORKDIR /usr/src/app
 #ENV DB_CONN_NAME=/cloudsql/wiredhub:europe-west2:datahouse
 #ENV BUCKET_NAME=staging-wiredhub
 
-COPY microservices/api/package.json .
+COPY . .
 RUN npm install
-
-COPY microservices/api/ .
 
 CMD [ "npm", "run", "start"]
