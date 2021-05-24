@@ -1,7 +1,7 @@
 const db = require('../libs/db')
 const Op = require('sequelize').Op;
-const twilio = require('twilio')(configs.twilio.accoundSID, configs.twilio.authToken);
 const configs = require('../configs')
+const twilio = require('twilio')(configs.twilio.accoundSID, configs.twilio.authToken);
 
 exports.add = async (timestamp, env_temperature, env_humidity, cpu_temperature) => {
     console.log(timestamp, env_temperature, env_humidity, cpu_temperature)
