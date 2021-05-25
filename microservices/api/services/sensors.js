@@ -4,7 +4,7 @@ const configs = require('../configs')
 const twilio = require('twilio')(configs.twilio.accoundSID, configs.twilio.authToken);
 
 exports.add = async (timestamp, env_temperature, env_humidity, cpu_temperature) => {
-    console.log(timestamp, env_temperature, env_humidity, cpu_temperature)
+    console.log(`${timestamp} | Env Temp ${env_temperature}°C - Env Humidity ${env_humidity}% - CPU Temp ${cpu_temperature}°C`)
     // Save values to DB
     //await 
 
@@ -26,7 +26,7 @@ exports.checkValues = async (env_temperature, env_humidity) => {
         messages.push(`Env Temperature at ${env_temperature}°C\n`)
     }
 
-    if (env_humidity < 60) {
+    if (env_humidity < 30) {
         messages.push(`Env Humidity at ${env_humidity} %\n`)
     }
 
