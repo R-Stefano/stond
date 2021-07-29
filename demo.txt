@@ -1,5 +1,16 @@
 sudo nmap -sn 192.168.1.0/24
 
-ssh pi@192.168.1.105
+ssh pi@192.168.1.101
 raspberry
+
+sudo nano /etc/rc.local
+ps -aux | grep python3
+sudo kill <pid>
+
+
+Relay
+
+- 3v -> to VCC of relay
+- 5v -> to JP_VCCC of relay
+- low -> relay OPEN
 
