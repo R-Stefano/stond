@@ -163,12 +163,12 @@ while True:
 
     snapshotDataString = ""
     for key in snapshotData:
-      snapshotDataString += key + " " + snapshotData[key] + " | "
+      snapshotDataString += key + " " + str(snapshotData[key]) + " | "
     print(snapshotDataString)
 
     systemStateString = ""
     for key in systemState:
-      systemStateString += key + " " + systemState[key] + " | "
+      systemStateString += key + " " + str(systemState[key]) + " | "
     print(systemStateString)
 
   #Save
