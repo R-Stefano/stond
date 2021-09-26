@@ -14,38 +14,51 @@ configs = {
   "min_humidity": 70,
 }
 
+systemState = {
+  "bme280_working": False,
+  "water_temp_working": False,
+  "relay_working": False
+}
+
 import smbus2
 import bme280
+# Setup Humidity and Temp
+try:
+  port = 1
+  address = 0x77
+  bus = smbus2.SMBus(port)
+  calibration_params = bme280.load_calibration_params(bus, address)
+  systemState['bme280_working'] = True
+except:
+  systemState['bme280_working'] = False
 
-# Humidity and Temp
-#port = 1
-#address = 0x77
-#bus = smbus2.SMBus(port)
-#calibration_params = bme280.load_calibration_params(bus, address)
-
-# Water Temp
-base_dir = '/sys/bus/w1/devices/'
-if (len(glob.glob(base_dir + '28*')) > 0):
+# Setup Water Temp
+try:
+  base_dir = '/sys/bus/w1/devices/'
   device_folder = glob.glob(base_dir + '28*')[0]
   device_file = device_folder + '/w1_slave'
-else:
-  print("Can't Find Water Sensor Data")
-  device_file = None
+  systemState['water_temp_working'] = True
+except:
+  systemState['water_temp_working'] = False
 
 # RELAY
 import RPi.GPIO as GPIO # allo to call GPIO pins
-GPIO.setmode(GPIO.BCM)
-FAN_RELAY_GPIO_PIN = 14
-GPIO.setup(FAN_RELAY_GPIO_PIN, GPIO.OUT)
-GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.LOW)
+try:
+  GPIO.setmode(GPIO.BCM)
+  FAN_RELAY_GPIO_PIN = 14
+  GPIO.setup(FAN_RELAY_GPIO_PIN, GPIO.OUT)
+  GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.LOW)
 
-LED_RELAY_GPIO_PIN = 15
-GPIO.setup(LED_RELAY_GPIO_PIN, GPIO.OUT)
-GPIO.output(LED_RELAY_GPIO_PIN, GPIO.LOW)
+  LED_RELAY_GPIO_PIN = 15
+  GPIO.setup(LED_RELAY_GPIO_PIN, GPIO.OUT)
+  GPIO.output(LED_RELAY_GPIO_PIN, GPIO.LOW)
 
-HUMIDIFIER_GPIO_PIN = 17
-GPIO.setup(HUMIDIFIER_GPIO_PIN, GPIO.OUT)
-GPIO.output(HUMIDIFIER_GPIO_PIN, GPIO.LOW)
+  HUMIDIFIER_GPIO_PIN = 17
+  GPIO.setup(HUMIDIFIER_GPIO_PIN, GPIO.OUT)
+  GPIO.output(HUMIDIFIER_GPIO_PIN, GPIO.LOW)
+  systemState['relay_working'] = True
+except:
+  systemState['relay_working'] = False
 
 snapshotData = {
     "env_humidity": None,
@@ -58,30 +71,33 @@ snapshotData = {
 }
 
 def readTempHumidity():
-  try:
-    data = bme280.sample(bus, address, calibration_params)
-    snapshotData["env_humidity"] = data.humidity
-    snapshotData["env_temperature"] = data.temperature
-  except:
-    print("Impossible Fetching Temp & Humidity Data")
-    return
+  if (systemState['bme280_working']):
+    try:
+      data = bme280.sample(bus, address, calibration_params)
+      snapshotData["env_humidity"] = data.humidity
+      snapshotData["env_temperature"] = data.temperature
+    except:
+      print("Impossible Fetching Temp & Humidity Data")
+      return
 
 def manageFan():
-  if (snapshotData["light_status"] == "ON"):
-    if (datetime.now().minute in [15, 16, 17, 18, 19, 20, 30, 31, 32, 33, 34, 35, 55, 56, 57, 58, 59]):
+  if (systemState['bme280_working']):
+    if (snapshotData["env_temperature"] > 25):
       snapshotData["fan_status"] = "ON"
       GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.HIGH)
-    else:
+
+    if (snapshotData["env_temperature"] < 24):
       snapshotData["fan_status"] = "OFF"
       GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.LOW)
 
-  #if (snapshotData["env_temperature"] > 25):
-  #  snapshotData["fan_status"] = "ON"
-  #  GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.HIGH)
-
-  #if (snapshotData["env_temperature"] < 24):
-  #  snapshotData["fan_status"] = "OFF"
-  #  GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.LOW)
+  if (not systemState['bme280_working']):
+    if (snapshotData["light_status"] == "ON"):
+      if (datetime.now().minute in [15, 16, 17, 18, 19, 20, 30, 31, 32, 33, 34, 35, 55, 56, 57, 58, 59]):
+        snapshotData["fan_status"] = "ON"
+        GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.HIGH)
+      else:
+        snapshotData["fan_status"] = "OFF"
+        GPIO.output(FAN_RELAY_GPIO_PIN, GPIO.LOW)
 
 def manageLED():
   currentHr = datetime.now().hour #UTC TIMEZONE
@@ -116,17 +132,17 @@ def read_temp_raw():
     return lines
 
 def readWaterTemp():
+  if (systemState['water_temp_working']):
     temp_c = 0
-    if (device_file):
-      lines = read_temp_raw()
-      while lines[0].strip()[-3:] != 'YES':
-          time.sleep(0.2)
-          lines = read_temp_raw()
-      equals_pos = lines[1].find('t=')
-      if equals_pos != -1:
-          temp_string = lines[1][equals_pos+2:]
-          temp_c = float(temp_string) / 1000.0
-          temp_f = temp_c * 9.0 / 5.0 + 32.0
+    lines = read_temp_raw()
+    while lines[0].strip()[-3:] != 'YES':
+        time.sleep(0.2)
+        lines = read_temp_raw()
+    equals_pos = lines[1].find('t=')
+    if equals_pos != -1:
+        temp_string = lines[1][equals_pos+2:]
+        temp_c = float(temp_string) / 1000.0
+        temp_f = temp_c * 9.0 / 5.0 + 32.0
     snapshotData["water_temperature"] = temp_c
 
 while True:
@@ -144,7 +160,16 @@ while True:
     manageFan()
     manageLED()
     #manageHumidifier()
-    #print("[{}] Temperature {:.2f}°C | Humidity {:.2f}% | Water {:.2f}°C | CPU {:.2f}°C | Fan {} | Light {} | Humidifier {}".format(snapshotData["timestamp"].replace("T", " "), snapshotData["env_temperature"], snapshotData["env_humidity"], snapshotData["water_temperature"], snapshotData["cpu_temperature"], snapshotData["fan_status"], snapshotData["light_status"], snapshotData["humidifier_status"]))
+
+    snapshotDataString = ""
+    for key in snapshotData:
+      snapshotDataString += key + " " + snapshotData[key] + " | "
+    print(snapshotDataString)
+
+    systemStateString = ""
+    for key in systemState:
+      systemStateString += key + " " + systemState[key] + " | "
+    print(systemStateString)
 
   #Save
   if (timestamp.second == 0):
