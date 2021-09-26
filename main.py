@@ -161,6 +161,10 @@ while True:
     manageLED()
     #manageHumidifier()
 
+    if (snapshotData['env_temperature'] > 29):
+      snapshotData["env_temperature"] = 29
+
+
     snapshotDataString = ""
     for key in snapshotData:
       snapshotDataString += key + " " + str(snapshotData[key]) + " | "
