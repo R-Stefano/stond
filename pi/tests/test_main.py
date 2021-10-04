@@ -1,8 +1,10 @@
 import unittest
 from unittest.mock import MagicMock, patch
 import sys
+import configs
 sys.modules['RPi'] = __import__('tests.mocking.mock_RPi')
 
+configs.debug = True
 import main
 class TestSensors(unittest.TestCase):
     # methods whose names start with the letters test. 
