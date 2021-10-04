@@ -50,9 +50,33 @@ class LightsActuator():
         RPi.GPIO.output(self.LED_RELAY_GPIO_PIN, RPi.GPIO.LOW)
         return
 
+class Humidifier():
+    def __init__(self):
+        self.status = "OFF"
+        self.working = False
+        self.HUMIDIFIER_GPIO_PIN = 27
+        try:
+            RPi.GPIO.setmode(RPi.GPIO.BCM)
+            RPi.GPIO.setup(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.OUT)
+            RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
+            self.working = True
+        except Exception as e:
+            logger.add("info", "Humidifier not working")
+            logger.add("error", e)
+
+    def turnOn(self):
+        self.status = "ON"
+        RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.HIGH)
+        return
+
+    def turnOff(self):
+        self.status = "OFF"
+        RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
+        return
+
 fan = FanActuator()
 led = LightsActuator()
-
+humidifier = Humidifier()
 
 def air(temperature):
     if (sensors.environment.working and temperature > 25):
@@ -74,3 +98,9 @@ def lights():
         led.turnOn()
     else:
         led.turnOff()
+
+def humidity(humidity):
+    if (humidity > 80):
+        humidifier.turnOff()
+    else:
+        humidifier.turnOn()

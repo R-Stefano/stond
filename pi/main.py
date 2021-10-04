@@ -18,28 +18,6 @@ systemState = {
   "relay_working": False
 }
 
-'''
-# RELAY
-import RPi.GPIO as GPIO # allo to call GPIO pins
-try:
-  HUMIDIFIER_GPIO_PIN = 17
-  GPIO.setup(HUMIDIFIER_GPIO_PIN, GPIO.OUT)
-  GPIO.output(HUMIDIFIER_GPIO_PIN, GPIO.LOW)
-  systemState['relay_working'] = True
-except:
-  systemState['relay_working'] = False
-
-def manageHumidifier():
-  if (snapshotData["env_humidity"] > configs["max_humidity"]):
-    snapshotData["humidifier_status"] = "OFF"
-    GPIO.output(HUMIDIFIER_GPIO_PIN, GPIO.LOW)
-
-  if (snapshotData["env_humidity"] < configs["min_humidity"]):
-    snapshotData["humidifier_status"] = "ON"
-    GPIO.output(HUMIDIFIER_GPIO_PIN, GPIO.HIGH)
-'''
-
-
 
 def run():
   # Update measurements
@@ -56,13 +34,14 @@ def run():
   logger.update('water_temperature', water_temperature)
   logger.update('water_level', water_level)
   
-  print(logger.data)
   #Control
   controller.air(env_temp)
   controller.lights()
-  '''
-  #manageHumidifier()
-  '''
+  controller.humidity(env_humidity)
+  logger.update('fan', controller.fan.status)
+  logger.update('led', controller.led.status)
+  logger.update('humidifier', controller.humidifier.status)
+  print(logger.data)
 
   #Save
   if (timestamp.second == 0):
