@@ -1,5 +1,5 @@
 from gpiozero import CPUTemperature
-import bme280 as _bme280
+import bme280
 import smbus2
 import glob, subprocess, time
 import RPi.GPIO as GPIO # allo to call GPIO pins
@@ -28,7 +28,7 @@ class Bme280():
         self.address = 0x77
         try:
             self.bus = smbus2.SMBus(port)
-            self.calibration_params = _bme280.load_calibration_params(self.bus, self.address)
+            self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
             self.working = True
         except Exception as e:
             print(e)
@@ -49,10 +49,10 @@ class Bme280():
                 'temperature': None
             }
         if not self.working:
-            return snapshot
+            return snapshot['temperature'], snapshot['humidity']
 
         try:
-            data = _bme280.sample(self.bus, self.address, self.calibration_params)
+            data = bme280.sample(self.bus, self.address, self.calibration_params)
             snapshot['humidity'] = data.humidity
             snapshot['temperature'] = data.temperature
         except Exception as e:
@@ -125,5 +125,5 @@ class WaterSensor():
         return int(GPIO.input(self.WATER_LEVEL_PIN))
 
 cpu = Cpu()
-bme280 = Bme280()
+environment = Bme280()
 water = WaterSensor()

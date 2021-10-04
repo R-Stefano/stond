@@ -13,8 +13,8 @@ configs = {
 '''
 
 systemState = {
-  "bme280_working": sensors.bme280.working,
-  "water_temp_working": sensors.water.working,
+  "bme280_working": sensors.environment.working,
+  "water_temp_working": sensors.water.temperatureSensorWorking,
   "relay_working": False
 }
 
@@ -47,19 +47,22 @@ def run():
   cpu_temperature = sensors.cpu.temperature
   water_temperature = sensors.water.temperature
   water_level = sensors.water.level # Output 1 if water touch the sensor
-  env_temp, env_humidity = sensors.bme280.readTempHumidity()
+  env_temp, env_humidity = sensors.environment.readTempHumidity()
+
   logger.update('timestamp', timestamp)
   logger.update('cpu_temperature', cpu_temperature)
   logger.update('env_temperature', env_temp)
   logger.update('env_humidity', env_humidity)
   logger.update('water_temperature', water_temperature)
   logger.update('water_level', water_level)
-
+  
+  print(logger.data)
   #logger.clear()
 
   #Control
-  controller.air()
-  controller.lights()
+  #controller.air()
+  #controller.lights()
+  print()
   '''
   #manageHumidifier()
 

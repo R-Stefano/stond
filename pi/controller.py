@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import logger, sensors
 import RPi.GPIO as GPIO # allo to call GPIO pins
 
@@ -51,7 +51,7 @@ class LightsActuator():
         return
 
 fan = FanActuator()
-lights = LightsActuator()
+led = LightsActuator()
 
 
 def air():
@@ -73,6 +73,6 @@ def air():
 def lights():
     currentHr = datetime.utcnow().hour #UTC TIMEZONE
     if (currentHr in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 19, 20, 21, 22, 23]):
-        lights.turnOn()
+        led.turnOn()
     else:
-        lights.turnOff()
+        led.turnOff()
