@@ -7,6 +7,7 @@ sudo nano /etc/rc.local
 ps -aux | grep python3
 sudo kill <pid>
 
+sudo strace -pPID -s9999 -e write
 
 Relay
 
