@@ -15,3 +15,6 @@ Relay
 - 5v -> to JP_VCCC of relay
 - low -> relay OPEN
 
+source ~/stond/bin/activate
+
+python3 -m unittest tests.test_main

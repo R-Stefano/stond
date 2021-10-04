@@ -1,4 +1,4 @@
-import time, glob, os, json, sys, requests, configs
+import time, os, configs
 from datetime import datetime
 import sensors, logger, controller
 
@@ -56,33 +56,16 @@ def run():
   logger.update('water_temperature', water_temperature)
   logger.update('water_level', water_level)
   
-  print(logger.data)
-  #logger.clear()
-
   #Control
-  #controller.air()
-  #controller.lights()
-  print()
+  controller.air(env_temp)
+  controller.lights()
   '''
   #manageHumidifier()
-
-  if (snapshotData['env_temperature'] > 29):
-    snapshotData["env_temperature"] = 29
-
-    snapshotDataString = ""
-    for key in snapshotData:
-      snapshotDataString += key + " " + str(snapshotData[key]) + " | "
-    print(snapshotDataString)
-
-    systemStateString = ""
-    for key in systemState:
-      systemStateString += key + " " + str(systemState[key]) + " | "
-    print(systemStateString)
+  '''
 
   #Save
   if (timestamp.second == 0):
     logger.save()
-  '''
 
   #END SCRIPT
   

@@ -1,5 +1,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
+import sys
+sys.modules['RPi'] = __import__('tests.mocking.mock_RPi')
 
 import main
 class TestSensors(unittest.TestCase):

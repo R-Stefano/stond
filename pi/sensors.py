@@ -2,8 +2,8 @@ from gpiozero import CPUTemperature
 import bme280
 import smbus2
 import glob, subprocess, time
-import RPi.GPIO as GPIO # allo to call GPIO pins
-
+import RPi # allo to call GPIO pins
+import logger
 import configs
 from unittest.mock import MagicMock
 
@@ -31,9 +31,9 @@ class Bme280():
             self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
             self.working = True
         except Exception as e:
-            print(e)
+            logger.add("info", "Some error while loading BME280 sensor")
+            logger.add("error", e)
             self.working = False
-            print("Some error while loading BME280 sensor")
     
         if (configs.debug):
             self.working = True
@@ -48,6 +48,10 @@ class Bme280():
                 'humidity': None,
                 'temperature': None
             }
+
+        if (configs.debug):
+            return 0, 0
+
         if not self.working:
             return snapshot['temperature'], snapshot['humidity']
 
@@ -56,8 +60,8 @@ class Bme280():
             snapshot['humidity'] = data.humidity
             snapshot['temperature'] = data.temperature
         except Exception as e:
-            print(e)
-            print("Some error while trying to read Temp & Humidity Data")
+            logger.add("info", "Some error while trying to read Temp & Humidity Dat")
+            logger.add("error", e)
         finally:
             return snapshot['temperature'], snapshot['humidity']
 
@@ -73,17 +77,17 @@ class WaterSensor():
             self.device_file = device_folder + '/w1_slave'
             self.temperatureSensorWorking = True
         except Exception as e:
-            print(e)
-            print("Some error during Water Temp Sensor setup")
+            logger.add("info", "Some error during Water Temp Sensor setup")
+            logger.add("error", e)
             self.temperatureSensorWorking = False
         
         try:
-            GPIO.setmode(GPIO.BCM)
-            GPIO.setup(self.WATER_LEVEL_PIN, GPIO.IN)
+            RPi.GPIO.setmode(RPi.GPIO.BCM)
+            RPi.GPIO.setup(self.WATER_LEVEL_PIN, RPi.GPIO.IN)
             self.levelSensorWorking = True
         except Exception as e:
-            print(e)
-            print("Some error during Water Level Sensor setup")
+            logger.add("info", "Some error during Water Level Sensor setup")
+            logger.add("error", e)
             self.levelSensorWorking = False
 
     def _read_temp_raw(self):
@@ -122,7 +126,7 @@ class WaterSensor():
         if (not self.levelSensorWorking):
             return None
 
-        return int(GPIO.input(self.WATER_LEVEL_PIN))
+        return int(RPi.GPIO.input(self.WATER_LEVEL_PIN))
 
 cpu = Cpu()
 environment = Bme280()

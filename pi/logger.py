@@ -1,4 +1,4 @@
-import logging, sys
+import logging, sys, requests, configs
 from logging.handlers import TimedRotatingFileHandler
 FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
 LOG_FILE = "system.log"
@@ -15,25 +15,31 @@ def get_file_handler():
    return file_handler
 
 def get_logger(logger_name):
-   logger = logging.getLogger(logger_name)
-   logger.setLevel(logging.DEBUG) # better to have too much log than not enough
-   logger.addHandler(get_console_handler())
-   logger.addHandler(get_file_handler())
-   # with this pattern, it's rarely necessary to propagate the error up to parent
-   logger.propagate = False
+
    return logger
 
+def add(level, message):
+   if (level == 'info'):
+      logger.info(message)
+   elif (level == 'error'):
+      logger.error(message, exc_info=True)
 
 def update(key, value):
    data[key]=value
 
 def save():
-   #print("[{}] Temperature {}°C | Humidity {}% | Water {}°C | CPU {}°C".format(snapshotData["timestamp"].replace("T", " "), snapshotData["env_temperature"], snapshotData["env_humidity"], snapshotData["water_temperature"], snapshotData["cpu_temperature"]))
-   print("Send Data")
-   response = requests.post(configs.apiUrl + "/api/sensors", data = snapshotData)
+   add('info', 'Send Data')
+   response = requests.post(configs.apiUrl + "/api/sensors", data = data)
    if (response.status_code != 200):
-      print("Impossible processing request. Error {} | {}".format(response.status_code, response.text))
-   return
+      add('error', "Impossible processing request. Error {} | {}".format(response.status_code, response.text))
+   clear()
 
 def clear():
    data = {}
+
+logger = logging.getLogger(LOG_FILE)
+logger.setLevel(logging.DEBUG) # better to have too much log than not enough
+logger.addHandler(get_console_handler())
+logger.addHandler(get_file_handler())
+# with this pattern, it's rarely necessary to propagate the error up to parent
+logger.propagate = False
