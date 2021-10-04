@@ -70,7 +70,7 @@ class WaterSensor():
     def __init__(self):
         self.temperatureSensorWorking = False
         self.levelSensorWorking = False
-        self.WATER_LEVEL_PIN = 4
+        self.WATER_LEVEL_PIN = 17
         try:
             base_dir = '/sys/bus/w1/devices/'
             device_folder = glob.glob(base_dir + '28*')[0]
