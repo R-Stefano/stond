@@ -1,7 +1,7 @@
-import logging, sys, requests, configs
+import logging, sys, requests, configs, os
 from logging.handlers import TimedRotatingFileHandler
 FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
-LOG_FILE = "system.log"
+LOG_FILE = os.path.dirname(__file__) + "/system.log"
 data = {}
 
 def get_console_handler():
