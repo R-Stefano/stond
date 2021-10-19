@@ -79,12 +79,12 @@ led = LightsActuator()
 humidifier = Humidifier()
 
 def air(temperature):
-    if (sensors.environment.working and temperature > 25):
-        fan.turnOn()
-        return
+    if (sensors.environment.working):
+        if (temperature > 26):
+           fan.turnOn()
 
-    if (sensors.environment.working and temperature < 24):
-        fan.turnOff()
+        if (temperature < 23):
+           fan.turnOff()
         return
 
     if (not sensors.environment.working and datetime.now().minute in [15, 16, 17, 18, 19, 20, 30, 31, 32, 33, 34, 35, 55, 56, 57, 58, 59]):
