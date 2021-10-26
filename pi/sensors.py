@@ -61,8 +61,8 @@ class Bme280():
             snapshot['temperature'] = data.temperature
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
-            logger.add("error", e)
             logger.add("debug", os.system('i2cdetect -y 1'))
+            logger.add("error", e)
         finally:
             return snapshot['temperature'], snapshot['humidity']
 
