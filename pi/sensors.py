@@ -1,7 +1,7 @@
 from gpiozero import CPUTemperature
 import bme280
 import smbus2
-import glob, subprocess, time
+import glob, subprocess, time, os
 import RPi # allo to call GPIO pins
 import logger
 import configs
@@ -62,6 +62,7 @@ class Bme280():
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
             logger.add("error", e)
+            logger.add("debug", os.system('i2cdetect -y 1'))
         finally:
             return snapshot['temperature'], snapshot['humidity']
 
