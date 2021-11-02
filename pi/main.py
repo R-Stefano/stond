@@ -22,6 +22,7 @@ systemState = {
 def run():
   # Update measurements
   timestamp = datetime.now()
+  sensors.water.cpu
   cpu_temperature = sensors.cpu.temperature
   water_temperature = sensors.water.temperature
   water_level = sensors.water.level # Output 1 if water touch the sensor
