@@ -6,7 +6,7 @@ import RPi # allo to call GPIO pins
 import logger
 import configs
 from unittest.mock import MagicMock
-import busio, digitalio
+import busio, digitalio, board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
@@ -99,13 +99,9 @@ class WaterSensor():
             self.levelSensorWorking = False
 
         try:
-            CLK  = 18
-            MISO = 23
-            MOSI = 24
-            CS   = 25
-
-            spi = busio.SPI(clock=CLK, MISO=MISO, MOSI=MOSI)
-            cs = digitalio.DigitalInOut(CS)
+            # create the spi bus
+            spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
+            cs = digitalio.DigitalInOut(board.D22)
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
