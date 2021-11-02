@@ -6,6 +6,7 @@ import RPi # allo to call GPIO pins
 import logger
 import configs
 from unittest.mock import MagicMock
+import Adafruit_MCP3008
 
 class Cpu():
     def __init__(self):
@@ -71,7 +72,14 @@ class WaterSensor():
     def __init__(self):
         self.temperatureSensorWorking = False
         self.levelSensorWorking = False
+        self.phSensorWorking = False
+
         self.WATER_LEVEL_PIN = 17
+        # Software SPI configuration: PH SENSOR
+        CLK  = 18
+        MISO = 23
+        MOSI = 24
+        CS   = 25
         try:
             base_dir = '/sys/bus/w1/devices/'
             device_folder = glob.glob(base_dir + '28*')[0]
@@ -90,6 +98,14 @@ class WaterSensor():
             logger.add("info", "Some error during Water Level Sensor setup")
             logger.add("error", e)
             self.levelSensorWorking = False
+
+        try:
+            self.mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+            self.phSensorWorking = True
+        except Exception as e:
+            logger.add("info", "Some error during PH Sensor setup")
+            logger.add("error", e)
+            self.phSensorWorking = False
 
     def _read_temp_raw(self):
         catdata = subprocess.Popen(['cat', self.device_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -128,6 +144,20 @@ class WaterSensor():
             return None
 
         return int(RPi.GPIO.input(self.WATER_LEVEL_PIN))
+
+    @property
+    def ph(self):
+        if (configs.debug):
+            return 7
+
+        if (not self.phSensorWorking):
+            return None
+
+        for i in range(8):
+            # The read_adc function will get the value of the specified channel (0-7).
+            self.mcp.read_adc(i)
+
+        return 7
 
 cpu = Cpu()
 environment = Bme280()
