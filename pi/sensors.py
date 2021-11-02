@@ -6,7 +6,9 @@ import RPi # allo to call GPIO pins
 import logger
 import configs
 from unittest.mock import MagicMock
-import Adafruit_MCP3008
+import busio, digitalio
+import adafruit_mcp3xxx.mcp3008 as MCP
+from adafruit_mcp3xxx.analog_in import AnalogIn
 
 class Cpu():
     def __init__(self):
@@ -76,10 +78,7 @@ class WaterSensor():
 
         self.WATER_LEVEL_PIN = 17
         # Software SPI configuration: PH SENSOR
-        CLK  = 18
-        MISO = 23
-        MOSI = 24
-        CS   = 25
+
         try:
             base_dir = '/sys/bus/w1/devices/'
             device_folder = glob.glob(base_dir + '28*')[0]
@@ -100,7 +99,14 @@ class WaterSensor():
             self.levelSensorWorking = False
 
         try:
-            self.mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+            CLK  = 18
+            MISO = 23
+            MOSI = 24
+            CS   = 25
+
+            spi = busio.SPI(clock=CLK, MISO=MISO, MOSI=MOSI)
+            cs = digitalio.DigitalInOut(CS)
+            self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
             logger.add("info", "Some error during PH Sensor setup")
@@ -153,9 +159,8 @@ class WaterSensor():
         if (not self.phSensorWorking):
             return None
 
-        for i in range(8):
-            # The read_adc function will get the value of the specified channel (0-7).
-            self.mcp.read_adc(i)
+        channel = AnalogIn(self.mcp, MCP.P0)
+        print('Raw ADC Value: ', channel.value)
 
         return 7
 
