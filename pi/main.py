@@ -22,10 +22,10 @@ systemState = {
 def run():
   # Update measurements
   timestamp = datetime.now()
-  sensors.water.ph
   cpu_temperature = sensors.cpu.temperature
   water_temperature = sensors.water.temperature
   water_level = sensors.water.level # Output 1 if water touch the sensor
+  water_ph = sensors.water.ph
   env_temp, env_humidity = sensors.environment.readTempHumidity()
 
   logger.update('timestamp', timestamp.isoformat())
@@ -34,6 +34,8 @@ def run():
   logger.update('env_humidity', env_humidity)
   logger.update('water_temperature', water_temperature)
   logger.update('water_level', water_level)
+  logger.update('water_ph', water_ph)
+
   
   #Control
   controller.air(env_temp)

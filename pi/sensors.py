@@ -156,9 +156,10 @@ class WaterSensor():
             return None
 
         channel = AnalogIn(self.mcp, MCP.P0)
-        print('Raw ADC Value: ', channel.value)
+        rawAdc = channel.value
+        phValue = (rawAdc / 4681) + 1
 
-        return 7
+        return phValue
 
 cpu = Cpu()
 environment = Bme280()
