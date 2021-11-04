@@ -17,6 +17,7 @@ exports.checkValues = async (env_temperature, env_humidity) => {
     const currentTimestamp = new Date()
     const currentHour = currentTimestamp.getHours() // 0 - 23
 
+    /*
     let messages = [] 
     if (env_temperature < 18 && currentHour >= 12) {
         messages.push(`Env Temperature at ${env_temperature}°C\n`)
@@ -41,6 +42,7 @@ exports.checkValues = async (env_temperature, env_humidity) => {
             body: txt
         })
     }
+    */
 
     return Promise.resolve()
 }
