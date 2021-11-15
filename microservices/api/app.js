@@ -4,6 +4,8 @@ const logger = require('./libs/logger')
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const compression = require('compression');
+
+const service = require('./services/main')
 var app = express()
 
 app.use(express.json({limit: "50mb"}));
@@ -44,9 +46,44 @@ const sensors = require('./routes/sensors')
 
 app.use('/api/sensors', sensors)
 
-app.listen(port, function () {
+const server = app.listen(port, function () {
   console.log('App listening on port 8080!')
 })
+
+// Socket setup
+const io = require("socket.io")(server, {
+  cors: {
+    origin: '*'
+  }
+})
+
+io.on("connection", function (socket) {
+  console.log("Made socket connection");
+
+  socket.on("login", function (data) {
+    console.log(`Device Login: ${data.deviceId}`)
+    socket.deviceId = data.deviceId
+    socket.join(data.deviceId);
+  });
+
+  socket.on("device:ventilation:put", async (data) => {
+    console.log('device:ventilation:put')
+    console.log(socket.deviceId, data)
+    await service.device.ventilation(socket.deviceId, data.status)
+    io.to(socket.deviceId).emit('event', {name: 'device/ventilation', data: {deviceId: socket.deviceId, value: data.status}});
+  });
+
+  socket.on("device:light:put", async (data) => {
+    console.log('device:light:put')
+    console.log(socket.deviceId, data)
+    await service.device.light(socket.deviceId, data.status)
+    io.to(socket.deviceId).emit('event', {name: 'device/light', data: {deviceId: socket.deviceId, value: data.status}});
+  });
+
+  socket.on("disconnect", () => {
+    io.emit("user disconnected", socket.userId);
+  });
+});
 
 module.exports = app; // for testing
 

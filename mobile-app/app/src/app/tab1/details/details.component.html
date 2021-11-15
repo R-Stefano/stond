@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [ngClass]="{'displayPageHeaderInToolbar': displayPageHeaderInToolbar}">{{seasonName | titlecase}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="background-image">
+    <h1 class="page-title" #pageHeader>{{seasonName | titlecase}}</h1>
+  </div>
+</ion-content>

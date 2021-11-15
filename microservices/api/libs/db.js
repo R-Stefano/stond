@@ -28,10 +28,10 @@ db.sequelize = sequelize;
 //db.user_role = require(dbModelsPath + compositeModel + "user_role.js")(sequelize, Sequelize);
 
 /* STANDARD MODELS */
-//db.user = require(dbModelsPath + "User.js")(sequelize, Sequelize)
+db.device = require(dbModelsPath + "Device.js")(sequelize, Sequelize)
 
 
-//db.user.belongsToMany(db.role, {as: 'roles', through: 'user_role', foreignKey: 'userID', otherKey: 'roleID'})
+//db.device.belongsToMany(db.role, {as: 'roles', through: 'user_role', foreignKey: 'userID', otherKey: 'roleID'})
 //db.role.hasMany(db.permission, {as: 'permissions', sourceKey: 'ID', targetKey: 'roleID'})
 //db.permission.belongsTo(db.resource, {as: 'resource', sourceKey: 'resourceID', targetKey: 'ID'})
 module.exports = db

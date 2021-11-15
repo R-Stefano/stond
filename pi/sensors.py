@@ -52,9 +52,6 @@ class Bme280():
                 'temperature': None
             }
 
-        if (configs.debug):
-            return 0, 0
-
         if not self.working:
             return snapshot['temperature'], snapshot['humidity']
 
@@ -116,11 +113,8 @@ class WaterSensor():
         lines = out_decode.split('\n')
         return lines
 
-    @property
     def temperature(self):
         temp_c = None
-        if (configs.debug):
-            return 0
 
         if (not self.temperatureSensorWorking):
             return None
@@ -136,22 +130,14 @@ class WaterSensor():
             temp_f = temp_c * 9.0 / 5.0 + 32.0
         return temp_c
 
-    @property
     def level(self):
         #  Output 1 if water touch the sensor
-        if (configs.debug):
-            return 0
-
         if (not self.levelSensorWorking):
             return None
 
         return int(RPi.GPIO.input(self.WATER_LEVEL_PIN))
 
-    @property
     def ph(self):
-        if (configs.debug):
-            return 7
-
         if (not self.phSensorWorking):
             return None
 

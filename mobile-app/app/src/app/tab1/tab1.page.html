@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title [ngClass]="{'displayPageHeaderInToolbar': displayPageHeaderInToolbar}">Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="background-image">
+    <h1 class="page-title" #pageHeader>Dashboard</h1>
+  
+    <div class="section">
+      <div class="card" id="strain">
+        <div class="header">
+          <h2>{{strain.name | titlecase}}</h2>
+          <h3 id="strain-aka">aka {{strain.alias | titlecase}}</h3>
+        </div>
+        <div class="content">
+          <p>{{strain.description}}</p>
+          <div class="grid">
+            <span>THC</span>            <span>{{strain.thc}} %</span>
+            <span>Growing Period</span> <span>{{strain.growing_period_weeks}} weeks</span>
+            <span>Yield</span>          <span>{{strain.yield}} g</span>
+            <span>Type</span>           <span>{{strain.type}}</span>
+          </div>
+        </div>
+        <div class="image-wrapper">
+          <img [src]="strain.refImage" alt="">
+        </div>
+      </div>
+    </div>
+  
+    <div class="section" id="buttons">
+      <div class="card button ion-activatable" (click)="onLightButtonClick()">
+        <span>LIGHT</span>
+        <ion-icon name="light" [ngClass]="{'success': analytics.fan == 'on', 'error': analytics.fan == 'off'}"></ion-icon>
+        <span class="status">{{analytics.fan | uppercase}}</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+  
+      <div class="card button ion-activatable" (click)="onVentilationButtonClick()">
+        <span>VENTILATION</span>
+        <ion-icon name="ventilation" [ngClass]="{'success': analytics.ventilation == 'on', 'error': analytics.ventilation == 'off'}"></ion-icon>
+        <span class="status">{{analytics.ventilation | uppercase}}</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
+  
+    <div class="section">
+      <div class="card button line ion-activatable" (click)="onDetailsClick()">
+        <span>Details</span> <ion-icon name="navigate-next"></ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+    </div>
+  
+    <h3>Analytics</h3>
+    <div class="section" id="analytics">
+      <div class="card">
+        <ion-icon name="temperature"></ion-icon>
+        <span class="value" [ngClass]="{'success': analytics.temperature_status == 'ok', 'warning': analytics.temperature_status == 'warning', 'error': analytics.temperature_status == 'error'}">{{analytics.temperature | number:'1.1-1'}}° C</span>
+        <span class="title">Temperature</span>
+      </div>
+  
+      <div class="card">
+        <ion-icon name="ph"></ion-icon>
+        <span class="value" [ngClass]="{'success': analytics.ph_status == 'ok', 'warning': analytics.ph_status == 'warning', 'error': analytics.ph_status == 'error'}">{{analytics.ph | number:'1.1-1'}}</span>
+        <span class="title">pH</span>
+      </div>
+  
+      <div class="card">
+        <ion-icon name="water-level"></ion-icon>
+        <span class="value success" *ngIf="analytics.water_level == 1">OK</span>
+        <span class="value error" *ngIf="analytics.water_level == 0">LOW</span>
+        <span class="title">Water Level</span>
+      </div>
+  
+      <div class="card">
+        <ion-icon name="humidity"></ion-icon>
+        <span class="value" [ngClass]="{'success': analytics.humidity_status == 'ok', 'warning': analytics.humidity_status == 'warning', 'error': analytics.humidity_status == 'error'}">{{analytics.humidity | number:'1.1-1'}} %</span>
+        <span class="title">Humidity</span>
+      </div>
+  
+      <div class="card">
+        <ion-icon name="water-temperature"></ion-icon>
+        <span class="value" [ngClass]="{'success': analytics.water_temp_status == 'ok', 'warning': analytics.water_temp_status == 'warning', 'error': analytics.water_temp_status == 'error'}">{{analytics.water_temperature | number:'1.1-1'}}° C</span>
+        <span class="title">Water Temp</span>
+      </div>
+  
+      <div class="card">
+        <ion-icon name="nutrients"></ion-icon>
+        <span class="value">{{analytics.nutrients | date:'shortDate'}}</span>
+        <span class="title">Nutrients</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

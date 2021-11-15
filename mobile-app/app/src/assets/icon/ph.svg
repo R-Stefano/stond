@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="35px" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <path d="M18.9583333,16.5229167 L26.25,26.25 L8.75,26.25 L16.0416667,16.5229167 L16.0416667,8.75 L18.9583333,8.75 M23.275,5.83333333 L11.725,5.83333333 C11.1125,5.83333333 10.7770833,6.53333333 11.15625,7.01458333 L13.125,9.47916667 L13.125,15.5604167 L4.66666667,26.8333333 C3.95208333,27.7958333 4.6375,29.1666667 5.83333333,29.1666667 L29.1666667,29.1666667 C30.3625,29.1666667 31.0479167,27.7958333 30.3333333,26.8333333 L21.875,15.5604167 L21.875,9.47916667 L23.84375,7.01458333 C24.2229167,6.53333333 23.8875,5.83333333 23.275,5.83333333 L23.275,5.83333333 Z" id="Shape" fill="currentColor" fill-rule="nonzero"></path>
+    <title>science_black_24dp</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.000000 0 0 0 0 0.000000 0 0 0 0 0.000000 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Mobile-App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g filter="url(#filter-1)" id="science_black_24dp">
+            <g>
+                <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

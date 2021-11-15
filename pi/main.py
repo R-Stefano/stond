@@ -1,6 +1,8 @@
-import time, os, configs
+import time, os, configs, socketio
 from datetime import datetime
 import sensors, logger, controller
+sio = socketio.Client()
+sio.connect(configs.apiUrl)
 
 if not configs.debug:
   os.system("sudo modprobe w1-gpio")
@@ -18,14 +20,29 @@ systemState = {
   "relay_working": False
 }
 
+@sio.on('event')
+def on_event(evt):
+  print(evt)
+  if evt['name'] == 'device/ventilation':
+    if evt['data']['value'] == 'on':
+      controller.fan.turnOn()
+      print(controller.fan.status)
+    else:
+      controller.fan.turnOff()
+
+  if evt['name'] == 'device/light':
+    if evt['data']['value'] == 'on':
+      controller.led.turnOn()
+    else:
+      controller.led.turnOff()
 
 def run():
   # Update measurements
   timestamp = datetime.now()
   cpu_temperature = sensors.cpu.temperature
-  water_temperature = sensors.water.temperature
-  water_level = sensors.water.level # Output 1 if water touch the sensor
-  water_ph = sensors.water.ph
+  water_temperature = sensors.water.temperature()
+  water_level = sensors.water.level() # Output 1 if water touch the sensor
+  water_ph = sensors.water.ph()
   env_temp, env_humidity = sensors.environment.readTempHumidity()
 
   logger.update('timestamp', timestamp.isoformat())
@@ -54,6 +71,8 @@ def run():
   
 
 def start():
+  sio.emit('login', {'deviceId': configs.deviceId})
+  
   while True:
     timestamp = datetime.now()
 
