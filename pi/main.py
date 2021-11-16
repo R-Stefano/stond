@@ -1,8 +1,8 @@
-import time, os, configs, socketio
+import time, os, configs
 from datetime import datetime
 import sensors, logger, controller
-sio = socketio.Client()
-sio.connect(configs.apiUrl)
+import socketManager as socketMng
+import dataManager as dataMng
 
 if not configs.debug:
   os.system("sudo modprobe w1-gpio")
@@ -14,64 +14,32 @@ configs = {
 }
 '''
 
-systemState = {
-  "bme280_working": sensors.environment.working,
-  "water_temp_working": sensors.water.temperatureSensorWorking,
-  "relay_working": False
-}
-
-@sio.on('event')
-def on_event(evt):
-  print(evt)
-  if evt['name'] == 'device/ventilation':
-    if evt['data']['value'] == 'on':
-      controller.fan.turnOn()
-      print(controller.fan.status)
-    else:
-      controller.fan.turnOff()
-
-  if evt['name'] == 'device/light':
-    if evt['data']['value'] == 'on':
-      controller.led.turnOn()
-    else:
-      controller.led.turnOff()
-
 def run():
   # Update measurements
   timestamp = datetime.now()
   cpu_temperature = sensors.cpu.temperature
-  water_temperature = sensors.water.temperature()
-  water_level = sensors.water.level() # Output 1 if water touch the sensor
-  water_ph = sensors.water.ph()
-  env_temp, env_humidity = sensors.environment.readTempHumidity()
+  sensors.water.getTemperature()
+  sensors.water.getLevel() # Output 1 if water touch the sensor
+  sensors.water.getPh()
+  sensors.environment.readTempHumidity()
 
   logger.update('timestamp', timestamp.isoformat())
   logger.update('cpu_temperature', cpu_temperature)
-  logger.update('env_temperature', env_temp)
-  logger.update('env_humidity', env_humidity)
-  logger.update('water_temperature', water_temperature)
-  logger.update('water_level', water_level)
-  logger.update('water_ph', water_ph)
-
   
   #Control
-  controller.air(env_temp)
+  controller.air()
   controller.lights()
-  controller.humidity(env_humidity)
-  logger.update('fan', controller.fan.status)
-  logger.update('led', controller.led.status)
-  logger.update('humidifier', controller.humidifier.status)
-  print(logger.data)
+  #controller.humidity(env_humidity)
 
   #Save
   if (timestamp.second == 0):
-    logger.save()
+    dataMng.sendData()
 
   #END SCRIPT
   
 
 def start():
-  sio.emit('login', {'deviceId': configs.deviceId})
+  socketMng.login()
   
   while True:
     timestamp = datetime.now()

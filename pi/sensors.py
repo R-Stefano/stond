@@ -26,45 +26,34 @@ class Cpu():
 # Humidity and Temp
 class Bme280():
     def __init__(self):
-        self.working = False
+        self.temperatureHumiditySensorWorking = False
+
+        self.temperature = None
+        self.humidity = None
+
         port = 1
         self.address = 0x77
         try:
             self.bus = smbus2.SMBus(port)
             self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
-            self.working = True
+            self.temperatureHumiditySensorWorking = True
         except Exception as e:
             logger.add("info", "Some error while loading BME280 sensor")
             logger.add("error", e)
-            self.working = False
-    
-        if (configs.debug):
-            self.working = True
-            _bme280 = MagicMock()
-            responseObject = MagicMock()
-            responseObject.humidity = 0
-            responseObject.temperature = 0
-            _bme280.sample = MagicMock(return_value=responseObject)
+            self.temperatureHumiditySensorWorking = False
 
     def readTempHumidity(self):
-        snapshot = {
-                'humidity': None,
-                'temperature': None
-            }
-
-        if not self.working:
-            return snapshot['temperature'], snapshot['humidity']
-
         try:
             data = bme280.sample(self.bus, self.address, self.calibration_params)
-            snapshot['humidity'] = data.humidity
-            snapshot['temperature'] = data.temperature
+            self.humidity = data.humidity
+            self.temperature = data.temperature
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
             logger.add("debug", os.system('i2cdetect -y 1'))
             logger.add("error", e)
-        finally:
-            return snapshot['temperature'], snapshot['humidity']
+            self.humidity = None
+            self.temperature = None
+            self.temperatureHumiditySensorWorking = False
 
 # Water Temp
 class WaterSensor():
@@ -72,6 +61,10 @@ class WaterSensor():
         self.temperatureSensorWorking = False
         self.levelSensorWorking = False
         self.phSensorWorking = False
+
+        self.temperature = None
+        self.level = None
+        self.ph = None
 
         self.WATER_LEVEL_PIN = 17
         # Software SPI configuration: PH SENSOR
@@ -113,39 +106,37 @@ class WaterSensor():
         lines = out_decode.split('\n')
         return lines
 
-    def temperature(self):
+    def getTemperature(self):
         temp_c = None
 
-        if (not self.temperatureSensorWorking):
-            return None
-    
-        lines = self._read_temp_raw()
-        while lines[0].strip()[-3:] != 'YES':
-            time.sleep(0.2)
+        if (self.temperatureSensorWorking):
             lines = self._read_temp_raw()
-        equals_pos = lines[1].find('t=')
-        if equals_pos != -1:
-            temp_string = lines[1][equals_pos+2:]
-            temp_c = float(temp_string) / 1000.0
-            temp_f = temp_c * 9.0 / 5.0 + 32.0
-        return temp_c
+            while lines[0].strip()[-3:] != 'YES':
+                time.sleep(0.2)
+                lines = self._read_temp_raw()
+            equals_pos = lines[1].find('t=')
+            if equals_pos != -1:
+                temp_string = lines[1][equals_pos+2:]
+                temp_c = float(temp_string) / 1000.0
+                temp_f = temp_c * 9.0 / 5.0 + 32.0
 
-    def level(self):
+        self.temperature = temp_c
+
+    def getLevel(self):
         #  Output 1 if water touch the sensor
-        if (not self.levelSensorWorking):
-            return None
+        _waterLevel = None
+        if (self.levelSensorWorking):
+            _waterLevel = int(RPi.GPIO.input(self.WATER_LEVEL_PIN))
+        self.level = _waterLevel
 
-        return int(RPi.GPIO.input(self.WATER_LEVEL_PIN))
+    def getPh(self):
+        _phValue = None
+        if (self.phSensorWorking):
+            channel = AnalogIn(self.mcp, MCP.P0)
+            rawAdc = channel.value
+            _phValue = (rawAdc / 4681) + 1
 
-    def ph(self):
-        if (not self.phSensorWorking):
-            return None
-
-        channel = AnalogIn(self.mcp, MCP.P0)
-        rawAdc = channel.value
-        phValue = (rawAdc / 4681) + 1
-
-        return phValue
+        self.ph = _phValue
 
 cpu = Cpu()
 environment = Bme280()

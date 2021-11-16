@@ -1,8 +1,12 @@
 import logging, sys, requests, configs, os
 from logging.handlers import TimedRotatingFileHandler
+import socketManager as socketMng
+
 FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
 LOG_FILE = os.path.dirname(__file__) + "/system.log"
-data = {}
+data = {
+      'deviceId': configs.deviceId
+}
 
 def get_console_handler():
    console_handler = logging.StreamHandler(sys.stdout)
@@ -29,13 +33,13 @@ def update(key, value):
 
 def save():
    add('info', 'Send Data')
-   response = requests.post(configs.apiUrl + "/api/sensors", data = data)
-   if (response.status_code != 200):
-      add('error', "Impossible processing request. Error {} | {}".format(response.status_code, response.text))
+
    clear()
 
 def clear():
-   data = {}
+   data = {
+      'deviceId': configs.deviceId
+   }
 
 logger = logging.getLogger(LOG_FILE)
 logger.setLevel(logging.DEBUG) # better to have too much log than not enough

@@ -1,8 +1,10 @@
 const sensors = require('./sensors')
-const device = require('./device')
+const actuators = require('./actuators')
+const devices = require('./device')
 
 exports.sensors = sensors
-exports.device = device
+exports.actuators = actuators
+exports.device = devices
 
 
 

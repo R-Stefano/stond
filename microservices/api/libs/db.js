@@ -29,6 +29,8 @@ db.sequelize = sequelize;
 
 /* STANDARD MODELS */
 db.device = require(dbModelsPath + "Device.js")(sequelize, Sequelize)
+db.sensor = require(dbModelsPath + "Sensor.js")(sequelize, Sequelize)
+db.actuator = require(dbModelsPath + "Actuator.js")(sequelize, Sequelize)
 
 
 //db.device.belongsToMany(db.role, {as: 'roles', through: 'user_role', foreignKey: 'userID', otherKey: 'roleID'})

@@ -34,18 +34,18 @@
       </div>
     </div>
   
-    <div class="section" id="buttons">
+    <div class="section" id="buttons" *ngIf="deviceStatus">
       <div class="card button ion-activatable" (click)="onLightButtonClick()">
-        <span>LIGHT</span>
-        <ion-icon name="light" [ngClass]="{'success': analytics.fan == 'on', 'error': analytics.fan == 'off'}"></ion-icon>
-        <span class="status">{{analytics.fan | uppercase}}</span>
+        <span>LED</span>
+        <ion-icon name="light" [ngClass]="{'success': deviceStatus.actuators.LED.status == 'ON', 'error': deviceStatus.actuators.LED.status == 'OFF'}"></ion-icon>
+        <span class="status">{{deviceStatus.actuators.LED.status | uppercase}}</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
   
       <div class="card button ion-activatable" (click)="onVentilationButtonClick()">
         <span>VENTILATION</span>
-        <ion-icon name="ventilation" [ngClass]="{'success': analytics.ventilation == 'on', 'error': analytics.ventilation == 'off'}"></ion-icon>
-        <span class="status">{{analytics.ventilation | uppercase}}</span>
+        <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}"></ion-icon>
+        <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
     </div>
@@ -58,16 +58,16 @@
     </div>
   
     <h3>Analytics</h3>
-    <div class="section" id="analytics">
+    <div class="section" id="analytics" *ngIf="deviceStatus">
       <div class="card">
         <ion-icon name="temperature"></ion-icon>
-        <span class="value" [ngClass]="{'success': analytics.temperature_status == 'ok', 'warning': analytics.temperature_status == 'warning', 'error': analytics.temperature_status == 'error'}">{{analytics.temperature | number:'1.1-1'}}° C</span>
+        <span class="value" [ngClass]="{'success': deviceStatus.temperature_status == 'ok', 'warning': deviceStatus.temperature_status == 'warning', 'error': deviceStatus.temperature_status == 'error'}">{{deviceStatus.sensors.env_temperature.value | number:'1.1-1'}}° C</span>
         <span class="title">Temperature</span>
       </div>
   
       <div class="card">
         <ion-icon name="ph"></ion-icon>
-        <span class="value" [ngClass]="{'success': analytics.ph_status == 'ok', 'warning': analytics.ph_status == 'warning', 'error': analytics.ph_status == 'error'}">{{analytics.ph | number:'1.1-1'}}</span>
+        <span class="value" [ngClass]="{'success': deviceStatus.ph_status == 'ok', 'warning': deviceStatus.ph_status == 'warning', 'error': deviceStatus.ph_status == 'error'}">{{deviceStatus.sensors.water_ph.value | number:'1.1-1'}}</span>
         <span class="title">pH</span>
       </div>
   

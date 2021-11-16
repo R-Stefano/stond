@@ -15,10 +15,18 @@ configs.apiUrl = 'http://localhost:8080'
 configs.debug = True
 import main
 
-main.sensors.water.temperature = unittest.mock.Mock(name='temperature', return_value=69)
-main.sensors.water.level = unittest.mock.Mock(name='level', return_value=1)
-main.sensors.water.ph = unittest.mock.Mock(name='ph', return_value=6.5)
-main.sensors.environment.readTempHumidity = unittest.mock.Mock(name='readTempHumidity', return_value=[5,5])
+main.sensors.water.getTemperature = unittest.mock.Mock(name='getTemperature', return_value=None)
+main.sensors.water.temperature = 21
+
+main.sensors.water.getLevel = unittest.mock.Mock(name='getLevel', return_value=None)
+main.sensors.water.level = 1
+
+main.sensors.water.getPh = unittest.mock.Mock(name='getPh', return_value=None)
+main.sensors.water.ph = 6.5
+
+main.sensors.environment.readTempHumidity = unittest.mock.Mock(name='readTempHumidity', return_value=None)
+main.sensors.environment.temperature = 25
+main.sensors.environment.humidity = 80
 
 
 class TestSensors(unittest.TestCase):

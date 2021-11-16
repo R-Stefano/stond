@@ -42,9 +42,9 @@ app.use(function (req, res, next) {
 })
 
 
-const sensors = require('./routes/sensors')
+const devices = require('./routes/devices')
 
-app.use('/api/sensors', sensors)
+app.use('/api/devices', devices)
 
 const server = app.listen(port, function () {
   console.log('App listening on port 8080!')
@@ -78,6 +78,13 @@ io.on("connection", function (socket) {
     console.log(socket.deviceId, data)
     await service.device.light(socket.deviceId, data.status)
     io.to(socket.deviceId).emit('event', {name: 'device/light', data: {deviceId: socket.deviceId, value: data.status}});
+  });
+
+  socket.on("device:sensors:put", async (data) => {
+    console.log('device:sensors:put')
+    console.log(socket.deviceId, data)
+    //await service.device.light(socket.deviceId, data.status)
+    //io.to(socket.deviceId).emit('event', {name: 'device/light', data: {deviceId: socket.deviceId, value: data.status}});
   });
 
   socket.on("disconnect", () => {
