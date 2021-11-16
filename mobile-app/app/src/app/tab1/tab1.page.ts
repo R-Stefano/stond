@@ -10,7 +10,19 @@ export class DeviceStatus {
       isWorking: boolean,
       value: number
     },
+    env_humidity: {
+      isWorking: boolean,
+      value: number
+    },
     water_ph: {
+      isWorking: boolean,
+      value: number
+    },
+    water_level: {
+      isWorking: boolean,
+      value: number
+    },
+    water_temperature: {
       isWorking: boolean,
       value: number
     }
@@ -51,31 +63,11 @@ export class DeviceStatus {
     }
   }
 
-}
-
-export class AnalyticsOverview {
-  currentSeasonID: number
-  fan: string
-  temperature: number
-  ph: number
-  water_level: number
-  water_temperature: number
-  humidity: number
-  nutrients: Date
-
-  constructor(data) {
-    Object.assign(this, data);
-  }
-
-
-
-
-
   get humidity_status(): string {
-    if (this.humidity > 40 && this.humidity < 60) {
+    if (this.sensors.env_humidity.value > 40 && this.sensors.env_humidity.value < 60) {
       return 'ok'
     }
-    else if (this.temperature > 30 && this.temperature < 70) {
+    else if (this.sensors.env_humidity.value > 30 && this.sensors.env_humidity.value < 70) {
       return 'warning'
     } else {
       return 'error'
@@ -83,10 +75,10 @@ export class AnalyticsOverview {
   }
 
   get water_temp_status(): string {
-    if (this.water_temperature < 20) {
+    if (this.sensors.water_temperature.value < 20) {
       return 'ok'
     }
-    else if (this.water_temperature < 24) {
+    else if (this.sensors.water_temperature.value < 24) {
       return 'warning'
     } else {
       return 'error'
@@ -105,6 +97,7 @@ export class Tab1Page {
   
   private _subscriptions = [];
   public deviceStatus: DeviceStatus;
+  public currentSeasonID: number = 1
 
   public strain = {
     refImage: 'https://images.hytiva.com/Black-Widow.jpg?mw420-mh420',
@@ -116,18 +109,6 @@ export class Tab1Page {
     yield: 100,
     type: 'hybrid'
   }
-
-  public analytics: AnalyticsOverview = new AnalyticsOverview({
-    currentSeasonID: 1,
-    fan: 'on',
-    ventilation: 'on',
-    temperature: 28.5,
-    ph: 6.5,
-    water_level: 1,
-    water_temperature: 21.5,
-    humidity: 68,
-    nutrients: new Date(),
-  })
 
   constructor(
     private _router: Router,
@@ -154,7 +135,7 @@ export class Tab1Page {
   }
 
   onDetailsClick() {
-    this._router.navigate([`tabs/season/${this.analytics.currentSeasonID}/details`])
+    this._router.navigate([`tabs/season/${this.currentSeasonID}/details`])
   }
 
   onScroll(evt) {
@@ -162,11 +143,13 @@ export class Tab1Page {
   }
 
   onVentilationButtonClick() {
-    this._socketMng.updateDeviceVentilation({status: 'on'})
+    const newValue = this.deviceStatus.actuators.ventilation.status == 'ON' ? 'OFF' : 'ON'
+    this._socketMng.updateDeviceVentilation({status: newValue})
   }
 
   onLightButtonClick() {
-    this._socketMng.updateDeviceLight({status: 'on'})
+    const newValue = this.deviceStatus.actuators.LED.status == 'ON' ? 'OFF' : 'ON'
+    this._socketMng.updateDeviceLight({status: newValue})
   }
 
   onRefresh() {

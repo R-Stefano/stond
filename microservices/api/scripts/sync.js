@@ -3,6 +3,10 @@ const axios = require('axios')
 configs = require('../configs.js')
 
 if (process.argv.includes("production")) {
+    configs.sql.host = "35.189.95.166"
+    configs.sql.database = "stond"
+    configs.sql.username = "root"
+    configs.sql.password = "root"
 } else if (process.argv.includes("staging")) {
     configs.sql.host = "35.189.121.159"
     configs.sql.database = ""

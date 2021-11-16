@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "db:sync": "node scripts/migrate.js",
+    "db:sync": "node scripts/sync.js",
+    "db:sync:prod": "node scripts/sync.js production",
     "test": "mocha tests/"
   },
   "author": "",
