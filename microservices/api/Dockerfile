@@ -7,7 +7,7 @@ ENV DB_NAME=stond
 ENV DB_USERNAME=root
 ENV DB_PSW=root
 ENV DB_PORT=3306
-ENV DB_CONN_NAME=/cloudsql/wiredhub:europe-west2:customs
+ENV DB_CONN_NAME=/cloudsql/beyondborders:europe-west2:beyondborders
 #ENV BUCKET_NAME=staging-wiredhub
 
 COPY . .

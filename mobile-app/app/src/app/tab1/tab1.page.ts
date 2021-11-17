@@ -112,12 +112,11 @@ export class Tab1Page {
 
   constructor(
     private _router: Router,
-    private _socketMng: SocketService,
+    //private _socketMng: SocketService,
     private _api: ApiService
   ) {
-    this._socketMng.login()
-
-    this._socketMng.event().subscribe(evt => console.log(evt))
+    //this._socketMng.login()
+    //this._socketMng.event().subscribe(evt => console.log(evt))
     
     this.onRefresh()
 
@@ -144,12 +143,12 @@ export class Tab1Page {
 
   onVentilationButtonClick() {
     const newValue = this.deviceStatus.actuators.ventilation.status == 'ON' ? 'OFF' : 'ON'
-    this._socketMng.updateDeviceVentilation({status: newValue})
+    //this._socketMng.updateDeviceVentilation({status: newValue})
   }
 
   onLightButtonClick() {
     const newValue = this.deviceStatus.actuators.LED.status == 'ON' ? 'OFF' : 'ON'
-    this._socketMng.updateDeviceLight({status: newValue})
+    //this._socketMng.updateDeviceLight({status: newValue})
   }
 
   onRefresh() {

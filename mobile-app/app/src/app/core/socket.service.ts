@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Socket, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-  config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
+  config: SocketIoConfig = { url: environment.apiUrl, options: {} };
   public deviceId: string = 'e0db0991-5c15-4a98-bd05-7ed14cefbca5'
   public messages: [];
 

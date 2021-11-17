@@ -4,6 +4,8 @@ import sensors, logger, controller
 import socketManager as socketMng
 import dataManager as dataMng
 
+os.system("your command")
+
 if not configs.debug:
   os.system("sudo modprobe w1-gpio")
 
