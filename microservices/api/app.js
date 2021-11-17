@@ -4,7 +4,6 @@ const logger = require('./libs/logger')
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 const compression = require('compression');
-
 const service = require('./services/main')
 var app = express()
 
@@ -47,6 +46,7 @@ const devices = require('./routes/devices')
 app.use('/api/devices', devices)
 
 const server = app.listen(port, function () {
+  console.log(configs.sql)
   console.log('App listening on port 8080!')
 })
 

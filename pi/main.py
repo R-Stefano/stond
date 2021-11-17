@@ -1,11 +1,14 @@
 import time, os, configs
+os.system("source ./env/bin/activate")
+os.system("pip3 install requirements.txt")
+
 from datetime import datetime
 import sensors, logger, controller
 import socketManager as socketMng
 import dataManager as dataMng
 
-os.system("your command")
 
+'''
 if not configs.debug:
   os.system("sudo modprobe w1-gpio")
 
@@ -52,3 +55,4 @@ def start():
 
 if __name__ == '__main__':
   start()
+'''
