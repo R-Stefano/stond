@@ -2,12 +2,12 @@ FROM node:12-slim
 
 WORKDIR /usr/src/app
 
-ENV DB_HOST=35.189.95.166
+ENV DB_HOST=34.89.32.113
 ENV DB_NAME=stond
 ENV DB_USERNAME=root
 ENV DB_PSW=root
 ENV DB_PORT=3306
-ENV DB_CONN_NAME=/cloudsql/beyondborders:europe-west2:beyondborders
+ENV DB_CONN_NAME=/cloudsql/stefano-lab:europe-west2:production
 #ENV BUCKET_NAME=staging-wiredhub
 
 COPY . .
