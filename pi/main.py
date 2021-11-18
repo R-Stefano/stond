@@ -1,6 +1,4 @@
 import time, os, configs
-os.system("source ./env/bin/activate")
-os.system("pip3 install requirements.txt")
 
 from datetime import datetime
 import sensors, logger, controller

@@ -34,8 +34,8 @@ router.put("/:Id/status", async (req, response, next) => {
     const deviceId = req.params.Id
 
     try {
-        await service.sensors.update(deviceId, req.body.sensors)
-        await service.actuators.update(deviceId, req.body.actuators)
+        //await service.sensors.update(deviceId, req.body.sensors)
+        //await service.actuators.update(deviceId, req.body.actuators)
         response.status(200).json("ok")
     } catch (e) {
         next(e)
