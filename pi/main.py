@@ -1,25 +1,14 @@
 import time, os, configs
-
 from datetime import datetime
 import sensors, logger, controller
 import socketManager as socketMng
 import dataManager as dataMng
 
-
-'''
-if not configs.debug:
-  os.system("sudo modprobe w1-gpio")
-
-'''
-configs = {
-  "max_humidity": 90,
-  "min_humidity": 70,
-}
-'''
-
 def run():
   # Update measurements
   timestamp = datetime.now()
+  print(timestamp)
+
   cpu_temperature = sensors.cpu.temperature
   sensors.water.getTemperature()
   sensors.water.getLevel() # Output 1 if water touch the sensor
@@ -53,4 +42,3 @@ def start():
 
 if __name__ == '__main__':
   start()
-'''

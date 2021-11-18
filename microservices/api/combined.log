@@ -74,3 +74,4 @@
 {"message":"Request: GET /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status","level":"info"}
 {"message":"Request: GET /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status","level":"info"}
 {"message":"Request: GET /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status","level":"info"}
+{"message":"Request: PUT /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status","level":"info"}
