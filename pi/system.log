@@ -1,2 +1,42 @@
-2021-11-16 13:27:00,000 — /Users/steve/Desktop/Projects/stond/pi/system.log — INFO — Send Data
-2021-11-16 13:39:00,000 — /Users/steve/Desktop/Projects/stond/pi/system.log — INFO — Send Data
+2021-11-18 00:50:14,785 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error while loading BME280 sensor
+2021-11-18 00:50:14,786 — /home/pi/Desktop/stond/pi/system.log — ERROR — [Errno 121] Remote I/O error
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 38, in __init__
+    self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
+  File "/usr/local/lib/python3.7/dist-packages/bme280/__init__.py", line 153, in load_calibration_params
+    compensation_params.dig_T1 = read.unsigned_short(0x88)
+  File "/usr/local/lib/python3.7/dist-packages/bme280/reader.py", line 40, in unsigned_short
+    return self._bus.read_word_data(self._address, register) & 0xffff
+  File "/usr/local/lib/python3.7/dist-packages/smbus2/smbus2.py", line 474, in read_word_data
+    ioctl(self.fd, I2C_SMBUS, msg)
+OSError: [Errno 121] Remote I/O error
+2021-11-18 00:50:14,793 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 00:50:14,793 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
+2021-11-18 00:57:53,538 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 00:57:53,540 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
+2021-11-18 01:05:20,052 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 01:05:20,053 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
+2021-11-18 01:06:20,878 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 01:06:20,878 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
+2021-11-18 01:06:39,911 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 01:06:39,912 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
