@@ -40,3 +40,21 @@ Traceback (most recent call last):
   File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
     device_folder = glob.glob(base_dir + '28*')[0]
 IndexError: list index out of range
+2021-11-18 01:14:16,149 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 01:14:16,150 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
+2021-11-18 01:22:10,211 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 01:22:10,212 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
+2021-11-18 01:25:42,460 — /home/pi/Desktop/stond/pi/system.log — INFO — Some error during Water Temp Sensor setup
+2021-11-18 01:25:42,461 — /home/pi/Desktop/stond/pi/system.log — ERROR — list index out of range
+Traceback (most recent call last):
+  File "/home/pi/Desktop/stond/pi/sensors.py", line 74, in __init__
+    device_folder = glob.glob(base_dir + '28*')[0]
+IndexError: list index out of range
