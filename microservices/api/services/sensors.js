@@ -35,7 +35,7 @@ exports.get = async (sensorId, params) => {
             {model: db.sensorReading, as:'readings', required: false}
         ],
         order: [
-            ['readings', 'timestamp', 'desc']
+            ['readings', 'timestamp', 'asc']
         ]
     })
 }

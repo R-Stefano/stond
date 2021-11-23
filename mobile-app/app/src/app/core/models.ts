@@ -3,6 +3,7 @@ export class Sensor {
     isWorking: boolean
     currentValue: number
     name: string
+    updatedAt: Date
     readings: SensorReading[]
 }
 

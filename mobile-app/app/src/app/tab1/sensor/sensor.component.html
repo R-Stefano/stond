@@ -27,7 +27,7 @@
     </div>
     <div class="section">
       <div class="card info" *ngIf="sensor">
-        <span>Updated At</span> <span>{{sensor.updatedAt | date:'MMM d y, h:mm:ss a'}}</span>
+        <span>Updated At</span> <span>{{sensor.updatedAt | date:'MMM d y, h:mm a'}}</span>
         <span>Status</span> <span *ngIf="sensor.isWorking">WORKING</span>
       </div>
     </div>
