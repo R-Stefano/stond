@@ -35,6 +35,7 @@ h1.page-title {
   font-size: 32px;
   margin: 10px 0 20px 0;
   color: var(--ion-color-primary);
+  font-weight: bold;
 }
 
 h3 {
@@ -110,6 +111,12 @@ ion-title.displayPageHeaderInToolbar {
 @font-face {
   font-family: 'Basier-circle';
   src: url(../assets/fonts/BasierCircle-Bold.ttf);
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: 'Basier-circle';
+  src: url(../assets/fonts/BasierCircle-Medium.ttf);
   font-weight: bold;
 }
 

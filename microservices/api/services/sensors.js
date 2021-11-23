@@ -4,8 +4,16 @@ const configs = require('../configs')
 const moment = require('moment')
 
 exports.get = async (sensorId, params) => {
-    const where = {
-        Id: sensorId
+    const query = {
+        where: {
+            Id: sensorId
+        },
+        include: [
+            {model: db.sensorReading, as:'readings', required: false}
+        ],
+        order: [
+            ['readings', 'timestamp', 'asc']
+        ]
     }
 
     if (params.scale) {
@@ -13,32 +21,25 @@ exports.get = async (sensorId, params) => {
         switch (params.scale) {
             case '1H':
                 startDate = startDate.subtract(1, "hours");
-                where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD')}
+                query.where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
                 break;
             case '6H':
                 startDate = startDate.subtract(6, "hours");
-                where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD')}
+                query.where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
                 break;
             case '1D':
                 startDate = startDate.subtract(24, "hours");
-                where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD')}
+                query.where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
                 break;
             case '30D':
                 startDate = startDate.subtract(24*30, "hours");
-                where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD')}
+                query.where['$readings.timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
                 break;
         }
     }
-    return db.sensor.findOne({
-        where: where,
-        include: [
-            {model: db.sensorReading, as:'readings', required: false}
-        ],
-        order: [
-            ['readings', 'timestamp', 'asc']
-        ]
-    })
-}
+
+    return db.sensor.findOne(query)
+}   
 
 exports.update = async (deviceId, measurements) => {
     /**

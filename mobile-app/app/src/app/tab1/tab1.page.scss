@@ -2,6 +2,11 @@ ion-icon {
     font-size: 40px;
 }
 
+ion-icon.not-working {
+    font-size: 23px;
+    margin: 10px 0;
+}
+
 div.card#strain {
     display: grid;
     grid-template-columns: 6fr 4fr;
