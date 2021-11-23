@@ -1,3 +1,16 @@
+div.card.info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    row-gap: 1em;
+    font-size: 12px;
+}
+
+div.temporal-resolution-list {
+    display: flex;
+    justify-content: flex-end;
+}
+
 ion-button.selected {
     background-color: var(--ion-color-secondary);
+    --ion-color-base: black !important;
 }

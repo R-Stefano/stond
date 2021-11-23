@@ -33,6 +33,9 @@ exports.get = async (sensorId, params) => {
         where: where,
         include: [
             {model: db.sensorReading, as:'readings', required: false}
+        ],
+        order: [
+            ['readings', 'timestamp', 'desc']
         ]
     })
 }

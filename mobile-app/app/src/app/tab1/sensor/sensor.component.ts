@@ -26,6 +26,15 @@ export class SensorComponent implements OnInit {
   }
   public scaleSelected = '1H'
   public sensor: Sensor;
+  public sensorName: string = ""
+
+  private sensorsNames = {
+    'env_temperature': 'environment temperature',
+    'env_humidity': 'environment humidity',
+    'water_temperature': 'water temperature',
+    'water_ph': 'water ph',
+    'water_level': 'water level',
+  }
   
   
   constructor(
@@ -35,11 +44,9 @@ export class SensorComponent implements OnInit {
 
   ngOnInit() {
     let sensorId = this._route.snapshot.paramMap.get('sensorId')
-    console.log(sensorId)
     this._api.getSensorData(sensorId, this.scaleSelected).subscribe((sensor: Sensor) => {
       this.sensor = sensor
-      console.log(sensor)
-      console.log(sensor.readings.map((reading: SensorReading) => {return {x: moment(reading.timestamp), y: reading.value}}))
+      this.sensorName = this.sensorsNames[sensor.name]
       this.lines = new Chart(this.lineChart.nativeElement, {
         type: 'line',
         data: {
@@ -51,10 +58,11 @@ export class SensorComponent implements OnInit {
               above: 'rgb(255, 0, 0)',
               below: 'rgb(0, 0, 255)'
             },
-            tension: 10, // Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
+            tension: 0.1, // Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
             backgroundColor: getComputedStyle(document.body).getPropertyValue('--ion-color-secondary'),
             borderColor: getComputedStyle(document.body).getPropertyValue('--ion-color-secondary'),
-            borderWidth: 1 //The line width (in pixels).
+            borderWidth: 1, //The line width (in pixels).
+            pointRadius: 0,
           }]
         },
         options: {
@@ -75,7 +83,7 @@ export class SensorComponent implements OnInit {
               }
             },
             y: {
-              beginAtZero: true,
+              //beginAtZero: true,
               grid: {
                 display: false,
               }
@@ -96,6 +104,9 @@ export class SensorComponent implements OnInit {
   }
 
   private _fetchData(scaleSelected) {
-    this._api.getSensorData(this.sensor.Id, scaleSelected).subscribe(res => console.log(res))
+    this._api.getSensorData(this.sensor.Id, scaleSelected).subscribe((sensor: Sensor) => {
+      this.lines.data.datasets[0].data  = sensor.readings.map((reading: SensorReading) => {return {x: moment(reading.timestamp), y: reading.value}});
+      this.lines.update();
+    })
   }
 }

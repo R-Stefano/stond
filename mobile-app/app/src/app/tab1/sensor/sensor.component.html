@@ -13,15 +13,23 @@
 </ion-header>
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <div class="background-image">
-    <h1 class="page-title" #pageHeader *ngIf="sensor">{{sensor.name | titlecase}}</h1>
-    <div class="card">
-      <div class="temporal-resolution-list">
-        <ion-button [ngClass] = "{'selected': scaleSelected == '1H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(1)">1H</ion-button>
-        <ion-button [ngClass] = "{'selected': scaleSelected == '6H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(6)">6H</ion-button>
-        <ion-button [ngClass] = "{'selected': scaleSelected == '1D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24)">1D</ion-button>
-        <ion-button [ngClass] = "{'selected': scaleSelected == '30D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24*30)">30D</ion-button>
+    <h1 class="page-title" #pageHeader *ngIf="sensor">{{sensorName | titlecase}}</h1>
+    <div class="section">
+      <div class="card">
+        <div class="temporal-resolution-list">
+          <ion-button [ngClass] = "{'selected': scaleSelected == '1H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(1)">1H</ion-button>
+          <ion-button [ngClass] = "{'selected': scaleSelected == '6H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(6)">6H</ion-button>
+          <ion-button [ngClass] = "{'selected': scaleSelected == '1D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24)">1D</ion-button>
+          <ion-button [ngClass] = "{'selected': scaleSelected == '30D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24*30)">30D</ion-button>
+        </div>
+        <canvas #lineChart></canvas>
       </div>
-      <canvas #lineChart></canvas>
+    </div>
+    <div class="section">
+      <div class="card info" *ngIf="sensor">
+        <span>Updated At</span> <span>{{sensor.updatedAt | date:'MMM d y, h:mm:ss a'}}</span>
+        <span>Status</span> <span *ngIf="sensor.isWorking">WORKING</span>
+      </div>
     </div>
   </div>
 </ion-content>
