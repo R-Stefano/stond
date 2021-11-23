@@ -6,6 +6,7 @@ import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { DetailsComponent } from './details/details.component';
+import { SensorComponent } from './sensor/sensor.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { DetailsComponent } from './details/details.component';
   ],
   declarations: [
     Tab1Page,
-    DetailsComponent
+    DetailsComponent,
+    SensorComponent
   ]
 })
 export class Tab1PageModule {}

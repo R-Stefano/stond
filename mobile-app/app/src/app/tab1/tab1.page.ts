@@ -7,22 +7,27 @@ import { SocketService } from '../core/socket.service';
 export class DeviceStatus {
   sensors: {
     env_temperature: {
+      id: string,
       isWorking: boolean,
       value: number
     },
     env_humidity: {
+      id: string,
       isWorking: boolean,
       value: number
     },
     water_ph: {
+      id: string,
       isWorking: boolean,
       value: number
     },
     water_level: {
+      id: string,
       isWorking: boolean,
       value: number
     },
     water_temperature: {
+      id: string,
       isWorking: boolean,
       value: number
     }
@@ -149,6 +154,11 @@ export class Tab1Page {
   onLightButtonClick() {
     const newValue = this.deviceStatus.actuators.LED.status == 'ON' ? 'OFF' : 'ON'
     //this._socketMng.updateDeviceLight({status: newValue})
+  }
+
+  onOpenSensorDetails(sensorId: string) {
+    this._router.navigate([`tabs/season/sensors/${sensorId}`])
+
   }
 
   onRefresh() {

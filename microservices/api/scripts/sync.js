@@ -28,7 +28,9 @@ const GCBucket = storage.bucket(configs.cloud.bucket_name);
 
 
 async function run() {
-    await db.sequelize.sync({force: true})
+    await db.sequelize.sync({alter: true})
+
+    console.log("DONE!")
 
     const sensors = [
         {name: 'env_temperature',   deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', currentValue: null, isWorking: 1},
@@ -47,7 +49,6 @@ async function run() {
     ]
     await Promise.all(actuators.map(actuator => db.actuator.findOrCreate({where: {name: actuator.name, deviceId: actuator.deviceId}, defaults: {name: actuator.name, deviceId: actuator.deviceId, status: null, isWorking: actuator.isWorking, statusChangedAt: actuator.statusChangedAt}})))
 
-    console.log("DONE!")
 }
 
 run()

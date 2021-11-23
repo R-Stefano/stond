@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <!--<ion-title [ngClass]="{'displayPageHeaderInToolbar': displayPageHeaderInToolbar}">{{seasonName | titlecase}}</ion-title>-->
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="background-image">
+    <h1 class="page-title" #pageHeader *ngIf="sensor">{{sensor.name | titlecase}}</h1>
+    <div class="card">
+      <div class="temporal-resolution-list">
+        <ion-button [ngClass] = "{'selected': scaleSelected == '1H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(1)">1H</ion-button>
+        <ion-button [ngClass] = "{'selected': scaleSelected == '6H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(6)">6H</ion-button>
+        <ion-button [ngClass] = "{'selected': scaleSelected == '1D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24)">1D</ion-button>
+        <ion-button [ngClass] = "{'selected': scaleSelected == '30D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24*30)">30D</ion-button>
+      </div>
+      <canvas #lineChart></canvas>
+    </div>
+  </div>
+</ion-content>
