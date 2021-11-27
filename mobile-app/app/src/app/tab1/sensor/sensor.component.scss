@@ -5,9 +5,33 @@ div.card.info {
     font-size: 12px;
 }
 
+div.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1em;
+}
+
+div.card.graph div.header div.selected-datapoint {
+    display: flex;
+    flex-direction: column;
+}
+
+div.card.graph div.header div.selected-datapoint span.value {
+    font-size: 24px;
+}
+
+div.card.graph div.header div.selected-datapoint span.datetime {
+    color: var(--ion-grey-medium);
+    font-size: 12px;
+}
+
 div.temporal-resolution-list {
     display: flex;
     justify-content: flex-end;
+}
+
+ion-button {
+    font-size: 12px;
 }
 
 ion-button.selected {

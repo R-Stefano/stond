@@ -4,7 +4,6 @@ export class Sensor {
     currentValue: number
     name: string
     updatedAt: Date
-    readings: SensorReading[]
 }
 
 export interface SensorReading {

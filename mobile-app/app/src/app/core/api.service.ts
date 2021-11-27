@@ -16,7 +16,11 @@ export class ApiService {
     return this._http.get<any>(environment.apiUrl + `api/devices/${environment.deviceId}/status`)
   }
 
-  getSensorData(sensorId, scaleSelected: string | null) {
-    return this._http.get<any>(environment.apiUrl + `api/devices/${environment.deviceId}/sensors/${sensorId}`, {params: {scale: scaleSelected}})
+  getSensor(sensorId: string) {
+    return this._http.get<any>(environment.apiUrl + `api/sensors/${sensorId}`)
+  }
+
+  getSensorAnalytics(sensorId: string, params) {
+    return this._http.get<any>(environment.apiUrl + `api/sensors/${sensorId}/analytics`, {params: params})
   }
 }

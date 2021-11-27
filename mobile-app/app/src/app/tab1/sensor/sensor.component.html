@@ -13,14 +13,20 @@
 </ion-header>
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <div class="background-image">
-    <h1 class="page-title" #pageHeader *ngIf="sensor">{{sensorName | titlecase}}</h1>
+    <h1 class="page-title" #pageHeader *ngIf="sensor">{{sensorsConfigs[sensor.name].name | titlecase}}</h1>
     <div class="section">
-      <div class="card">
-        <div class="temporal-resolution-list">
-          <ion-button [ngClass] = "{'selected': scaleSelected == '1H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(1)">1H</ion-button>
-          <ion-button [ngClass] = "{'selected': scaleSelected == '6H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(6)">6H</ion-button>
-          <ion-button [ngClass] = "{'selected': scaleSelected == '1D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24)">1D</ion-button>
-          <ion-button [ngClass] = "{'selected': scaleSelected == '30D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale(24*30)">30D</ion-button>
+      <div class="card graph">
+        <div class="header">
+          <div class="selected-datapoint" *ngIf="currentDataPoint">
+            <span class="value">{{currentDataPoint.y | number:'1.2-2'}} {{sensorsConfigs[sensor.name].measurementUnit}}</span>
+            <span class="datetime">{{currentDataPoint.x | date:'MMMM d, h:mm a'}}</span>
+          </div>
+          <div class="temporal-resolution-list">
+            <ion-button [ngClass] = "{'selected': scaleSelected == '1H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale('1H')">1H</ion-button>
+            <ion-button [ngClass] = "{'selected': scaleSelected == '6H'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale('6H')">6H</ion-button>
+            <ion-button [ngClass] = "{'selected': scaleSelected == '1D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale('1D')">1D</ion-button>
+            <ion-button [ngClass] = "{'selected': scaleSelected == '30D'}" fill="clear" size="small" color="secondary" (click)="onChangeXScale('30D')">30D</ion-button>
+          </div>
         </div>
         <canvas #lineChart></canvas>
       </div>

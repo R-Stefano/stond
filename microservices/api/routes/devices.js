@@ -45,18 +45,4 @@ router.put("/:Id/status", async (req, response, next) => {
     return
 })
 
-router.get("/:Id/sensors/:sensorId", async (req, response, next) => {
-    const deviceId = req.params.Id
-    const sensorId = req.params.sensorId
-    const params = req.query
-    try {
-        const results = await service.sensors.get(sensorId, params)
-        response.status(200).json(results)
-    } catch (e) {
-        next(e)
-    }
-
-    return
-})
-
 module.exports = router;
