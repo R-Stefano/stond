@@ -15,6 +15,7 @@ def run():
   sensors.water.getPh()
   sensors.environment.readTempHumidity()
 
+  logger.display()
   logger.update('timestamp', timestamp.isoformat())
   logger.update('cpu_temperature', cpu_temperature)
   

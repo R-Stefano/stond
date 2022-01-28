@@ -31,6 +31,10 @@ def add(level, message):
 def update(key, value):
    data[key]=value
 
+def display():
+   for key in data:
+      print(key, data[key])
+
 def save():
    add('info', 'Send Data')
 
