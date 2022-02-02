@@ -6,4 +6,15 @@ pip3 install -r requirements.txt
 
 echo "TODO ENABLE I2C"
 
+###TODO
+# sudo nano /boot/config.txt
+# dtoverlay=w1-gpio
+# sudo modprobe w1-gpio
+# sudo modprobe w1-therm
+#
+#
+#
+#
+
+
 python3 main.py

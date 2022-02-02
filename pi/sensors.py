@@ -24,7 +24,7 @@ class Cpu():
 
 
 # Humidity and Temp
-class Bme280():
+class HumidityTempSensor():
     def __init__(self):
         self.temperatureHumiditySensorWorking = False
 
@@ -32,13 +32,14 @@ class Bme280():
         self.humidity = None
 
         port = 1
-        self.address = 0x77
+        self.address = 0x76
         try:
+            bme280.begin(self.address)
             self.bus = smbus2.SMBus(port)
             self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
-            logger.add("info", "Some error while loading BME280 sensor")
+            logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
             logger.add("error", e)
             self.temperatureHumiditySensorWorking = False
 
@@ -75,7 +76,7 @@ class WaterSensor():
             self.device_file = device_folder + '/w1_slave'
             self.temperatureSensorWorking = True
         except Exception as e:
-            logger.add("info", "Some error during Water Temp Sensor setup")
+            logger.add("info", "\n\nSome error during Water Temp Sensor (DS18B20) setup\n\n")
             logger.add("error", e)
             self.temperatureSensorWorking = False
         
@@ -88,6 +89,7 @@ class WaterSensor():
             logger.add("error", e)
             self.levelSensorWorking = False
 
+        # PH SENSORS
         try:
             # create the spi bus
             spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -139,5 +141,5 @@ class WaterSensor():
         self.ph = _phValue
 
 cpu = Cpu()
-environment = Bme280()
+environment = HumidityTempSensor()
 water = WaterSensor()
