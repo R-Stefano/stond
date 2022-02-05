@@ -48,4 +48,23 @@ GND
 DQ -> 4.7k -> Vdd -> GPIO4
 Vdd 
 
-MCP3008
+PH SENSOR
+5V
+GND 
+CH0 MCP3008
+
+>> MCP3008
+dtparam=spi=on (enable SPI in /boot/config.txt)
+- V3.3
+- 
+
+
+
+
+
+
+- Regultae ph Sensor
+- Use new temperature Sensor
+- control FANs (PWm & ON/OFF)
+- Control Light
+- Use EC sensor

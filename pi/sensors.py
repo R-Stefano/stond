@@ -10,6 +10,9 @@ import busio, digitalio, board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
+MC3008_CONFIGURATION_TYPE = 'hardware'
+
+
 class Cpu():
     def __init__(self):
         if (configs.debug):
@@ -50,7 +53,6 @@ class HumidityTempSensor():
             self.temperature = data.temperature
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
-            logger.add("debug", os.system('i2cdetect -y 1'))
             logger.add("error", e)
             self.humidity = None
             self.temperature = None
@@ -92,12 +94,13 @@ class WaterSensor():
         # PH SENSORS
         try:
             # create the spi bus
-            spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
-            cs = digitalio.DigitalInOut(board.D22)
+            spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI)
+            # create the cs (chip select)
+            cs = digitalio.DigitalInOut(board.D10) # PIN 24 GPIO10
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
-            logger.add("info", "Some error during PH Sensor setup")
+            logger.add("info", "\n\nSome error during PH Sensor setup\n\n")
             logger.add("error", e)
             self.phSensorWorking = False
 
@@ -134,9 +137,10 @@ class WaterSensor():
     def getPh(self):
         _phValue = None
         if (self.phSensorWorking):
-            channel = AnalogIn(self.mcp, MCP.P0)
+            channel = AnalogIn(self.mcp, MCP.P0) # 0 - 65472
             rawAdc = channel.value
-            _phValue = (rawAdc / 4681) + 1
+            _phValue = (rawAdc / 4365) #Map to 0 and 14 (included)
+            print(channel.value, channel.voltage, _phValue)
 
         self.ph = _phValue
 
