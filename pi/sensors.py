@@ -138,10 +138,9 @@ class WaterSensor():
         _phValue = None
         if (self.phSensorWorking):
             channel = AnalogIn(self.mcp, MCP.P0) # 0 - 65472
-            rawAdc = channel.value
-            _phValue = (rawAdc / 4365) #Map to 0 and 14 (included)
+            _phValue = (channel.value / 4365) #Map to 0 and 14 (included)
             print()
-            print(channel.value, channel.voltage, _phValue)
+            print(channel.value, channel.voltage, channel.value / 4365)
             print()
 
         self.ph = _phValue
