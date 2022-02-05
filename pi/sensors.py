@@ -97,8 +97,6 @@ class WaterSensor():
             spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI)
             # create the cs (chip select)
             cs = digitalio.DigitalInOut(board.D10) # PIN 24 GPIO10
-            print(board.D10)
-            print(board.D5)
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
@@ -142,6 +140,7 @@ class WaterSensor():
             channel = AnalogIn(self.mcp, MCP.P0) # 0 - 65472
             _phValue = (channel.value / 4365) #Map to 0 and 14 (included)
             print()
+            print(dir(channel))
             print(channel.value, channel.voltage, channel.value / 4365)
             print()
 
