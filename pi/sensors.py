@@ -87,7 +87,7 @@ class WaterSensor():
             RPi.GPIO.setup(self.WATER_LEVEL_PIN, RPi.GPIO.IN)
             self.levelSensorWorking = True
         except Exception as e:
-            logger.add("info", "Some error during Water Level Sensor setup")
+            logger.add("info", "\n\nSome error during Water Level Sensor setup\n\n")
             logger.add("error", e)
             self.levelSensorWorking = False
 
@@ -140,7 +140,9 @@ class WaterSensor():
             channel = AnalogIn(self.mcp, MCP.P0) # 0 - 65472
             rawAdc = channel.value
             _phValue = (rawAdc / 4365) #Map to 0 and 14 (included)
+            print()
             print(channel.value, channel.voltage, _phValue)
+            print()
 
         self.ph = _phValue
 
