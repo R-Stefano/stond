@@ -6,17 +6,23 @@ gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
 
 class FanActuator():
     def __init__(self):
-        self.status = "OFF"
-        self.isWorking = False
+        # Internal Variables for the FAN Manager
         self.FAN_PIN = 26 # GPIO26 PWM0 (Physical PIN 32)
         self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
-
-        # Internal Variables for the FAN Manager
         self.MIN_TEMP = 20 
         self.MAX_TEMP = 27
         self.FAN_OFF = 0 
         self.FAN_MAX = 100
-        ## Try to Startup FAN
+
+        #Public variables accessible 
+        self.status = "OFF"
+        self.isWorking = False
+        self.speed = self.FAN_OFF
+
+        # Startup Fans
+        self.start()
+
+    def start(self):
         try:
             gpio.setup(self.FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
             self.fan = gpio.PWM(self.FAN_PIN, self.PWM_FREQ)
@@ -25,18 +31,23 @@ class FanActuator():
         except Exception as e:
             logger.add("info", "[FAN] (start) Not working")
             logger.add("error", e)
+            self.isWorking = False
 
     def setFanSpeed(self, speed):
-        self.fan.start(speed)
+        self.speed = speed
+        self.fan.start(self.speed)
 
         if (speed == 0):
             self.status = "OFF"
         else:
             self.status = "ON"
 
-        #logger.add("debug", "[FAN] (update speed) Temp ${} - Speed ${} - Status ${}")
+        logger.add("debug", "[FAN] (update speed) Speed {} - Status {}".format(self.speed, self.status))
 
     def handleFanSpeed(self):
+        if (not self.isWorking):
+            self.start()
+
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
             logger.add("debug", "[FAN] Temp Sensor not working. Setting emergency speed")
