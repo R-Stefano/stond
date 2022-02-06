@@ -4,15 +4,22 @@ import dataManager as dataMng
   
 
 def start():
-  print("LEDs Checks")
+  testsFailed = []
+  print("LIGHTs Checks")
   controller.led.controlLights("ON")
-  resp = input("Lights Should be ON (Enter to continue)")
-  print(resp)
-  print(resp == "")
+  resp = input("RELAY LED Should be ON - LIGHTS should be OFF (Enter to continue)")
+  if (resp != ""):
+    testsFailed.append({"message": "RELAY LED Should be ON"})
+    return
+
   controller.led.controlLights("OFF")
-  resp = input("Lights Should be OFF (Enter to continue)")
-  print(resp)
-  print(resp == "")
+  resp = input("RELAY Should be OFF - LIGHTS should be ON (Enter to continue)")
+  if (resp != ""):
+    testsFailed.append({"message": "RELAY LED Should be OFF"})
+    return
+
+
+
   return
 
 
