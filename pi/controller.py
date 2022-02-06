@@ -2,13 +2,13 @@ from datetime import datetime
 import logger, sensors
 import RPi.GPIO as gpio # allo to call GPIO pins
 
-gpio.setmode (gpio.BOARD) # Use the Board physical pin numbers (1-40) - NOT GPIO
+gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
 
 class FanActuator():
     def __init__(self):
         self.status = "OFF"
         self.isWorking = False
-        self.FAN_PIN = 32 # Physical PIN 32 (GPIO26 PWM0)
+        self.FAN_PIN = 26 # GPIO26 PWM0 (Physical PIN 32)
         self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
 
         # Internal Variables for the FAN Manager
@@ -59,7 +59,6 @@ class LightsActuator():
         self.isWorking = False
         self.LED_RELAY_GPIO_PIN = 15
         try:
-            RPi.GPIO.setmode(RPi.GPIO.BCM)
             RPi.GPIO.setup(self.LED_RELAY_GPIO_PIN, RPi.GPIO.OUT)
             RPi.GPIO.output(self.LED_RELAY_GPIO_PIN, RPi.GPIO.LOW)
             self.isWorking = True
@@ -83,7 +82,6 @@ class Humidifier():
         self.isWorking = False
         self.HUMIDIFIER_GPIO_PIN = 27
         try:
-            RPi.GPIO.setmode(RPi.GPIO.BCM)
             RPi.GPIO.setup(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.OUT)
             RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
             self.isWorking = True
