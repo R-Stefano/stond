@@ -6,11 +6,14 @@ import dataManager as dataMng
 def start():
   print("LEDs Checks")
   controller.led.controlLights("ON")
-  resp = input("Lights Should be ON")
+  resp = input("Lights Should be ON (Enter to continue)")
   print(resp)
-  resp = input("Lights Should be OFF")
+  print(resp == "")
   controller.led.controlLights("OFF")
+  resp = input("Lights Should be OFF (Enter to continue)")
   print(resp)
+  print(resp == "")
+  return
 
 
 
