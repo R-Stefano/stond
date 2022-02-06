@@ -8,6 +8,7 @@ class SensorObject():
 
 
 def sendData():
+  return
   data = {
     'deviceId': configs.deviceId,
     'sensors': [
@@ -28,6 +29,7 @@ def sendData():
 
 
 def displayData():
+  return
   sensorsData = [
       {'name': 'water_temperature', 'value': sensors.water.temperature, 'isWorking': sensors.water.temperatureSensorWorking},
       {'name': 'water_level', 'value': sensors.water.level, 'isWorking': sensors.water.levelSensorWorking},

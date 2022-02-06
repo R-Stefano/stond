@@ -69,8 +69,9 @@ class WaterSensor():
         # Internal Variables
         self.WATER_LEVEL_PIN = 15
         self.WATER_PH_PIN = board.D5
+        self.MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
         print(board.D5)
-        
+
         #Public variables 
         self.levelSensorWorking = False
         self.phSensorWorking = False
@@ -117,15 +118,21 @@ class WaterSensor():
             logger.error(e)
             self.levelSensorWorking = False
 
-    def getPh(self):
+    def read_ph(self):
+        # Used for mapping 0-1024 to ph value (0-14)
+        range_in_start = 0
+        range_in_end = 1024
+        range_out_start = 0
+        range_out_end = 14
+
         if (not self.phSensorWorking):
             self.start_ph_sensor()
 
         try:
+            # map 0-1024 to 0-14
             print("hell0")
-            print(self.mcp.read(0))
-            print()
-            self.ph = 1
+            self.ph = (self.mcp.read(self.MCP3008_PH_PIN) - range_in_start) * ((range_out_end - range_out_start)/(range_in_end - range_in_start)) + range_out_start
+            print(self.mcp.read(self.MCP3008_PH_PIN), self.ph)
         except Exception as e:
             logger.info("Impossible Reading PH")
             logger.error(e)
