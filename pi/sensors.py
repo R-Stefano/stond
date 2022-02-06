@@ -61,7 +61,7 @@ class WaterSensor():
         self.level = None
         self.ph = None
 
-        self.WATER_LEVEL_PIN = 17
+        self.WATER_LEVEL_PIN = 15
         # Software SPI configuration: PH SENSOR
 
         try:
@@ -75,7 +75,6 @@ class WaterSensor():
             self.temperatureSensorWorking = False
         
         try:
-            RPi.GPIO.setmode(RPi.GPIO.BCM)
             RPi.GPIO.setup(self.WATER_LEVEL_PIN, RPi.GPIO.IN)
             self.levelSensorWorking = True
         except Exception as e:
