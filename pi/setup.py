@@ -5,11 +5,11 @@ import dataManager as dataMng
 
 def start():
   print("LEDs Checks")
-  controller.led.controlLights(controlLights = "ON")
+  controller.led.controlLights("ON")
   resp = input("Lights Should be ON")
   print(resp)
   resp = input("Lights Should be OFF")
-  controller.led.controlLights(controlLights = "OFF")
+  controller.led.controlLights("OFF")
   print(resp)
 
 
