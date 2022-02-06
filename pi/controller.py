@@ -47,9 +47,12 @@ class FanActuator():
 
         logger.debug("[FAN] (update speed) Speed {} - Status {}".format(self.speed, self.status))
 
-    def controlFanSpeed(self):
+    def controlFanSpeed(self, overrideAction = None):
         if (not self.isWorking):
             self.start()
+
+        if (overrideAction != None):
+            self.setFanSpeed(overrideAction)
 
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
