@@ -9,12 +9,13 @@ logger = LoggerManager.logger
 class FanActuator():
     def __init__(self):
         # Internal Variables for the FAN Manager
-        self.FAN_PIN = 26 # GPIO26 PWM0 (Physical PIN 32)
+        self.FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
         self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
         self.MIN_TEMP = 20 
         self.MAX_TEMP = 27
         self.FAN_OFF = 0 
         self.FAN_MAX = 100
+        self.BACKUP_SPEED = 25 # In case can't read Temp - use this speed
 
         #Public variables accessible 
         self.status = "OFF"
@@ -53,7 +54,7 @@ class FanActuator():
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
             logger.debug("[FAN] Temp Sensor not working. Setting emergency speed")
-            self.setFanSpeed(0)
+            self.setFanSpeed(self.BACKUP_SPEED)
             return
 
         currentTemp = sensors.environment.temperature
