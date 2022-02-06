@@ -7,19 +7,17 @@ import dataManager as dataMng
 def run():
   # Update measurements
   timestamp = datetime.now()
-  cpu_temperature = sensors.cpu.temperature
+  sensors.system.read_cpu()
   sensors.water.read_ph()
-  sensors.water.getTemperature()
-  sensors.water.getLevel() # Output 1 if water touch the sensor
+  sensors.water.read_temperature()
+  sensors.water.read_level() # Output 1 if water touch the sensor
   sensors.environment.readTempHumidity()
 
   dataMng.displayData()
-  #logger.update('timestamp', timestamp.isoformat())
-  #logger.update('cpu_temperature', cpu_temperature)
   
   #Control
-  controller.ventilation.handleFanSpeed()
-  #controller.lights()
+  controller.ventilation.controlFanSpeed()
+  controller.led.controlLights()
   #controller.humidity(env_humidity)
 
   #Save

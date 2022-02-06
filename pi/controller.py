@@ -47,7 +47,7 @@ class FanActuator():
 
         logger.debug("[FAN] (update speed) Speed {} - Status {}".format(self.speed, self.status))
 
-    def handleFanSpeed(self):
+    def controlFanSpeed(self):
         if (not self.isWorking):
             self.start()
 
@@ -66,29 +66,50 @@ class FanActuator():
             powerPerc = (currentTemp - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
             self.setFanSpeed(powerPerc * 100)
 
-'''
 class LightsActuator():
     def __init__(self):
+        # Internal Variables
+        self.LED_RELAY_GPIO_PIN = 15
+
+        self.CLOCK_TIMEZONE = 'UK' # NOT IMPLEMENTED 
+        self.HOURS_LIGHT = 16
+        self.HOUR_LIGHT_START = 20
+        self.LIGHT_HOURS = []
+        for i in range(self.HOURS_LIGHT):
+            hour = self.HOUR_LIGHT_START + i
+            hour = hour if hour < 24 else hour - 24
+            print(i, hour)
+            self.LIGHT_HOURS.append(hour)
+
+        #Public variables 
         self.status = "OFF"
         self.isWorking = False
-        self.LED_RELAY_GPIO_PIN = 15
+
+        # Startup LEDs
+        self.start()
+
+    def start(self):
         try:
-            RPi.GPIO.setup(self.LED_RELAY_GPIO_PIN, RPi.GPIO.OUT)
-            RPi.GPIO.output(self.LED_RELAY_GPIO_PIN, RPi.GPIO.LOW)
+            gpio.setup(self.LED_RELAY_GPIO_PIN,  gpio.GPIO.OUT)
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.GPIO.LOW)
             self.isWorking = True
         except Exception as e:
             logger.add("info", "Lights Actuator not working")
             logger.add("error", e)
 
-    def turnOn(self):
-        self.status = "ON"
-        RPi.GPIO.output(self.LED_RELAY_GPIO_PIN, RPi.GPIO.HIGH)
-        return
+    def controlLights(self):
+        if (not self.isWorking):
+            self.start()
 
-    def turnOff(self):
-        self.status = "OFF"
-        RPi.GPIO.output(self.LED_RELAY_GPIO_PIN, RPi.GPIO.LOW)
-        return
+        currentHr = datetime.utcnow().hour #UTC TIMEZONE
+        if (currentHr in self.LIGHT_HOURS):
+            self.status = "ON"
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
+        else:
+            self.status = "OFF"
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
+
+'''
 
 class Humidifier():
     def __init__(self):
@@ -114,17 +135,10 @@ class Humidifier():
         return
 '''
 ventilation = FanActuator()
+led = LightsActuator()
 '''
 
-led = LightsActuator()
 humidifier = Humidifier()
-
-def lights():
-    currentHr = datetime.utcnow().hour #UTC TIMEZONE
-    if (currentHr in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 19, 20, 21, 22, 23]):
-        led.turnOn()
-    else:
-        led.turnOff()
 
 def humidity(humidity):
     if (humidity > 80):
