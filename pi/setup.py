@@ -7,7 +7,7 @@ def start():
   testsFailed = []
   print("PH SENSOR CHECKS")
   message = "PH SENSOR Should read 4"
-  while (sensors.water.read_ph() < 3.9 or sensors.water.read_ph() > 4.1):
+  while (sensors.water.read_ph() < 3.9 and sensors.water.read_ph() > 4.1):
     print(sensors.water.read_ph())
     time.sleep(1)
 
