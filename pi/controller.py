@@ -1,9 +1,10 @@
 from datetime import datetime
-import LoggerManager.logger as logger
+import LoggerManager
 import sensors
 import RPi.GPIO as gpio # allo to call GPIO pins
 
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
+logger = LoggerManager.logger
 
 class FanActuator():
     def __init__(self):
