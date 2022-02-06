@@ -32,7 +32,7 @@ class FanActuator():
             self.fan.start(self.FAN_OFF)
             self.isWorking = True
         except Exception as e:
-            logger.info("[FAN] (start) Not working")
+            logger.info("[FAN] Not working")
             logger.error(e)
             self.isWorking = False
 
@@ -69,7 +69,7 @@ class FanActuator():
 class LightsActuator():
     def __init__(self):
         # Internal Variables
-        self.LED_RELAY_GPIO_PIN = 15
+        self.LED_RELAY_GPIO_PIN = 16
 
         self.CLOCK_TIMEZONE = 'UK' # NOT IMPLEMENTED 
         self.HOURS_LIGHT = 16
@@ -80,7 +80,6 @@ class LightsActuator():
             hour = hour if hour < 24 else hour - 24
             self.LIGHT_HOURS.append(hour)
 
-        print(self.LIGHT_HOURS)
         #Public variables 
         self.status = "OFF"
         self.isWorking = False
@@ -94,15 +93,23 @@ class LightsActuator():
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.GPIO.LOW)
             self.isWorking = True
         except Exception as e:
-            logger.add("info", "Lights Actuator not working")
-            logger.add("error", e)
+            logger.info("[LED] not working")
+            logger.error(e)
+            self.isWorking = False
 
-    def controlLights(self):
+    def controlLights(self, overrideAction = None):
         if (not self.isWorking):
             self.start()
 
         currentHr = datetime.utcnow().hour #UTC TIMEZONE
-        if (currentHr in self.LIGHT_HOURS):
+
+        if (overrideAction and overrideAction == "ON"):
+            self.status = "ON"
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
+        elif (overrideAction and overrideAction == "OFF"):
+            self.status = "OFF"
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
+        elif (overrideAction == None and currentHr in self.LIGHT_HOURS):
             self.status = "ON"
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
         else:
