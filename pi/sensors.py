@@ -96,7 +96,7 @@ class WaterSensor():
             # create the spi bus
             spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI)
             # create the cs (chip select)
-            cs = digitalio.DigitalInOut(board.D22) # PIN 24 GPIO10
+            cs = digitalio.DigitalInOut(board.D5) # PIN 24 GPIO10
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
