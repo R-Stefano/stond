@@ -89,8 +89,7 @@ class LightsActuator():
 
     def start(self):
         try:
-            gpio.setup(self.LED_RELAY_GPIO_PIN,  gpio.GPIO.OUT)
-            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.GPIO.LOW)
+            gpio.setup(self.LED_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
             self.isWorking = True
         except Exception as e:
             logger.info("[LED] not working")
