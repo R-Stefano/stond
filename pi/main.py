@@ -39,7 +39,7 @@ def start():
 
     if (timestamp.second % configs.snapshotInterval == 0):
       run()
-      time.sleep(1)
+      time.sleep(5)
 
 if __name__ == '__main__':
   start()
