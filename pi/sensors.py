@@ -1,17 +1,14 @@
 from gpiozero import CPUTemperature
-import bme280
-import smbus2
-import glob, subprocess, time, os
-import RPi # allo to call GPIO pins
-import logger
-import configs
+import busio, digitalio, board, RPi # General librariers
+import glob, subprocess, time, os # General librariers
+import logger, configs # Internal libraries
 from unittest.mock import MagicMock
-import busio, digitalio, board
+
+# PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
-MC3008_CONFIGURATION_TYPE = 'hardware'
-
+from Adafruit_BMP085 import BMP085 # Temperature sensor
 
 class Cpu():
     def __init__(self):
@@ -34,12 +31,9 @@ class HumidityTempSensor():
         self.temperature = None
         self.humidity = None
 
-        port = 1
-        self.address = 0x76
+        self.address = 0x77
         try:
-            bme280.begin(self.address)
-            self.bus = smbus2.SMBus(port)
-            self.calibration_params = bme280.load_calibration_params(self.bus, self.address)
+            self.bmp = BMP085(self.address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
             logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
@@ -48,9 +42,8 @@ class HumidityTempSensor():
 
     def readTempHumidity(self):
         try:
-            data = bme280.sample(self.bus, self.address, self.calibration_params)
-            self.humidity = data.humidity
-            self.temperature = data.temperature
+            self.humidity = None
+            self.temperature = self.bmp.readTemperature()
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
             logger.add("error", e)
