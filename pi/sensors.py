@@ -69,7 +69,7 @@ class WaterSensor():
     def __init__(self):
         # Internal Variables
         self.WATER_LEVEL_PIN = 15 # TODO: DEFINE
-        self.WATER_PH_PIN = 5 # GPIO5 (Physical PIN 29)
+        self.WATER_PH_PIN = board.D5 # GPIO5 (Physical PIN 29)
         self.MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
 
         #Public variables 
