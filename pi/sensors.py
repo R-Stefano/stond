@@ -1,7 +1,7 @@
 from gpiozero import CPUTemperature
 import busio, digitalio, board, RPi # General librariers
 import glob, subprocess, time, os # General librariers
-import logger, configs # Internal libraries
+import configs # Internal libraries
 from unittest.mock import MagicMock
 
 # PH SENSOR
@@ -36,8 +36,8 @@ class HumidityTempSensor():
             self.bmp = BMP085(self._address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
-            logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
-            logger.add("error", e)
+            #logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
+            #logger.add("error", e)
             self.temperatureHumiditySensorWorking = False
 
     def readTempHumidity(self):
@@ -48,8 +48,8 @@ class HumidityTempSensor():
             self.humidity = self.bmp.readTemperature()
             self.temperature = self.bmp.readTemperature()
         except Exception as e:
-            logger.add("info", "Some error while trying to read Temp & Humidity Dat")
-            logger.add("error", e)
+            #logger.add("info", "Some error while trying to read Temp & Humidity Dat")
+            #logger.add("error", e)
             self.humidity = None
             self.temperature = None
             self.temperatureHumiditySensorWorking = False
@@ -74,16 +74,16 @@ class WaterSensor():
             self.device_file = device_folder + '/w1_slave'
             self.temperatureSensorWorking = True
         except Exception as e:
-            logger.add("info", "\n\nSome error during Water Temp Sensor (DS18B20) setup\n\n")
-            logger.add("error", e)
+            #logger.add("info", "\n\nSome error during Water Temp Sensor (DS18B20) setup\n\n")
+            #logger.add("error", e)
             self.temperatureSensorWorking = False
         
         try:
             RPi.GPIO.setup(self.WATER_LEVEL_PIN, RPi.GPIO.IN)
             self.levelSensorWorking = True
         except Exception as e:
-            logger.add("info", "\n\nSome error during Water Level Sensor setup\n\n")
-            logger.add("error", e)
+            #logger.add("info", "\n\nSome error during Water Level Sensor setup\n\n")
+            #logger.add("error", e)
             self.levelSensorWorking = False
 
         # PH SENSORS
@@ -95,8 +95,8 @@ class WaterSensor():
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
-            logger.add("info", "\n\nSome error during PH Sensor setup\n\n")
-            logger.add("error", e)
+            #logger.add("info", "\n\nSome error during PH Sensor setup\n\n")
+            #logger.add("error", e)
             self.phSensorWorking = False
 
     def _read_temp_raw(self):

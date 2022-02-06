@@ -1,5 +1,6 @@
 from datetime import datetime
-import logger, sensors
+import LoggerManager.logger as logger
+import sensors
 import RPi.GPIO as gpio # allo to call GPIO pins
 
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
@@ -29,8 +30,8 @@ class FanActuator():
             self.fan.start(self.FAN_OFF)
             self.isWorking = True
         except Exception as e:
-            logger.add("info", "[FAN] (start) Not working")
-            logger.add("error", e)
+            logger.info("[FAN] (start) Not working")
+            logger.error(e)
             self.isWorking = False
 
     def setFanSpeed(self, speed):
@@ -42,7 +43,7 @@ class FanActuator():
         else:
             self.status = "ON"
 
-        logger.add("debug", "[FAN] (update speed) Speed {} - Status {}".format(self.speed, self.status))
+        logger.debug("[FAN] (update speed) Speed {} - Status {}".format(self.speed, self.status))
 
     def handleFanSpeed(self):
         if (not self.isWorking):
@@ -50,7 +51,7 @@ class FanActuator():
 
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
-            logger.add("debug", "[FAN] Temp Sensor not working. Setting emergency speed")
+            logger.debug("[FAN] Temp Sensor not working. Setting emergency speed")
             self.setFanSpeed(25)
             return
 

@@ -1,6 +1,6 @@
 import time, os, configs
 from datetime import datetime
-import sensors, logger, controller
+import sensors, controller
 import socketManager as socketMng
 import dataManager as dataMng
 
@@ -16,8 +16,8 @@ def run():
   sensors.environment.readTempHumidity()
 
   dataMng.displayData()
-  logger.update('timestamp', timestamp.isoformat())
-  logger.update('cpu_temperature', cpu_temperature)
+  #logger.update('timestamp', timestamp.isoformat())
+  #logger.update('cpu_temperature', cpu_temperature)
   
   #Control
   controller.ventilation.handleFanSpeed()

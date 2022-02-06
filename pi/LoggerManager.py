@@ -2,21 +2,9 @@ import logging, sys, requests, configs, os
 from logging.handlers import TimedRotatingFileHandler
 import socketManager as socketMng
 
-FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
-LOG_FILE = os.path.dirname(__file__) + "/system.log"
 data = {
       'deviceId': configs.deviceId
 }
-
-def get_console_handler():
-   console_handler = logging.StreamHandler(sys.stdout)
-   console_handler.setFormatter(FORMATTER)
-   return console_handler
-
-def get_file_handler():
-   file_handler = TimedRotatingFileHandler(LOG_FILE, when='midnight')
-   file_handler.setFormatter(FORMATTER)
-   return file_handler
 
 def get_logger(logger_name):
 
@@ -45,9 +33,23 @@ def clear():
       'deviceId': configs.deviceId
    }
 
+# create logger
+FORMATTER = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s - %(message)s", datefmt='%m/%d/%Y %I:%M:%S %p')
+LOG_FILE = os.path.dirname(__file__) + "/system.log"
+
 logger = logging.getLogger(LOG_FILE)
-logger.setLevel(logging.DEBUG) # better to have too much log than not enough
-logger.addHandler(get_console_handler())
-logger.addHandler(get_file_handler())
+logger.setLevel(logging.DEBUG)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+ch.setFormatter(FORMATTER) # add formatter to ch
+logger.addHandler(ch) # add ch to logger
+
+# Create a new file every day at midnight
+file_handler = TimedRotatingFileHandler(LOG_FILE, when='midnight')
+file_handler.setFormatter(FORMATTER)
+logger.addHandler(file_handler)
+
 # with this pattern, it's rarely necessary to propagate the error up to parent
 logger.propagate = False
