@@ -1,13 +1,17 @@
+from tkinter import E
 from gpiozero import CPUTemperature
-import busio, digitalio, board, RPi # General librariers
+import busio, digitalio, board # General librariers
 import glob, subprocess, time, os # General librariers
 import configs # Internal libraries
 from unittest.mock import MagicMock
 
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
-from adafruit_mcp3xxx.analog_in import AnalogIn
 
+import RPi.GPIO as gpio # allo to call GPIO pins
+import LoggerManager
+gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
+logger = LoggerManager.logger
 
 class Cpu():
     def __init__(self):
@@ -25,19 +29,24 @@ class Cpu():
 # Humidity and Temp
 class HumidityTempSensor():
     def __init__(self):
+        # Internal Variables
         self._address = 0x77
 
+        #Public variables 
         self.temperatureHumiditySensorWorking = False
         self.temperature = None
         self.humidity = None
+
+        # Startup Sensor
+        self.start()
 
     def start(self):
         try:
             self.bmp = BMP085(self._address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
-            #logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
-            #logger.add("error", e)
+            logger.info("[BME280] (start) Not working")
+            logger.error(e)
             self.temperatureHumiditySensorWorking = False
 
     def readTempHumidity(self):
@@ -48,8 +57,8 @@ class HumidityTempSensor():
             self.humidity = self.bmp.readTemperature()
             self.temperature = self.bmp.readTemperature()
         except Exception as e:
-            #logger.add("info", "Some error while trying to read Temp & Humidity Dat")
-            #logger.add("error", e)
+            logger.info("Impossible Reading Temp & Humidity")
+            logger.error(e)
             self.humidity = None
             self.temperature = None
             self.temperatureHumiditySensorWorking = False
@@ -57,15 +66,20 @@ class HumidityTempSensor():
 # Water Temp
 class WaterSensor():
     def __init__(self):
-        self.temperatureSensorWorking = False
+        # Internal Variables
+        self.WATER_LEVEL_PIN = 15
+        self.WATER_PH_PIN = board.D5
+        print(board.D5)
+        
+        #Public variables 
         self.levelSensorWorking = False
         self.phSensorWorking = False
+        self.temperatureSensorWorking = False
 
-        self.temperature = None
         self.level = None
         self.ph = None
+        self.temperature = None
 
-        self.WATER_LEVEL_PIN = 15
         # Software SPI configuration: PH SENSOR
 
         try:
@@ -77,26 +91,45 @@ class WaterSensor():
             #logger.add("info", "\n\nSome error during Water Temp Sensor (DS18B20) setup\n\n")
             #logger.add("error", e)
             self.temperatureSensorWorking = False
-        
-        try:
-            RPi.GPIO.setup(self.WATER_LEVEL_PIN, RPi.GPIO.IN)
-            self.levelSensorWorking = True
-        except Exception as e:
-            #logger.add("info", "\n\nSome error during Water Level Sensor setup\n\n")
-            #logger.add("error", e)
-            self.levelSensorWorking = False
 
         # PH SENSORS
+        self.start_ph_sensor()
+        self.start_waterLevel_sensor()
+
+
+    def start_ph_sensor(self):
         try:
-            # create the spi bus
-            spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI)
-            # create the cs (chip select)
-            cs = digitalio.DigitalInOut(board.D5) # PIN 24 GPIO10
+            spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI) # create the spi bus
+            cs = digitalio.DigitalInOut(self.WATER_PH_PIN) # PIN 29 GPIO5 - create the cs (chip select)
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
         except Exception as e:
-            #logger.add("info", "\n\nSome error during PH Sensor setup\n\n")
-            #logger.add("error", e)
+            logger.info("[PH SENSOR] (start) Not working")
+            logger.error(e)
+            self.phSensorWorking = False
+
+    def start_waterLevel_sensor(self):
+        try:
+            gpio.setup(self.WATER_LEVEL_PIN, gpio.IN)
+            self.levelSensorWorking = True
+        except Exception as e:
+            logger.info("[WATER LEVEL SENSOR] (start) Not working")
+            logger.error(e)
+            self.levelSensorWorking = False
+
+    def getPh(self):
+        if (not self.phSensorWorking):
+            self.start_ph_sensor()
+
+        try:
+            print("hell0")
+            print(self.mcp.read(0))
+            print()
+            self.ph = 1
+        except Exception as e:
+            logger.info("Impossible Reading PH")
+            logger.error(e)
+            self.ph = None
             self.phSensorWorking = False
 
     def _read_temp_raw(self):
@@ -123,23 +156,17 @@ class WaterSensor():
         self.temperature = temp_c
 
     def getLevel(self):
+        self.level = None
+
+        if (not self.levelSensorWorking):
+            self.start_waterLevel_sensor()
+
         #  Output 1 if water touch the sensor
-        _waterLevel = None
-        if (self.levelSensorWorking):
-            _waterLevel = int(RPi.GPIO.input(self.WATER_LEVEL_PIN))
-        self.level = _waterLevel
-
-    def getPh(self):
-        _phValue = None
-        if (self.phSensorWorking):
-            channel = AnalogIn(self.mcp, MCP.P0) # 0 - 65472
-            _phValue = (channel.value / 4365) #Map to 0 and 14 (included)
-            print("hell0")
-            print(self.mcp.read(0))
-            print(channel.value, channel.voltage, (channel.value / 4365))
-            print()
-
-        self.ph = _phValue
+        try: 
+            self.level = int(gpio.input(self.WATER_LEVEL_PIN))
+        except Exception as e:
+            self.level = None
+            self.levelSensorWorking = False
 
 cpu = Cpu()
 environment = HumidityTempSensor()

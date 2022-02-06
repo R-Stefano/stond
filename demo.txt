@@ -70,6 +70,7 @@ dtparam=spi=on (enable SPI in /boot/config.txt)
 
 - Regultae ph Sensor
 - Use new temperature Sensor
-- control FANs (PWm & ON/OFF)
 - Control Light
+- Control service FAN
+- Setup water level
 - Use EC sensor

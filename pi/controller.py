@@ -8,7 +8,7 @@ logger = LoggerManager.logger
 
 class FanActuator():
     def __init__(self):
-        # Internal Variables for the FAN Manager
+        # Internal Variables
         self.FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
         self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
         self.MIN_TEMP = 20 
@@ -17,7 +17,7 @@ class FanActuator():
         self.FAN_MAX = 100
         self.BACKUP_SPEED = 0 # In case can't read Temp - use this speed
 
-        #Public variables accessible 
+        #Public variables 
         self.status = "OFF"
         self.isWorking = False
         self.speed = self.FAN_OFF
