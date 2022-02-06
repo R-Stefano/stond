@@ -25,14 +25,15 @@ class Cpu():
 # Humidity and Temp
 class HumidityTempSensor():
     def __init__(self):
-        self.temperatureHumiditySensorWorking = False
+        self._address = 0x77
 
+        self.temperatureHumiditySensorWorking = False
         self.temperature = None
         self.humidity = None
 
-        self.address = 0x77
+    def start(self):
         try:
-            #self.bmp = BMP085(self.address)
+            self.bmp = BMP085(self._address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
             logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
@@ -40,9 +41,12 @@ class HumidityTempSensor():
             self.temperatureHumiditySensorWorking = False
 
     def readTempHumidity(self):
+        if (not self.temperatureHumiditySensorWorking):
+            self.start()
+
         try:
-            self.humidity = None
-            self.temperature = 19 #self.bmp.readTemperature()
+            self.humidity = self.bmp.readTemperature()
+            self.temperature = self.bmp.readTemperature()
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
             logger.add("error", e)
