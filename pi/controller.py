@@ -1,31 +1,58 @@
 from datetime import datetime
 import logger, sensors
-import RPi # allo to call GPIO pins
+import RPi.GPIO as gpio # allo to call GPIO pins
+
+gpio.setmode (gpio.BOARD) # Use the Board physical pin numbers (1-40) - NOT GPIO
 
 class FanActuator():
     def __init__(self):
         self.status = "OFF"
         self.isWorking = False
-        self.FAN_RELAY_GPIO_PIN = 14
+        self.FAN_PIN = 32 # Physical PIN 32 (GPIO26 PWM0)
+        self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
+
+        # Internal Variables for the FAN Manager
+        self.MIN_TEMP = 20 
+        self.MAX_TEMP = 27
+        self.FAN_OFF = 0 
+        self.FAN_MAX = 100
+        ## Try to Startup FAN
         try:
-            RPi.GPIO.setmode(RPi.GPIO.BCM)
-            RPi.GPIO.setup(self.FAN_RELAY_GPIO_PIN, RPi.GPIO.OUT)
-            RPi.GPIO.output(self.FAN_RELAY_GPIO_PIN, RPi.GPIO.LOW)
+            gpio.setup(self.FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
+            self.fan = gpio.PWM(self.FAN_PIN, self.PWM_FREQ)
+            self.fan.start(self.FAN_OFF)
             self.isWorking = True
         except Exception as e:
-            logger.add("info", "Fan Actuator not working")
+            logger.add("info", "[FAN] (start) Not working")
             logger.add("error", e)
 
-    def turnOn(self):
-        self.status = "ON"
-        RPi.GPIO.output(self.FAN_RELAY_GPIO_PIN, RPi.GPIO.HIGH)
-        return
+    def setFanSpeed(self, speed):
+        self.fan.start(speed)
 
-    def turnOff(self):
-        self.status = "OFF"
-        RPi.GPIO.output(self.FAN_RELAY_GPIO_PIN, RPi.GPIO.LOW)
-        return
+        if (speed == 0):
+            self.status = "OFF"
+        else:
+            self.status = "ON"
 
+        #logger.add("debug", "[FAN] (update speed) Temp ${} - Speed ${} - Status ${}")
+
+    def handleFanSpeed(self):
+        # If anomaly with Temp Sensor - Set fixed speed
+        if (not sensors.environment.temperatureHumiditySensorWorking):
+            logger.add("debug", "[FAN] Temp Sensor not working. Setting emergency speed")
+            self.setFanSpeed(25)
+            return
+
+        currentTemp = sensors.environment.temperature
+        if currentTemp < self.MIN_TEMP: # Set fan speed to MINIMUM if the temperature is below MIN_TEMP
+            self.setFanSpeed(self.FAN_OFF)
+        elif currentTemp > self.MAX_TEMP: # Set fan speed to MAXIMUM if the temperature is above MAX_TEMP
+            self.setFanSpeed(self.FAN_MAX)
+        else: # Caculate dynamic fan speed
+            powerPerc = (currentTemp - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
+            self.setFanSpeed(powerPerc * 100)
+
+'''
 class LightsActuator():
     def __init__(self):
         self.status = "OFF"
@@ -73,24 +100,12 @@ class Humidifier():
         self.status = "OFF"
         RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
         return
-
+'''
 ventilation = FanActuator()
+'''
+
 led = LightsActuator()
 humidifier = Humidifier()
-
-def air():
-    if (sensors.environment.temperatureHumiditySensorWorking):
-        if (sensors.environment.temperature > 26):
-           ventilation.turnOn()
-
-        if (sensors.environment.temperature < 23):
-           ventilation.turnOff()
-        return
-
-    if (not sensors.environment.temperatureHumiditySensorWorking and datetime.now().minute in [15, 16, 17, 18, 19, 20, 30, 31, 32, 33, 34, 35, 55, 56, 57, 58, 59]):
-        ventilation.turnOn()
-    else:
-        ventilation.turnOn()
 
 def lights():
     currentHr = datetime.utcnow().hour #UTC TIMEZONE
@@ -104,3 +119,4 @@ def humidity(humidity):
         humidifier.turnOff()
     else:
         humidifier.turnOn()
+'''

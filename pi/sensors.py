@@ -8,7 +8,6 @@ from unittest.mock import MagicMock
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
-from Adafruit_BMP085 import BMP085 # Temperature sensor
 
 class Cpu():
     def __init__(self):
@@ -33,7 +32,7 @@ class HumidityTempSensor():
 
         self.address = 0x77
         try:
-            self.bmp = BMP085(self.address)
+            #self.bmp = BMP085(self.address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
             logger.add("info", "\n\nSome error while loading BME280 sensor\n\n")
@@ -43,7 +42,7 @@ class HumidityTempSensor():
     def readTempHumidity(self):
         try:
             self.humidity = None
-            self.temperature = self.bmp.readTemperature()
+            self.temperature = 19 #self.bmp.readTemperature()
         except Exception as e:
             logger.add("info", "Some error while trying to read Temp & Humidity Dat")
             logger.add("error", e)

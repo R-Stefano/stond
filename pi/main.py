@@ -20,8 +20,8 @@ def run():
   logger.update('cpu_temperature', cpu_temperature)
   
   #Control
-  controller.air()
-  controller.lights()
+  controller.ventilation.handleFanSpeed()
+  #controller.lights()
   #controller.humidity(env_humidity)
 
   #Save

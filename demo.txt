@@ -1,7 +1,12 @@
+COMMANDS:
+- Conect by SSH to raspberry pi
 sudo nmap -sn 192.168.1.0/24
-
 ssh pi@192.168.1.101
-raspberry
+password: raspberry
+
+- Show Raspberry pi pins
+pinout
+
 
 sudo nano /etc/rc.local
 ps -aux | grep python3
