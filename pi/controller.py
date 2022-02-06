@@ -53,7 +53,7 @@ class FanActuator():
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
             logger.debug("[FAN] Temp Sensor not working. Setting emergency speed")
-            self.setFanSpeed(75)
+            self.setFanSpeed(0)
             return
 
         currentTemp = sensors.environment.temperature
