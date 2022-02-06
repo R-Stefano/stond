@@ -70,8 +70,8 @@ dtparam=spi=on (enable SPI in /boot/config.txt)
 
 - Regultae ph Sensor
 - Use new temperature Sensor
-- Control service FAN
 - Setup water level
 - setup data manager and send to backend
 - Use EC sensor
+- Control service FAN ( + tests)
 - Setup humidifier

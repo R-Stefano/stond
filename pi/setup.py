@@ -1,10 +1,21 @@
 from datetime import datetime
 import sensors, controller
 import dataManager as dataMng
-  
+import time
 
 def start():
   testsFailed = []
+  print("PH SENSOR CHECKS")
+  message = "PH SENSOR Should read 4"
+  while (sensors.water.read_ph() < 3.9 or sensors.water.read_ph() > 4.1):
+    print(sensors.water.read_ph())
+    time.sleep(1)
+
+  message = "PH SENSOR Should read 7"
+  while (sensors.water.read_ph() < 6.9 or sensors.water.read_ph() > 7.1):
+    print(sensors.water.read_ph())
+    time.sleep(1)
+    
   print("LIGHTS CHECKS")
   controller.led.controlLights("ON")
   resp = input("RELAY LED Should be ON - LIGHTS should be ON (Enter to continue)")

@@ -16,7 +16,7 @@ logger = LoggerManager.logger
 class System():
     def __init__(self):
         self.cpu_temperature = None
-        
+
         if (configs.debug):
             self._cpu = MagicMock()
             self._cpu.temperature = 0
@@ -130,12 +130,13 @@ class WaterSensor():
         try:
             # map 0-1024 to 0-14
             self.ph = (self.mcp.read(self.MCP3008_PH_PIN) - range_in_start) * ((range_out_end - range_out_start)/(range_in_end - range_in_start)) + range_out_start
-            print(self.mcp.read(self.MCP3008_PH_PIN), self.ph)
         except Exception as e:
             logger.info("[E201-C-BNC] Impossible Reading PH")
             logger.error(e)
             self.ph = None
             self.phSensorWorking = False
+
+        return self.ph
 
     def _read_temp_raw(self):
         catdata = subprocess.Popen(['cat', self.device_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
