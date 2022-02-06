@@ -38,7 +38,7 @@ def displayData():
 
   actuatorsData = [
       {'name': 'ventilation', 'status': controller.ventilation.status, 'isWorking': controller.ventilation.isWorking},
-      {'name': 'LED',         'status': controller.led.status, 'isWorking': controller.led.isWorking},
+      #{'name': 'LED',         'status': controller.led.status, 'isWorking': controller.led.isWorking},
   ]
 
   for sensor in sensorsData:
