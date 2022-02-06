@@ -78,9 +78,9 @@ class LightsActuator():
         for i in range(self.HOURS_LIGHT):
             hour = self.HOUR_LIGHT_START + i
             hour = hour if hour < 24 else hour - 24
-            print(i, hour)
             self.LIGHT_HOURS.append(hour)
 
+        print(self.LIGHT_HOURS)
         #Public variables 
         self.status = "OFF"
         self.isWorking = False
