@@ -1,37 +1,6 @@
-import logging, sys, requests, configs, os
+import logging, os
 from logging.handlers import TimedRotatingFileHandler
 import socketManager as socketMng
-
-data = {
-      'deviceId': configs.deviceId
-}
-
-def get_logger(logger_name):
-
-   return logger
-
-def add(level, message):
-   if (level == 'info'):
-      logger.info(message)
-   elif (level == 'error'):
-      logger.error(message, exc_info=True)
-
-def update(key, value):
-   data[key]=value
-
-def display():
-   for key in data:
-      print(key, data[key])
-
-def save():
-   add('info', 'Send Data')
-
-   clear()
-
-def clear():
-   data = {
-      'deviceId': configs.deviceId
-   }
 
 # create logger
 FORMATTER = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s - %(message)s", datefmt='%m/%d/%Y %I:%M:%S %p')

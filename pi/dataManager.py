@@ -29,7 +29,6 @@ def sendData():
 
 
 def displayData():
-  return
   sensorsData = [
       {'name': 'water_temperature', 'value': sensors.water.temperature, 'isWorking': sensors.water.temperatureSensorWorking},
       {'name': 'water_level', 'value': sensors.water.level, 'isWorking': sensors.water.levelSensorWorking},
@@ -39,8 +38,8 @@ def displayData():
   ]
 
   actuatorsData = [
-      {'name': 'ventilation', 'status': controller.ventilation.status, 'isWorking': controller.ventilation.isWorking},
-      #{'name': 'LED',         'status': controller.led.status, 'isWorking': controller.led.isWorking},
+      {'name': 'ventilation', 'status': controller.ventilation.status, 'speed': controller.ventilation.speed, 'isWorking': controller.ventilation.isWorking},
+      {'name': 'LED',         'status': controller.led.status, 'speed': 1, 'isWorking': controller.led.isWorking},
   ]
 
   for sensor in sensorsData:
