@@ -7,6 +7,23 @@ password: raspberry
 - Show Raspberry pi pins
 https://pinout.xyz/pinout/pin32_gpio12
 
+- Deploy new app
+cd mobile-app/app
+ionic capacitor build android --prod
+
+- Clear project (remove android, ios folders & capacitor.config.ts)
+npx cap init
+npm run build
+npx cap add android
+npx cap add ios
+npx cap sync
+
+ionic capacitor build android --prod
+ionic capacitor build ios --prod
+
+################
+################
+################
 
 sudo nano /etc/rc.local
 ps -aux | grep python3
@@ -69,7 +86,7 @@ dtparam=spi=on (enable SPI in /boot/config.txt)
 
 
 - Use new temperature Sensor
-- setup data manager and send to backend
+- swtup auto start (+ add to install script)
 - Use EC sensor
 - Control service FAN ( + tests)
 - Setup humidifier.

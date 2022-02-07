@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'app',
+  appId: 'io.afrodite.app',
+  appName: 'Afrodite',
   webDir: 'www',
   bundledWebRuntime: false
 };

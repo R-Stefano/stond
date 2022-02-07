@@ -16,5 +16,6 @@ echo "TODO ENABLE I2C"
 #
 #
 
+echo "TODO Add start script to booter"
 
 python3 main.py

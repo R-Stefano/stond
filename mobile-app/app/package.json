@@ -1,8 +1,8 @@
 {
-  "name": "app",
+  "name": "afrodite",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Afrodite",
+  "homepage": "https://afrodite.io/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
