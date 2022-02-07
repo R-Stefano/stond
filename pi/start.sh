@@ -18,16 +18,13 @@ echo "[AFRODITE STARTUP] TODO ENABLE I2C"
 #
 
 
-if grep -Fxq "/home/pi/stond/pi/start.sh" /etc/rc.local
+if grep -Fxq "/home/pi/stond/pi/start.sh" ~/.profile
 then
     echo "[AFRODITE STARTUP] Start Command already in the booter file. Start Routine"
     python3 /home/pi/stond/pi/main.py
 else
     echo "[AFRODITE STARTUP] Adding Start Command to the booter file & Reboot"
-    sudo chmod 777 /etc/profile
-    sudo sed -i "s/exit 0//g" /etc/profile
-    echo "/home/pi/stond/pi/start.sh > /home/pi/stond/pi/startup_error.log" >> /etc/profile
-    echo "exit 0" >> /etc/profile
+    echo "/home/pi/stond/pi/start.sh" >> ~/.profile
     sudo reboot
 fi
 
