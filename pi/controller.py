@@ -37,7 +37,7 @@ class FanActuator():
             self.isWorking = False
 
     def setFanSpeed(self, speed):
-        self.speed = speed
+        self.speed = round(speed, 2)
         self.fan.start(self.speed)
 
         if (speed == 0):
