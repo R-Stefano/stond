@@ -129,7 +129,7 @@ class WaterSensor():
 
         try:
             # map 0-1024 to 0-14
-            self.ph = (self.mcp.read(self.MCP3008_PH_PIN) - range_in_start) * ((range_out_end - range_out_start)/(range_in_end - range_in_start)) + range_out_start
+            self.ph = round((self.mcp.read(self.MCP3008_PH_PIN) - range_in_start) * ((range_out_end - range_out_start)/(range_in_end - range_in_start)) + range_out_start, 2)
         except Exception as e:
             logger.info("[E201-C-BNC] Impossible Reading PH")
             logger.error(e)
