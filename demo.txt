@@ -22,8 +22,15 @@ ionic capacitor build android --prod
 ionic capacitor build ios --prod
 
 - Add program to Pi startup
+chmod +x /etc/rc.local
 sudo nano /etc/rc.local
 python3 /home/pi/stond/pi/main.py 
+
+(to test) bash /etc/rc.local 
+
+- Check program is running in background mode
+ps -aux | grep python3
+
 
 ################
 ################
@@ -88,7 +95,6 @@ dtparam=spi=on (enable SPI in /boot/config.txt)
 
 
 
-- Use new temperature Sensor
 - swtup auto start (+ add to install script)
 - Use EC sensor
 - Control service FAN ( + tests)
