@@ -1,8 +1,10 @@
 import time, os, configs
 from datetime import datetime
-import sensors, controller
+import sensors, controller, LoggerManager
 import socketManager as socketMng
 import dataManager as dataMng
+
+logger = LoggerManager.logger
 
 def run():
   print()
@@ -39,4 +41,7 @@ def start():
       time.sleep(5)
 
 if __name__ == '__main__':
-  start()
+  try:
+    start()
+  except Exception as e:
+    logger.error(e)

@@ -144,8 +144,7 @@ class Humidifier():
         RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
         return
 '''
-ventilation = FanActuator()
-led = LightsActuator()
+
 '''
 
 humidifier = Humidifier()
@@ -156,3 +155,6 @@ def humidity(humidity):
     else:
         humidifier.turnOn()
 '''
+
+ventilation = FanActuator()
+led = LightsActuator()

@@ -1,4 +1,5 @@
-import sensors, requests, configs, controller
+import sensors, requests, configs, controller, LoggerManager
+logger = LoggerManager.logger
 
 class SensorObject():
   def __init__(self, name):
@@ -23,12 +24,13 @@ def sendData():
     ]
   }
   response = requests.put(configs.apiUrl + "/api/devices/" + configs.deviceId + "/status", json = data)
-  #if (response.status_code != 200):
-  #  add('error', "Impossible processing request. Error {} | {}".format(response.status_code, response.text)))
+  if (response.status_code != 200):
+    logger.error("Impossible processing request. Error {} | {}".format(response.status_code, response.text))
 
 
 def displayData():
   sensorsData = [
+      {'name': 'cpu_temperature', 'value': sensors.system.cpu_temperature, 'isWorking': 1},
       {'name': 'water_temperature', 'value': sensors.water.temperature, 'isWorking': sensors.water.temperatureSensorWorking},
       {'name': 'water_level', 'value': sensors.water.level, 'isWorking': sensors.water.levelSensorWorking},
       {'name': 'water_ph', 'value': sensors.water.ph, 'isWorking': sensors.water.phSensorWorking},
