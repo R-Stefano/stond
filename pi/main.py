@@ -36,9 +36,9 @@ def start():
   while True:
     timestamp = datetime.now()
 
-    if (timestamp.second % configs.snapshotInterval == 0):
+    if ((timestamp.second % configs.snapshotInterval) == 0):
       run()
-      time.sleep(5)
+      time.sleep(0.2)
 
 if __name__ == '__main__':
   try:
