@@ -8,7 +8,6 @@ class SensorObject():
 
 
 def sendData():
-  return
   data = {
     'deviceId': configs.deviceId,
     'sensors': [
@@ -42,8 +41,12 @@ def displayData():
       {'name': 'LED',         'status': controller.led.status, 'speed': 1, 'isWorking': controller.led.isWorking},
   ]
 
+  print('| {"name":<20} | {"status":<10} | {"value":<10} |'.format(*range(8)))
+  print('-' * 50)
+
   for sensor in sensorsData:
     print(sensor['name'], sensor['isWorking'], sensor['value'])
+    print('| {0:<20} | {1:<10} | {2:<10} |'.format(sensor['name'], sensor['isWorking'], sensor['value']))
 
   for actuator in actuatorsData:
-    print(actuator['name'], actuator['isWorking'], actuator['status'])
+    print('| {0:<20} | {1:<10} | {2:<10} |'.format(actuator['name'], actuator['isWorking'], actuator['status']))

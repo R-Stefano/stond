@@ -15,7 +15,7 @@ class FanActuator():
         self.MAX_TEMP = 27
         self.FAN_OFF = 0 
         self.FAN_MAX = 100
-        self.BACKUP_SPEED = 25 # In case can't read Temp - use this speed
+        self.BACKUP_SPEED = 50 # In case can't read Temp - use this speed
 
         #Public variables 
         self.status = "OFF"
