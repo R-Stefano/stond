@@ -35,7 +35,7 @@ class System():
 class HumidityTempSensor():
     def __init__(self):
         # Internal Variables
-        self._address = 0x77
+        self._address = 0x76
 
         #Public variables 
         self.temperatureHumiditySensorWorking = False
@@ -48,7 +48,7 @@ class HumidityTempSensor():
     def start(self):
         try:
             i2c = board.I2C()  # uses board.SCL and board.SDA
-            self.bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c)
+            self.bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c, self._address)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
             logger.info("[BME280] (start) Not working")
