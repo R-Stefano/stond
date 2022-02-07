@@ -24,6 +24,7 @@ class System():
             self._cpu = CPUTemperature()
 
     def read_cpu (self):
+        logger.debug("[SYSTEM] Reading CPU")
         self.cpu_temperature = self._cpu.temperature
 
 
@@ -51,6 +52,7 @@ class HumidityTempSensor():
             self.temperatureHumiditySensorWorking = False
 
     def readTempHumidity(self):
+        logger.debug("[BME280] Reading Temp & Humidity")
         if (not self.temperatureHumiditySensorWorking):
             self.start()
 
@@ -118,6 +120,7 @@ class WaterSensor():
             self.levelSensorWorking = False
 
     def read_ph(self):
+        logger.debug("[E201-C-BNC] Reading PH")
         # Used for mapping 0-1024 to ph value (0-14)
         range_in_start = 0
         range_in_end = 1024
@@ -146,6 +149,8 @@ class WaterSensor():
         return lines
 
     def read_temperature(self):
+        logger.debug("[DS18B20] Reading Water Temperature")
+
         if (not self.temperatureSensorWorking):
             self.start_waterTemp_sensor()
 
@@ -168,6 +173,8 @@ class WaterSensor():
 
 
     def read_level(self):
+        logger.debug("[FS-IR02] Reading Water level")
+
         if (not self.levelSensorWorking):
             self.start_waterLevel_sensor()
 
