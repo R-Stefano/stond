@@ -15,7 +15,7 @@ logger = LoggerManager.logger
 
 class System():
     def __init__(self):
-        self.cpu_temperature = None
+        self.cpu_temperature = 0
 
         if (configs.debug):
             self._cpu = MagicMock()
@@ -35,8 +35,8 @@ class HumidityTempSensor():
 
         #Public variables 
         self.temperatureHumiditySensorWorking = False
-        self.temperature = None
-        self.humidity = None
+        self.temperature = 0
+        self.humidity = 0
 
         # Startup Sensor
         self.start()
@@ -60,8 +60,8 @@ class HumidityTempSensor():
         except Exception as e:
             logger.info("[BME280] Impossible Reading Temp & Humidity")
             logger.error(e)
-            self.humidity = None
-            self.temperature = None
+            self.humidity = 0
+            self.temperature = 0
             self.temperatureHumiditySensorWorking = False
 
 # Water Temp
@@ -77,9 +77,9 @@ class WaterSensor():
         self.temperatureSensorWorking = False
         self.levelSensorWorking = False
 
-        self.ph = None
-        self.temperature = None
-        self.level = None
+        self.ph = 0
+        self.temperature = 0
+        self.level = 0
 
         # Start Sensors
         self.start_ph_sensor()
@@ -133,7 +133,7 @@ class WaterSensor():
         except Exception as e:
             logger.info("[E201-C-BNC] Impossible Reading PH")
             logger.error(e)
-            self.ph = None
+            self.ph = 0
             self.phSensorWorking = False
 
         return self.ph
@@ -163,7 +163,7 @@ class WaterSensor():
         except Exception as e:
             logger.info("[DS18B20] Impossible Reading Temperature")
             logger.error(e)
-            self.temperature = None
+            self.temperature = 0
             self.temperatureSensorWorking = False
 
 
@@ -177,7 +177,7 @@ class WaterSensor():
         except Exception as e:
             logger.info("[FS-IR02] Impossible Reading Water Level")
             logger.error(e)
-            self.level = None
+            self.level = 0
             self.levelSensorWorking = False
 
 system = System()
