@@ -14,13 +14,13 @@ def run():
   sensors.water.read_level() # Output 1 if water touch the sensor
   sensors.environment.readTempHumidity()
 
-  dataMng.displayData()
   
   #Control
   controller.ventilation.controlFanSpeed()
   controller.led.controlLights()
   #controller.humidity(env_humidity)
 
+  dataMng.displayData()
   #Save
   if (timestamp.second == 0):
     dataMng.sendData()
