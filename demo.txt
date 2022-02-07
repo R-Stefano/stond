@@ -21,11 +21,14 @@ npx cap sync
 ionic capacitor build android --prod
 ionic capacitor build ios --prod
 
+- Add program to Pi startup
+sudo nano /etc/rc.local
+python3 /home/pi/stond/pi/main.py 
+
 ################
 ################
 ################
 
-sudo nano /etc/rc.local
 ps -aux | grep python3
 sudo kill <pid>
 
