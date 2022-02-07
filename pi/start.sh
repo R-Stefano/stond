@@ -23,7 +23,7 @@ then
 else
     echo "Adding Start Command to the booter file"
     sudo chmod 777 /etc/rc.local
-    sed -i 's/exit 0/\/home\/pi\/stond\/pi\/start.sh \nexit 0/g' /etc/rc.local
+    sudo sed -i 's/exit 0/\/home\/pi\/stond\/pi\/start.sh \nexit 0/g' /etc/rc.local
 fi
 
 python3 main.py
