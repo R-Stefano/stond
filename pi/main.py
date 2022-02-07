@@ -5,6 +5,7 @@ import socketManager as socketMng
 import dataManager as dataMng
 
 def run():
+  print()
   # Update measurements
   timestamp = datetime.now()
   sensors.system.read_cpu()
