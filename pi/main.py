@@ -33,10 +33,10 @@ def run():
 def start():
   socketMng.login()
 
-  ## Add startup command to /etc/rc.local (if file available and not already there)
-  with open('/etc/rc.local', 'a') as f:
-    if '/home/pi/stond/pi/install.sh' not in f.read():
-      f.write('/home/pi/stond/pi/install.sh #Startup main routine on boot')
+  ### Add startup command to /etc/rc.local (if file available and not already there)
+  #with open('/etc/rc.local', 'a') as f:
+  #  if '/home/pi/stond/pi/start.sh' not in f.read():
+  #    f.write('/home/pi/stond/pi/start.sh #Startup main routine on boot')
   
   while True:
     timestamp = datetime.now()

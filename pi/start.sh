@@ -16,6 +16,14 @@ echo "TODO ENABLE I2C"
 #
 #
 
-echo "TODO Add start script to booter"
+
+if grep -Fxq "/home/pi/stond/pi/start.sh" /etc/rc.local
+then
+    echo "Start Command already in the booter file"
+else
+    echo "Adding Start Command to the booter file"
+    sudo chmod 777 /etc/rc.local
+    sudo echo "/home/pi/stond/pi/start.sh" >> /etc/rc.local 
+fi
 
 python3 main.py
