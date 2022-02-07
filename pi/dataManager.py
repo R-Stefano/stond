@@ -37,8 +37,8 @@ def displayData():
   ]
 
   actuatorsData = [
-      {'name': 'ventilation', 'status': controller.ventilation.status, 'speed': controller.ventilation.speed, 'isWorking': controller.ventilation.isWorking},
-      {'name': 'LED',         'status': controller.led.status, 'speed': 1, 'isWorking': controller.led.isWorking},
+      {'name': 'ventilation', 'value': controller.ventilation.speed,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
   ]
 
   print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))
@@ -48,4 +48,4 @@ def displayData():
     print('| {0:<20} | {1:<10} | {2:<10} |'.format(sensor['name'], sensor['isWorking'], sensor['value']))
 
   for actuator in actuatorsData:
-    print('| {0:<20} | {1:<10} | {2:<10} |'.format(actuator['name'], actuator['isWorking'], actuator['status']))
+    print('| {0:<20} | {1:<10} | {2:<10} |'.format(actuator['name'], actuator['isWorking'], actuator['value']))

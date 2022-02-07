@@ -61,8 +61,8 @@ class HumidityTempSensor():
             self.start()
 
         try:
-            self.humidity = self.bme280.humidity
-            self.temperature = self.bme280.temperature
+            self.humidity = round(self.bme280.humidity, 2)
+            self.temperature = round(self.bme280.temperature, 2)
         except Exception as e:
             logger.info("[BME280] Impossible Reading Temp & Humidity")
             logger.error(e)
