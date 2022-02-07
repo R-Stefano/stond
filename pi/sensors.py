@@ -8,6 +8,9 @@ from unittest.mock import MagicMock
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
 
+# BME280 SENSOR
+from adafruit_bme280 import basic as adafruit_bme280
+
 import RPi.GPIO as gpio # allo to call GPIO pins
 import LoggerManager
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
@@ -44,7 +47,8 @@ class HumidityTempSensor():
 
     def start(self):
         try:
-            self.bmp = BMP085(self._address)
+            i2c = board.I2C()  # uses board.SCL and board.SDA
+            self.bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c)
             self.temperatureHumiditySensorWorking = True
         except Exception as e:
             logger.info("[BME280] (start) Not working")
@@ -57,8 +61,8 @@ class HumidityTempSensor():
             self.start()
 
         try:
-            self.humidity = self.bmp.readTemperature()
-            self.temperature = self.bmp.readTemperature()
+            self.humidity = self.bme280.humidity
+            self.temperature = self.bme280.temperature
         except Exception as e:
             logger.info("[BME280] Impossible Reading Temp & Humidity")
             logger.error(e)
