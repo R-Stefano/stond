@@ -41,7 +41,7 @@ def displayData():
       {'name': 'LED',         'status': controller.led.status, 'speed': 1, 'isWorking': controller.led.isWorking},
   ]
 
-  print('| {"name":<20} | {"status":<10} | {"value":<10} |')
+  print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))
   print('-' * 50)
 
   for sensor in sensorsData:
