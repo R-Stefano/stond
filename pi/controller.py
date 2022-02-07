@@ -77,7 +77,7 @@ class LightsActuator():
 
         self.CLOCK_TIMEZONE = 'UK' # NOT IMPLEMENTED 
         self.HOURS_LIGHT = 16
-        self.HOUR_LIGHT_START = 20
+        self.HOUR_LIGHT_START = 12
         self.LIGHT_HOURS = []
         for i in range(self.HOURS_LIGHT):
             hour = self.HOUR_LIGHT_START + i
