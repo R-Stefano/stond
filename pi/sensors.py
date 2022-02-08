@@ -77,30 +77,34 @@ class WaterSensor():
         self.WATER_LEVEL_PIN = 17 # GPIO 17 (Physical PIN 11)
         self.WATER_PH_PIN = board.D5 # GPIO5 (Physical PIN 29)
         self.MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
+        self.MCP3008_EC_PIN = 1 # PIN on the MCP3008 Module for the EC Sensor
 
         #Public variables 
         self.phSensorWorking = False
         self.temperatureSensorWorking = False
         self.levelSensorWorking = False
+        self.ecSensorWorking = False
 
         self.ph = 0
+        self.ec = 0
         self.temperature = 0
         self.level = 0
 
         # Start Sensors
-        self.start_ph_sensor()
+        self.start_ph_ec_sensor()
         self.start_waterTemp_sensor()
         self.start_waterLevel_sensor()
 
 
-    def start_ph_sensor(self):
+    def start_ph_ec_sensor(self):
         try:
             spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI) # create the spi bus
             cs = digitalio.DigitalInOut(self.WATER_PH_PIN) # PIN 29 GPIO5 - create the cs (chip select)
             self.mcp = MCP.MCP3008(spi, cs)
             self.phSensorWorking = True
+            self.ecSensorWorking = True
         except Exception as e:
-            logger.info("[E201-C-BNC] (start) Not working")
+            logger.info("[MCP3008] (start) Not working. E201-C-BNC OR TDS Sensor not working")
             logger.error(e)
             self.phSensorWorking = False
 
@@ -132,7 +136,7 @@ class WaterSensor():
         range_out_end = 14
 
         if (not self.phSensorWorking):
-            self.start_ph_sensor()
+            self.start_ph_ec_sensor()
 
         try:
             # map 0-1024 to 0-14
@@ -144,6 +148,21 @@ class WaterSensor():
             self.phSensorWorking = False
 
         return self.ph
+
+    def read_ppm(self):
+        logger.debug("[EC] Reading PPM")
+        if (not self.ecSensorWorking):
+            self.start_ph_ec_sensor()
+
+        try:
+            self.ec = round(self.mcp.read(self.MCP3008_EC_PIN), 2)
+        except Exception as e:
+            logger.info("[EC] Reading EC")
+            logger.error(e)
+            self.ec = 0
+            self.ecSensorWorking = False
+
+        return self.ec
 
     def _read_temp_raw(self):
         catdata = subprocess.Popen(['cat', self.device_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
