@@ -1,3 +1,6 @@
+cd $(dirname "$(realpath $0)")
+source ./env/bin/activate
+
 if grep -Fxq "/home/pi/stond/pi/start.sh" ~/.profile
 then
     echo "[AFRODITE STARTUP] Start Command already in the booter file. Start Routine"
