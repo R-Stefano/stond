@@ -21,12 +21,8 @@ npx cap sync
 ionic capacitor build android --prod
 ionic capacitor build ios --prod
 
-- Add program to Pi startup
-chmod +x /etc/rc.local
-sudo nano /etc/rc.local
-python3 /home/pi/stond/pi/install.sh
-
-(to test) bash /etc/rc.local 
+- Start script on raspberry pi device
+./start.sh
 
 - Check program is running in background mode
 ps -aux | grep python3
@@ -95,7 +91,8 @@ dtparam=spi=on (enable SPI in /boot/config.txt)
 
 
 
-- swtup auto start (+ add to install script)
 - Use EC sensor
+- app get data on login
+- buffer data if missing internet connection
 - Control service FAN ( + tests)
 - Setup humidifier.
