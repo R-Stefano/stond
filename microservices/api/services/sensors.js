@@ -13,7 +13,7 @@ exports.get = async (sensorId, params) => {
     return db.sensor.findOne(query)
 }   
 
-exports.getAnalytics = async (sensorId, params) => {
+exports.getHistory = async (sensorId, params) => {
     const query = {
         where: {
             sensorId: sensorId
@@ -22,27 +22,9 @@ exports.getAnalytics = async (sensorId, params) => {
             ['timestamp', 'asc']
         ]
     }
-    
-    if (params.scale) {
-        let startDate = moment().utc();
-        switch (params.scale) {
-            case '1H':
-                startDate = startDate.subtract(1, "hours");
-                query.where['$timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
-                break;
-            case '6H':
-                startDate = startDate.subtract(6, "hours");
-                query.where['$timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
-                break;
-            case '1D':
-                startDate = startDate.subtract(24, "hours");
-                query.where['$timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
-                break;
-            case '30D':
-                startDate = startDate.subtract(24*30, "hours");
-                query.where['$timestamp$'] = {[Op.gte]: startDate.format('YYYY-MM-DD HH:mm')}
-                break;
-        }
+
+    if (params.timestamp) {
+        query.where['$timestamp$'] = {[Op.gte]: params.timestamp}
     }
     
     return db.sensorReading.findAll(query)

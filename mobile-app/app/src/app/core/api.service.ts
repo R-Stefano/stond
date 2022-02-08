@@ -20,7 +20,7 @@ export class ApiService {
     return this._http.get<any>(environment.apiUrl + `api/sensors/${sensorId}`)
   }
 
-  getSensorAnalytics(sensorId: string, params) {
-    return this._http.get<any>(environment.apiUrl + `api/sensors/${sensorId}/analytics`, {params: params})
+  getSensorHistory(sensorId: string, params) {
+    return this._http.get<any>(environment.apiUrl + `api/sensors/${sensorId}/history`, {params: params})
   }
 }

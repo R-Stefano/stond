@@ -119,7 +119,7 @@ export class SensorComponent implements OnInit {
       this.sensor = sensor
     })
 
-    this._fetchData()
+    this.getHistoryData()
   }
   
   ngAfterViewInit() {
@@ -134,11 +134,78 @@ export class SensorComponent implements OnInit {
 
   onChangeXScale(scale: string) {
     this.scaleSelected = scale
-    this._fetchData()
+    this.getHistoryData()
   }
 
-  private _fetchData() {
-    this._api.getSensorAnalytics(this._route.snapshot.paramMap.get('sensorId'), {scale: this.scaleSelected}).subscribe((sensorReadings: SensorReading[]) => {
+  getHistoryData() {
+    const params = {}
+    const timeNow = moment()
+    switch (this.scaleSelected) {
+      case '1H':
+        params['timestamp'] = `${timeNow.subtract({hours: 1}).format()}`
+        break;
+      case '6H':
+        params['timestamp'] = `${timeNow.subtract({hours: 6}).format()}`
+        break;
+      case '1D':
+        params['timestamp'] = `${timeNow.subtract({days: 1}).format()}`
+        break;
+      case '30D':
+        params['timestamp'] = `${timeNow.subtract({days: 30}).format()}`
+        break;
+    }
+    console.log(params)
+
+    this._api.getSensorHistory(this._route.snapshot.paramMap.get('sensorId'), params).subscribe((sensorReadings: SensorReading[]) => {
+      console.log(sensorReadings)
+      // Process values for the graph
+      const dataSeries = []
+      let binSize = 1 //minutes bin size
+      switch (this.scaleSelected) {
+        case '1H':
+          binSize = 1
+          break;
+        case '6H':
+          binSize = 5
+          break;
+        case '1D':
+          binSize = 15
+          break;
+        case '30D':
+          binSize = 60 * 12 // 12 H
+          break;
+      }
+      for (var record of sensorReadings) {
+        const minutesDiff = Math.round(moment(record.timestamp).diff(timeNow) / 60000) // difference in minutes
+        const binIdx = Math.round(minutesDiff / binSize)
+
+        const datapoint = {
+          x: record.value,
+          y: moment(record.timestamp).toISOString()
+        }
+
+        if (dataSeries.length == binIdx) { // add new bin
+          dataSeries.push(datapoint)
+        } else { // update existing bin
+          dataSeries[binIdx] = datapoint
+        }
+      }
+
+      console.log(dataSeries)
+      // display current value
+      this.currentDataPoint = dataSeries[dataSeries.length - 1]
+
+      // refresh chart
+      this._chartConfigs.data.datasets[0].data = dataSeries
+      this.lineChartObj.destroy()
+      this.lineChartObj = new Chart(this.lineChartElRef.nativeElement, this._chartConfigs);
+
+    })
+  }
+
+  // DEPRECATED
+  private _fetchDataOld() {
+    this._api.getSensorHistory(this._route.snapshot.paramMap.get('sensorId'), {scale: this.scaleSelected}).subscribe((sensorReadings: SensorReading[]) => {
       //Format date - group by: 1m, 5m, 20m, 10h
       const newData = sensorReadings.reduce((group, reading) => {
         let dateFormatted = moment(reading.timestamp).set({second:0, millisecond:0})

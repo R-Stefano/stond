@@ -14,11 +14,11 @@ router.get("/:sensorId", async (req, response, next) => {
     return
 })
 
-router.get("/:sensorId/analytics", async (req, response, next) => {
+router.get("/:sensorId/history", async (req, response, next) => {
     const sensorId = req.params.sensorId
     const params = req.query
     try {
-        const results = await service.sensors.getAnalytics(sensorId, params)
+        const results = await service.sensors.getHistory(sensorId, params)
         response.status(200).json(results)
     } catch (e) {
         next(e)
