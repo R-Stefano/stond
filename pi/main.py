@@ -34,6 +34,7 @@ def run():
 def start():
   socketMng.login()
   
+  time.sleep(15)
   while True:
     timestamp = datetime.now()
 

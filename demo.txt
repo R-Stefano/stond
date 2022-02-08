@@ -35,6 +35,8 @@ ps -aux | grep python3
 ps -aux | grep python3
 sudo kill <pid>
 
+sudo kill 1465
+
 sudo strace -pPID -s9999 -e write
 
 Relay
