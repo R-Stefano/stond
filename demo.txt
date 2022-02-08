@@ -93,8 +93,7 @@ dtparam=spi=on (enable SPI in /boot/config.txt)
 
 
 
-- Use EC sensor
-- app get data on login
 - buffer data if missing internet connection
-- Control service FAN ( + tests)
 - Setup humidifier.
+- Use EC sensor
+- Control service FAN ( + tests)

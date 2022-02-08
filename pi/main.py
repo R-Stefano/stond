@@ -32,7 +32,7 @@ def run():
   
 
 def start():
-  socketMng.login()
+  #socketMng.login()
   
   time.sleep(60)
   while True:
