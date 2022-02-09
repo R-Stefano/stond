@@ -11,6 +11,7 @@ After=multi-user.target
 [Service]
 Type=simple # By default 'simple' is used, see also https://www.freedesktop.org/software/systemd/man/systemd.service.html#Type=
 ExecStart=/bin/bash /home/pi/stond/pi/start.sh
+User=root
 #StandardInput=tty-force
 
 [Install]
