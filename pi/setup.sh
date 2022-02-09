@@ -9,8 +9,6 @@
 cd $(dirname "$(realpath $0)")
 
 echo "[AFRODITE SETUP] Installing Libraries"
-pip3 install virtualenv
-source ./env/bin/activate
 pip3 install -r requirements.txt
 
 echo "[AFRODITE SETUP] ENABLE I2C, SPI W1-GPIO"

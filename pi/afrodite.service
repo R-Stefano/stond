@@ -1,15 +1,13 @@
 [Unit]
 Description=Afrodite Service
 After=multi-user.target
-#After=network-online.target
-#Wants=network-online.target
 
 [Service]
 Type=simple # By default 'simple' is used, see also https://www.freedesktop.org/software/systemd/man/systemd.service.html#Type=
 ExecStart=/usr/bin/python3 /home/pi/stond/pi/main.py
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
-#Restart=on-failure
+Restart=on-failure
 User=pi
 
 [Install]
