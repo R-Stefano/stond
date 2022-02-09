@@ -25,10 +25,9 @@ echo "[AFRODITE SETUP] TODO - Add script on startup"
 sudo cp afrodite.service /lib/systemd/system/afrodite.service
 sudo systemctl enable afrodite.service
 
-# crontab -e 
-# @reboot echo "/home/pi/stond/pi/start.sh" | at now + 1 minutes
-# @reboot /home/pi/stond/pi/start.sh > /home/pi/cronjob.log | at now + 1 minutes &
-# Check is running: ps -aux | grep python3
+# Check is running: 
+# - ps -aux | grep python3
+# - sudo systemctl status afrodite.service
 
 echo "[AFRODITE SETUP] Restarting to Enable Changes"
 sudo reboot
