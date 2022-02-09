@@ -5,6 +5,7 @@ import { Sensor, SensorReading } from 'src/app/core/models';
 import * as moment from 'moment';
 import 'chartjs-adapter-moment'
 import { Chart, BarController, LineController, BarElement, LineElement, PointElement,CategoryScale, LinearScale, TimeScale, ChartConfiguration} from 'chart.js';
+import { Subscription } from 'rxjs';
 Chart.register( BarController, LineController, BarElement, LineElement, PointElement, CategoryScale, LinearScale, TimeScale);
 
 @Component({
@@ -15,6 +16,7 @@ Chart.register( BarController, LineController, BarElement, LineElement, PointEle
 export class SensorComponent implements OnInit {
   @ViewChild('pageHeader') pageHeader;
   public displayPageHeaderInToolbar: boolean = false;
+  private _subscriptions = [];
   
   @ViewChild('lineChart') lineChartElRef;
   lineChartObj: any;
@@ -115,11 +117,21 @@ export class SensorComponent implements OnInit {
 
   ngOnInit() {
     //fetch sensor info
-    this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => {
-      this.sensor = sensor
-    })
+    this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => this.sensor = sensor)
 
     this.getHistoryData()
+
+    /*
+    this._subscriptions.push(setInterval(() => {
+      const timestamp = new Date()
+  
+      if (timestamp.getSeconds() == 5) {
+        this.getHistoryData()
+        this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => this.sensor = sensor)
+        console.log(this._subscriptions)
+      }
+    }, 1000))
+    */
   }
   
   ngAfterViewInit() {
@@ -127,6 +139,9 @@ export class SensorComponent implements OnInit {
     this.lineChartObj = new Chart(this.lineChartElRef.nativeElement, this._chartConfigs);
   }
 
+  ngOnDestroy() {
+    //this._subscriptions.map((_sub): Subscription => _sub.unsubscribe())
+  }
 
   onScroll(evt) {
     this.displayPageHeaderInToolbar = this.pageHeader.nativeElement.getBoundingClientRect().top < 30;
@@ -154,12 +169,10 @@ export class SensorComponent implements OnInit {
         params['timestamp'] = `${timeNow.subtract({days: 30}).format()}`
         break;
     }
-    console.log(params)
 
     this._api.getSensorHistory(this._route.snapshot.paramMap.get('sensorId'), params).subscribe((sensorReadings: SensorReading[]) => {
-      console.log(sensorReadings)
       // Process values for the graph
-      const dataSeries = []
+      let dataSeries = []
       let binSize = 1 //minutes bin size
       switch (this.scaleSelected) {
         case '1H':
@@ -180,8 +193,8 @@ export class SensorComponent implements OnInit {
         const binIdx = Math.round(minutesDiff / binSize)
 
         const datapoint = {
-          x: record.value,
-          y: moment(record.timestamp).toISOString()
+          y: record.value,
+          x: moment(record.timestamp).format("YYYY-MM-DD HH:mm:ss")
         }
 
         if (dataSeries.length == binIdx) { // add new bin
@@ -191,7 +204,8 @@ export class SensorComponent implements OnInit {
         }
       }
 
-      console.log(dataSeries)
+      // remove the empty 
+      dataSeries = dataSeries.filter(record => record)
       // display current value
       this.currentDataPoint = dataSeries[dataSeries.length - 1]
 

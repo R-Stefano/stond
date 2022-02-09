@@ -1,0 +1,22 @@
+[Unit]
+Description=Afrodite Service
+## make sure we only start the service after network is up
+# Wants=network-online.target
+# After=network.target
+
+#### REMOVE?
+After=multi-user.target
+#Conflicts=getty@tty1.service
+
+[Service]
+Type=simple # By default 'simple' is used, see also https://www.freedesktop.org/software/systemd/man/systemd.service.html#Type=
+ExecStart=/bin/bash /home/pi/stond/pi/start.sh
+#StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
+
+# MOVE TO SETUP.SH
+# sudo systemctl enable afrodite.service
+# sudo systemctl start afrodite.service
+# sudo systemctl status afrodite.service

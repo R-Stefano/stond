@@ -18,7 +18,6 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     let seasonID = this._route.snapshot.paramMap.get('seasonID')
-    console.log(seasonID)
   }
 
   onScroll(evt) {
