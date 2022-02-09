@@ -1,8 +1,8 @@
 [Unit]
 Description=Afrodite Service
-#After=multi-user.target
-After=network-online.target
-Wants=network-online.target
+After=multi-user.target
+#After=network-online.target
+#Wants=network-online.target
 
 [Service]
 Type=simple # By default 'simple' is used, see also https://www.freedesktop.org/software/systemd/man/systemd.service.html#Type=
