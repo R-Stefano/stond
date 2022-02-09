@@ -6,10 +6,10 @@ After=multi-user.target
 
 [Service]
 Type=simple # By default 'simple' is used, see also https://www.freedesktop.org/software/systemd/man/systemd.service.html#Type=
-ExecStart=/home/pi/stond/pi/start.sh
+ExecStart=/usr/bin/python3 /home/pi/stond/pi/main.py
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
-Restart=on-failure
+#Restart=on-failure
 User=pi
 
 [Install]
