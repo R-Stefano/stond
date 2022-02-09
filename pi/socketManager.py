@@ -1,11 +1,11 @@
 import configs, socketio
+'''
 sio = socketio.Client()
 sio.connect(configs.apiUrl)
 
 @sio.on('event')
 def on_event(evt):
   print(evt)
-  '''
   if evt['name'] == 'device/ventilation':
     if evt['data']['value'] == 'on':
       controller.fan.turnOn()
@@ -18,10 +18,10 @@ def on_event(evt):
       controller.led.turnOn()
     else:
       controller.led.turnOff()
-   '''
 
 def login():
    sio.emit('login', {'deviceId': configs.deviceId})
 
 def updateAnalytics(data):
    sio.emit('login', data)
+  '''
