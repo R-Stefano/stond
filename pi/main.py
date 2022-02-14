@@ -17,6 +17,7 @@ def run():
   sensors.water.read_level() # Output 1 if water touch the sensor
   sensors.environment.readTempHumidity()
 
+  sensors.system.take_picture()
   
   #Control
   controller.ventilation.controlFanSpeed()

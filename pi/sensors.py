@@ -11,6 +11,9 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 # BME280 SENSOR
 from adafruit_bme280 import basic as adafruit_bme280
 
+# CAMERA
+from picamera import PiCamera
+
 import RPi.GPIO as gpio # allo to call GPIO pins
 import LoggerManager
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
@@ -26,10 +29,19 @@ class System():
         else:
             self._cpu = CPUTemperature()
 
+        # Setup camera
+        self.camera = PiCamera()
+        self.camera.resolution = (2592, 1944)
+
     def read_cpu (self):
         logger.debug("[SYSTEM] Reading CPU")
         self.cpu_temperature = self._cpu.temperature
 
+    def take_picture(self):
+        self.camera.start_preview()
+        time.sleep(5)
+        self.camera.capture('/home/pi/Desktop/image.jpg')
+        self.camera.stop_preview()
 
 # Humidity and Temp
 class HumidityTempSensor():

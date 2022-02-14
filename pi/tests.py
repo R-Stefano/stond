@@ -5,6 +5,13 @@ import time
 
 def start():
   testsFailed = []
+  print("CAMERA CHECKS")
+  message = "CAMERA SHOULD TAKE IMAGE"
+  print(">>" + message)
+  while (True):
+    print(sensors.water.read_ppm())
+    time.sleep(1)
+
   print("EC SENSOR CHECKS")
   message = "PH SENSOR Should read 4"
   print(">>" + message)

@@ -11,8 +11,8 @@ class FanActuator():
         # Internal Variables
         self.FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
         self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
-        self.MIN_TEMP = 20 
-        self.MAX_TEMP = 27
+        self.MIN_TEMP = 24
+        self.MAX_TEMP = 28
         self.FAN_OFF = 0 
         self.FAN_MAX = 100
         self.BACKUP_SPEED = 50 # In case can't read Temp - use this speed
@@ -75,7 +75,7 @@ class LightsActuator():
         # Internal Variables
         self.LED_RELAY_GPIO_PIN = 16
 
-        self.CLOCK_TIMEZONE = 'UK' # NOT IMPLEMENTED 
+        self.CLOCK_TIMEZONE = 'UK' # NOT IMPLEMENTED
         self.HOURS_LIGHT = 16
         self.HOUR_LIGHT_START = 20
         self.LIGHT_HOURS = []
