@@ -8,9 +8,8 @@ def start():
   print("CAMERA CHECKS")
   message = "CAMERA SHOULD TAKE IMAGE"
   print(">>" + message)
-  while (True):
-    print(sensors.water.read_ppm())
-    time.sleep(1)
+  sensors.system.take_picture()
+  time.sleep(1)
 
   print("EC SENSOR CHECKS")
   message = "PH SENSOR Should read 4"
