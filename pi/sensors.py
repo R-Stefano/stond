@@ -4,6 +4,7 @@ import busio, digitalio, board # General librariers
 import glob, subprocess, time, os # General librariers
 import configs # Internal libraries
 from unittest.mock import MagicMock
+from datetime import datetime
 
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
@@ -30,8 +31,19 @@ class System():
             self._cpu = CPUTemperature()
 
         # Setup camera
-        self.camera = PiCamera()
-        self.camera.resolution = (2592, 1944)
+        try:
+            self.camera = PiCamera()
+            self.camera.resolution = (2592, 1944)
+
+            # Create storage folder
+            if (not os.path.exists('/home/pi/stond/pi/snapshots/')):
+                os.mkdir('/home/pi/stond/pi/snapshots/')
+                
+            self.cameraWorking = True
+        except Exception as e:
+            logger.info("[CAMERA] (start) Not working")
+            logger.error(e)
+            self.cameraWorking = False
 
     def read_cpu (self):
         logger.debug("[SYSTEM] Reading CPU")
@@ -40,7 +52,7 @@ class System():
     def take_picture(self):
         self.camera.start_preview()
         time.sleep(5)
-        self.camera.capture('/home/pi/Desktop/image.jpg')
+        self.camera.capture('/home/pi/stond/pi/snapshots/' + datetime.now().strftime("%d-%m-%Y_%H:%M:%S") + '.jpg')
         self.camera.stop_preview()
 
 # Humidity and Temp
