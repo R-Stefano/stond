@@ -38,7 +38,7 @@ def sendData():
       buffer.append(data)
     requestsCounter += 1
 
-  imageFiles = os.listdir()
+  imageFiles = os.listdir('/home/pi/stond/pi/snapshots/')
   if (len(imageFiles) > 0):
     # check if file in snapshots folder - if so, upload
     with open('/home/pi/stond/pi/snapshots/' + imageFiles[0], "rb") as image_file:
