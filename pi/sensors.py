@@ -32,12 +32,13 @@ class System():
 
         # Setup camera
         try:
-            self.camera = PiCamera()
-            self.camera.resolution = (2592, 1944)
-
             # Create storage folder
             if (not os.path.exists('/home/pi/stond/pi/snapshots/')):
                 os.mkdir('/home/pi/stond/pi/snapshots/')
+                
+            self.camera = PiCamera()
+            self.camera.resolution = (2592, 1944)
+
                 
             self.cameraWorking = True
         except Exception as e:
@@ -52,7 +53,7 @@ class System():
     def take_picture(self):
         self.camera.start_preview()
         time.sleep(5)
-        self.camera.capture('/home/pi/stond/pi/snapshots/' + datetime.now().strftime("%d-%m-%Y_%H:%M:%S") + '.jpg')
+        self.camera.capture('/home/pi/stond/pi/snapshots/' + datetime.utcnow().isoformat() + '.jpg')
         self.camera.stop_preview()
 
 # Humidity and Temp
