@@ -49,7 +49,7 @@ exports.update = async (deviceId, measurements) => {
     const sensors = await db.sensor.findAll({where: {deviceId: deviceId}})
     await Promise.all(measurements.map(measurement => {
         const sensor = sensors.find(sensor => sensor.name == measurement.name)
-        return db.sensorReading.create({value: measurement.value, isWorking: measurement.isWorking, timestamp: moment().utc(), sensorId: sensor.Id})
+        return db.sensorReading.create({value: measurement.value, isWorking: measurement.isWorking, timestamp: moment(measurement.timestamp).set('second', 0), sensorId: sensor.Id})
     }))
     return Promise.resolve()
 }
