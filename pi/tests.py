@@ -19,17 +19,17 @@ def start():
   ##  time.sleep(1)
 
   print("PH SENSOR CHECKS")
-  message = "PH SENSOR Should read 4"
-  print(">>" + message)
-  while (sensors.water.read_ph() < 3.9 or sensors.water.read_ph() > 4.1):
-    print(sensors.water.read_ph())
-    time.sleep(1)
+  ##message = "PH SENSOR Should read 4"
+  ##print(">>" + message)
+  ##while (sensors.water.read_ph() < 3.9 or sensors.water.read_ph() > 4.1):
+  ##  print(sensors.water.read_ph())
+  ##  time.sleep(1)
 
-  message = "PH SENSOR Should read 7"
-  print(">>" + message)
-  while (sensors.water.read_ph() < 6.9 or sensors.water.read_ph() > 7.1):
-    print(sensors.water.read_ph())
-    time.sleep(1)
+  ##message = "PH SENSOR Should read 7"
+  ##print(">>" + message)
+  ##while (sensors.water.read_ph() < 6.9 or sensors.water.read_ph() > 7.1):
+  ##  print(sensors.water.read_ph())
+  ##  time.sleep(1)
     
   print("LIGHTS CHECKS")
   message = "RELAY LED Should be ON - LIGHTS should be ON"
