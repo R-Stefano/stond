@@ -5,6 +5,7 @@ import glob, subprocess, time, os # General librariers
 import configs # Internal libraries
 from unittest.mock import MagicMock
 from datetime import datetime
+import socket
 
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
@@ -29,6 +30,11 @@ class System():
             self._cpu.temperature = 0
         else:
             self._cpu = CPUTemperature()
+
+
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
+        self.ip = s.getsockname()[0]
 
         # Setup camera
         try:

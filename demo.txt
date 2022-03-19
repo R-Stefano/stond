@@ -1,8 +1,10 @@
 COMMANDS:
 - Conect by SSH to raspberry pi
 sudo nmap -sn 192.168.1.0/24
-ssh pi@192.168.1.101
+ssh pi@192.168.1.108
 password: raspberry
+
+ssh-keygen -R 192.168.1.108
 
 - Show Raspberry pi pins
 https://pinout.xyz/pinout/pin32_gpio12

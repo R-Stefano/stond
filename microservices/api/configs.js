@@ -16,5 +16,8 @@ module.exports = {
 		"phoneNumber": "+447411266421",
 		"accoundSID": "AC789c446a4326d347eac448421fb0665c",
 		"authToken": "76a95164db067ecdd3ff10e59eb903e0"
+	},
+	"cloud": {
+		"bucket_name": ""
 	}
 }

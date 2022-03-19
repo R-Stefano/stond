@@ -5,18 +5,18 @@ import time
 
 def start():
   testsFailed = []
-  print("CAMERA CHECKS")
-  message = "CAMERA SHOULD TAKE IMAGE"
-  print(">>" + message)
-  sensors.system.take_picture()
-  time.sleep(1)
+  ##print("CAMERA CHECKS")
+  ##message = "CAMERA SHOULD TAKE IMAGE"
+  ##print(">>" + message)
+  ##sensors.system.take_picture()
+  ##time.sleep(1)
 
-  print("EC SENSOR CHECKS")
-  message = "PH SENSOR Should read 4"
-  print(">>" + message)
-  while (True):
-    print(sensors.water.read_ppm())
-    time.sleep(1)
+  ##print("EC SENSOR CHECKS")
+  ##message = "PH SENSOR Should read 4"
+  ##print(">>" + message)
+  ##while (True):
+  ##  print(sensors.water.read_ppm())
+  ##  time.sleep(1)
 
   print("PH SENSOR CHECKS")
   message = "PH SENSOR Should read 4"
@@ -58,31 +58,54 @@ def start():
   - service fan on
   - service fan off
   '''
-  message = "MAIN FAN Should be OFF"
+  message = "TOP FAN Should be OFF"
   print(">>" + message)
-  controller.ventilation.controlFanSpeed(0)
+  controller.ventilation.controlFanSpeed("top", 0)
   resp = input("## Enter to continue ##")
   if (resp != ""):
     testsFailed.append({"message": message})
     return
   
-  message = "MAIN FAN Should be 25%"
+  message = "TOP FAN Should be 25%"
   print(">>" + message)
-  controller.ventilation.controlFanSpeed(25)
+  controller.ventilation.controlFanSpeed("top", 25)
   resp = input("## Enter to continue ##")
   if (resp != ""):
     testsFailed.append({"message": message})
     return
 
-  message = "MAIN FAN Should be 100%"
+  message = "TOP FAN Should be 100%"
   print(">>" + message)
-  controller.ventilation.controlFanSpeed(100)
+  controller.ventilation.controlFanSpeed("top", 100)
+  resp = input("## Enter to continue ##")
+  if (resp != ""):
+    testsFailed.append({"message": message})
+    return
+
+  message = "BOTTOM FAN Should be OFF"
+  print(">>" + message)
+  controller.ventilation.controlFanSpeed("bottom", 0)
+  resp = input("## Enter to continue ##")
+  if (resp != ""):
+    testsFailed.append({"message": message})
+    return
+  
+  message = "BOTTOM FAN Should be 25%"
+  print(">>" + message)
+  controller.ventilation.controlFanSpeed("bottom", 25)
+  resp = input("## Enter to continue ##")
+  if (resp != ""):
+    testsFailed.append({"message": message})
+    return
+
+  message = "BOTTOM FAN Should be 100%"
+  print(">>" + message)
+  controller.ventilation.controlFanSpeed("bottom", 100)
   resp = input("## Enter to continue ##")
   if (resp != ""):
     testsFailed.append({"message": message})
     return
   return
-
 
 
 if __name__ == '__main__':

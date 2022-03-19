@@ -17,3 +17,11 @@ exports.light = async (deviceId, status) => {
 exports.getSensors = async (deviceId) => {
     return db.sensor.findAll({where: {deviceId: deviceId}})
 }
+
+exports.uploadSnapshot = async (deviceId, data) => {
+    console.log(data)
+    
+    const filename = await service.gcloud.save(data.base64, 'jpg') // save to google cloud 
+    await db. ({filename: filename, timestamp: data.timestamp}) // create record in DB
+    return 
+}

@@ -27,4 +27,17 @@ router.get("/:sensorId/history", async (req, response, next) => {
     return
 })
 
+router.post("/:sensorId/reading", async (req, response, next) => {
+    const sensorId = req.params.sensorId
+    const data = req.body
+    try {
+        const results = await service.sensors.getHistory(sensorId, params)
+        response.status(200).json(results)
+    } catch (e) {
+        next(e)
+    }
+
+    return
+})
+
 module.exports = router;

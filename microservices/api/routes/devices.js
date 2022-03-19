@@ -45,4 +45,17 @@ router.put("/:Id/status", async (req, response, next) => {
     return
 })
 
+router.post("/:Id/snapshot", async (req, response, next) => {
+    const deviceId = req.params.Id
+
+    try {
+        await service.device.uploadSnapshot(deviceId, req.body)
+        response.status(200).json("ok")
+    } catch (e) {
+        next(e)
+    }
+
+    return
+})
+
 module.exports = router;

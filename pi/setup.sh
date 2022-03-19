@@ -16,10 +16,12 @@ sudo chmod 777 /boot/config.txt
 echo "dtparam=i2c_arm=on" | sudo tee /boot/config.txt -a
 echo "dtparam=spi=on" | sudo tee /boot/config.txt -a
 echo "dtoverlay=w1-gpio" | sudo tee /boot/config.txt -a
+echo "start_x=1" | sudo tee /boot/config.txt -a
+echo "gpu_mem=128" | sudo tee /boot/config.txt -a
 sudo modprobe w1-gpio
 sudo modprobe w1-therm
 
-echo "[AFRODITE SETUP] TODO - Add script on startup"
+echo "[AFRODITE SETUP] Add script on startup"
 sudo cp afrodite.service /lib/systemd/system/afrodite.service
 sudo systemctl enable afrodite.service
 

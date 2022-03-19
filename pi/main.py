@@ -20,7 +20,7 @@ def run():
   #sensors.system.take_picture()
   
   #Control
-  controller.ventilation.controlFanSpeed()
+  controller.ventilation.controlFanSpeed("top")
   controller.led.controlLights()
   #controller.humidity(env_humidity)
 

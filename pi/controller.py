@@ -9,7 +9,8 @@ logger = LoggerManager.logger
 class FanActuator():
     def __init__(self):
         # Internal Variables
-        self.FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
+        self.BOTTOM_FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
+        self.TOP_FAN_PIN = 13 # GPIO13 PWM0 (Physical PIN 33)
         self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
@@ -27,18 +28,28 @@ class FanActuator():
 
     def start(self):
         try:
-            gpio.setup(self.FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
-            self.fan = gpio.PWM(self.FAN_PIN, self.PWM_FREQ)
-            self.fan.start(self.FAN_OFF)
+            gpio.setup(self.BOTTOM_FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
+            gpio.setup(self.TOP_FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
+
+            self.fan_bottom = gpio.PWM(self.BOTTOM_FAN_PIN, self.PWM_FREQ)
+            self.fan_top = gpio.PWM(self.TOP_FAN_PIN, self.PWM_FREQ)
+
+            self.fan_bottom.start(self.FAN_MAX) ## HARDCODED TO MAX FOR THE MOMENT
+            self.fan_top.start(self.FAN_OFF)
+
             self.isWorking = True
         except Exception as e:
             logger.info("[FAN] Not working")
             logger.error(e)
             self.isWorking = False
 
-    def setFanSpeed(self, speed):
+    def setFanSpeed(self, speed, fanName):
         self.speed = round(speed, 2)
-        self.fan.start(self.speed)
+
+        if (fanName == "top"):
+            self.fan_top.start(self.speed)
+        elif (fanName == "bottom"):
+            self.fan_bottom.start(self.speed)
 
         if (speed == 0):
             self.status = "OFF"
@@ -47,28 +58,28 @@ class FanActuator():
 
         logger.debug("[FAN] Update Speed")
 
-    def controlFanSpeed(self, overrideAction = None):
+    def controlFanSpeed(self, fanName = "top", overrideAction = None):
         if (not self.isWorking):
             self.start()
 
         if (overrideAction != None):
-            self.setFanSpeed(overrideAction)
+            self.setFanSpeed(overrideAction, fanName)
             return
 
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
             logger.debug("[FAN] Temp Sensor not working. Setting emergency speed")
-            self.setFanSpeed(self.BACKUP_SPEED)
+            self.setFanSpeed(self.BACKUP_SPEED, fanName)
             return
 
         currentTemp = sensors.environment.temperature
         if currentTemp < self.MIN_TEMP: # Set fan speed to MINIMUM if the temperature is below MIN_TEMP
-            self.setFanSpeed(self.FAN_OFF)
+            self.setFanSpeed(self.FAN_OFF, fanName)
         elif currentTemp > self.MAX_TEMP: # Set fan speed to MAXIMUM if the temperature is above MAX_TEMP
-            self.setFanSpeed(self.FAN_MAX)
+            self.setFanSpeed(self.FAN_MAX, fanName)
         else: # Caculate dynamic fan speed
             powerPerc = (currentTemp - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
-            self.setFanSpeed(powerPerc * 100)
+            self.setFanSpeed(powerPerc * 100, fanName)
 
 class LightsActuator():
     def __init__(self):
