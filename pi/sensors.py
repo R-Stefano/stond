@@ -101,6 +101,8 @@ class HumidityTempSensor():
             self.temperature = 0
             self.temperatureHumiditySensorWorking = False
 
+        return self.temperature, self.humidity
+
 # Water Temp
 class WaterSensor():
     def __init__(self):
@@ -225,6 +227,7 @@ class WaterSensor():
             self.temperature = 0
             self.temperatureSensorWorking = False
 
+        return self.temperature
 
     def read_level(self):
         logger.debug("[FS-IR02] Reading Water level")
@@ -240,6 +243,8 @@ class WaterSensor():
             logger.error(e)
             self.level = 0
             self.levelSensorWorking = False
+
+        return self.level
 
 system = System()
 environment = HumidityTempSensor()
