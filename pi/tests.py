@@ -105,7 +105,8 @@ def start():
   temp, humidity = sensors.environment.readTempHumidity()
   print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity)
   while (temp == 0 or humidity == 0):
-    print(sensors.environment.temperatureHumiditySensorWorking, sensors.environment.readTempHumidity())
+    temp, humidity = sensors.environment.readTempHumidity()
+    print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity)
     time.sleep(1)
   
   print("PH SENSOR CHECKS")
