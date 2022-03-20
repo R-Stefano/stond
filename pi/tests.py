@@ -98,7 +98,7 @@ def start():
   print(sensors.water.levelSensorWorking, sensors.water.read_level())
 
   while (sensors.water.read_level() == 0):
-    print(sensors.water.levelSensorWorking, sensors.water.read_level(), end='', flush=True)
+    print(sensors.water.levelSensorWorking, sensors.water.read_level(), end="\r")
     time.sleep(1)
 
   print("ENV TEMP & HUMIDITY LEVEL CHECKS")
@@ -108,7 +108,7 @@ def start():
   print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity)
   while (temp == 0 or humidity == 0):
     temp, humidity = sensors.environment.readTempHumidity()
-    print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity, end='', flush=True)
+    print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity, end="\r")
     time.sleep(1)
   
   print("PH SENSOR SETUP")
@@ -118,7 +118,7 @@ def start():
   try:
       while True:
           sensors.water.read_ph()
-          print(sensors.water.raw_ph, end='', flush=True)
+          print(sensors.water.raw_ph, end="\r")
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
