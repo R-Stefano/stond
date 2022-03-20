@@ -44,6 +44,7 @@ class FanActuator():
             self.isWorking = False
 
     def setFanSpeed(self, speed, fanName):
+        print(speed, fanName)
         self.speed = round(speed, 2)
 
         if (fanName == "top"):
