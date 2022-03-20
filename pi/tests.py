@@ -118,7 +118,7 @@ def start():
   print("PH SENSOR SETUP")
   message = "Immerge PH SENSOR in solution pH 4"
   print(">>" + message)
-  input("Press ENTER when done")
+  input(">> Press ENTER when done")
   ph4Values = []
   ph4MeanValue = 999
   ph4StdValue = 999
@@ -129,16 +129,15 @@ def start():
       if (len(ph4Values) > 5):
         ph4MeanValue = stat.mean(ph4Values[-5:])
         ph4StdValue = stat.stdev(ph4Values[-5:])
-        print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph4MeanValue, ph4StdValue), end="\r")
+        print('>> Reading #{}  {:.2f} | avg {:.2f} | std {:.2f}'.format(len(ph4Values), sensors.water.raw_ph, ph4MeanValue, ph4StdValue), end="\r")
 
       time.sleep(1)
 
-  print(ph4Values[-5:], ph4MeanValue)
-  print("Value for pH 4 is {}".format(ph4MeanValue))
+  print(">> Value for pH 4 is {}".format(ph4MeanValue))
 
   message = "Immerge PH SENSOR in solution pH 7"
   print(">>" + message)
-  input("Press ENTER when done")
+  input(">> Press ENTER when done")
   ph7Values = []
   ph7MeanValue = 999
   ph7StdValue = 999
@@ -149,12 +148,10 @@ def start():
     if (len(ph7Values) > 5):
       ph7MeanValue = stat.mean(ph7Values[-5:])
       ph7StdValue = stat.stdev(ph7Values[-5:])
-      print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph7MeanValue, ph7StdValue), end="\r")
+      print('>> Reading #{}  {:.2f} | avg {:.2f} | std {:.2f}'.format(len(ph7Values), sensors.water.raw_ph, ph7MeanValue, ph7StdValue), end="\r")
 
     time.sleep(1)
-
-  print(ph7Values[-5:], ph7MeanValue)
-  print("Value for pH 7 is {}".format(ph7MeanValue))
+  print(">> Value for pH 7 is {}".format(ph7MeanValue))
 
   print("WATER TEMP CHECKS")
   message = "Water Temperature Should be ok"
@@ -174,8 +171,8 @@ def start():
   config.set('main', 'deviceId', deviceId)
 
   config.add_section('ph_sensor')
-  config.set('ph_sensor', 'ph4', ph4MeanValue)
-  config.set('ph_sensor', 'ph7', ph7MeanValue)
+  config.set('ph_sensor', 'ph4', str(ph4MeanValue))
+  config.set('ph_sensor', 'ph7', str(ph7MeanValue))
 
   with open('config.ini', 'w') as f:
       config.write(f)
