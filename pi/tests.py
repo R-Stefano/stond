@@ -121,7 +121,7 @@ def start():
   ph4MeanValue = 999
   ph4StdValue = 999
 
-  while (len(ph4Values) < 5 or ph4StdValue > 5):
+  while (len(ph4Values) < 50 or ph4StdValue > 5):
       sensors.water.read_ph()
       ph4Values.append(sensors.water.raw_ph)
       if (len(ph4Values) > 5):
@@ -136,20 +136,23 @@ def start():
 
   message = "Immerge PH SENSOR in solution pH 7"
   print(">>" + message)
-  ph7Values = [0, 0, 0, 0, 0]
-  ph7RefValue = 0
-  try:
-      while True:
-          sensors.water.read_ph()
-          ph7Values.append(sensors.water.raw_ph)
-          ph7RefValue = stat.mean(ph7Values[-5:])
-          print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph7RefValue, stat.stdev(ph7Values[-5:])), end="\r")
-          time.sleep(1)
-          pass # Do something
-  except KeyboardInterrupt:
-      print(ph7Values[-5:], ph7RefValue)
-      print("Value for pH 7 is {:.2f}".format(ph7RefValue))
-      pass
+  input("Press ENTER when done")
+  ph7Values = []
+  ph7MeanValue = 999
+  ph7StdValue = 999
+
+  while (len(ph7Values) < 50 or ph7StdValue > 5):
+    sensors.water.read_ph()
+    ph7Values.append(sensors.water.raw_ph)
+    if (len(ph7Values) > 5):
+      ph7MeanValue = stat.mean(ph7Values[-5:])
+      ph7StdValue = stat.stdev(ph7Values[-5:])
+      print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph7MeanValue, ph7StdValue), end="\r")
+
+    time.sleep(1)
+
+  print(ph7Values[-5:], ph7MeanValue)
+  print("Value for pH 7 is {}".format(ph7MeanValue))
 
   print("WATER TEMP CHECKS")
   message = "Water Temperature Should be ok"
