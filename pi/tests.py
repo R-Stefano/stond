@@ -116,7 +116,6 @@ def start():
   print("PH SENSOR SETUP")
   message = "Immerge PH SENSOR in solution pH 4"
   print(">>" + message)
-  print(sensors.water.phSensorWorking, sensors.water.read_ph())
   ph4Values = [0, 0, 0, 0, 0]
   ph4RefValue = 0
   try:
@@ -128,6 +127,7 @@ def start():
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
+      print(ph7Values[-5:])
       print("Value for pH 4 is {:.2f}".format(ph4RefValue))
       pass
 
@@ -144,12 +144,14 @@ def start():
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
+      print(ph7Values[-5:])
       print("Value for pH 7 is {:.2f}".format(ph7RefValue))
       pass
 
   print("WATER TEMP CHECKS")
   message = "Water Temperature Should be ok"
   print(">>" + message)
+  print(sensors.water.temperatureSensorWorking)
   print(sensors.water.temperatureSensorWorking, sensors.water.read_temperature())
   while (sensors.water.read_temperature() == 0):
     print(sensors.environment.temperatureHumiditySensorWorking, sensors.water.read_temperature(), end="\r")
