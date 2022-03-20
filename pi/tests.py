@@ -1,7 +1,9 @@
 from datetime import datetime
+from os import stat
 import sensors, controller
 import dataManager as dataMng
 import time
+import statistics as stat
 
 def start():
   testsFailed = []
@@ -115,10 +117,12 @@ def start():
   message = "Immerge PH SENSOR in solution pH 4"
   print(">>" + message)
   print(sensors.water.phSensorWorking, sensors.water.read_ph())
+  ph4Values = []
   try:
       while True:
           sensors.water.read_ph()
-          print(sensors.water.raw_ph, end="\r")
+          ph4Values.append(sensors.water.raw_ph)
+          print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, stat.mean(ph4Values[-5:]), stat.stdev(ph4Values[-5:])), end="\r")
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
