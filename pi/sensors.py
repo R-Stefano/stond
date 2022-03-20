@@ -6,6 +6,7 @@ import configs # Internal libraries
 from unittest.mock import MagicMock
 from datetime import datetime
 import socket
+import main.configs as configs
 
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
@@ -163,11 +164,6 @@ class WaterSensor():
 
     def read_ph(self):
         logger.debug("[E201-C-BNC] Reading PH")
-        # Used for mapping 0-1024 to ph value (0-14)
-        range_in_start = 0
-        range_in_end = 1024
-        range_out_start = 0
-        range_out_end = 14
 
         if (not self.phSensorWorking):
             self.start_ph_ec_sensor()
@@ -175,7 +171,7 @@ class WaterSensor():
         try:
             self.raw_ph = self.mcp.read(self.MCP3008_PH_PIN)
             # map 0-1024 to 0-14
-            self.ph = round((self.mcp.read(self.MCP3008_PH_PIN) - range_in_start) * ((range_out_end - range_out_start)/(range_in_end - range_in_start)) + range_out_start, 2)
+            self.ph = round(float(configs.get('ph_sensor', 'param1')) * self.raw_ph + float(configs.get('ph_sensor', 'param2')), 2)
         except Exception as e:
             logger.info("[E201-C-BNC] Impossible Reading PH")
             logger.error(e)

@@ -174,10 +174,10 @@ def start():
   config.add_section('ph_sensor')
   #Calcuate ph coeff
   m = (4 - 7)/(ph4MeanValue - ph7MeanValue)
-  b = m * ph7MeanValue - 7
+  b = - (m * ph7MeanValue) - 7
   print(m, b)
-  config.set('ph_sensor', 'ph4', str(ph4MeanValue))
-  config.set('ph_sensor', 'ph7', str(ph7MeanValue))
+  config.set('ph_sensor', 'param1', str(m))
+  config.set('ph_sensor', 'param2', str(b))
 
   with open('config.ini', 'w') as f:
       config.write(f)
