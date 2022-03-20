@@ -116,20 +116,23 @@ def start():
   print("PH SENSOR SETUP")
   message = "Immerge PH SENSOR in solution pH 4"
   print(">>" + message)
-  ph4Values = [0, 0, 0, 0, 0]
-  ph4RefValue = 0
-  try:
-      while True:
-          sensors.water.read_ph()
-          ph4Values.append(sensors.water.raw_ph)
-          ph4RefValue = stat.mean(ph4Values[-5:])
-          print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph4RefValue, stat.stdev(ph4Values[-5:])), end="\r")
-          time.sleep(1)
-          pass # Do something
-  except KeyboardInterrupt:
-      print(ph4Values[-5:], ph4RefValue)
-      print("Value for pH 4 is {:.2f}".format(ph4RefValue))
-      pass
+  input("Press ENTER when done")
+  ph4Values = []
+  ph4MeanValue = 999
+  ph4StdValue = 999
+
+  while (len(ph4Values) < 5 or ph4StdValue > 5):
+      sensors.water.read_ph()
+      ph4Values.append(sensors.water.raw_ph)
+      if (len(ph4Values) > 5):
+        ph4MeanValue = stat.mean(ph4Values[-5:])
+        ph4StdValue = stat.stdev(ph4Values[-5:])
+        print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph4MeanValue, ph4StdValue), end="\r")
+
+      time.sleep(1)
+
+  print(ph4Values[-5:], ph4MeanValue)
+  print("Value for pH 4 is {}".format(ph4MeanValue))
 
   message = "Immerge PH SENSOR in solution pH 7"
   print(">>" + message)
