@@ -3,10 +3,15 @@ from datetime import datetime
 import sensors, controller, LoggerManager
 import socketManager as socketMng
 import dataManager as dataMng
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read('config.ini')
 
 logger = LoggerManager.logger
 
 def run():
+  print(config.get('main', 'deviceId'))
   print()
   # Update measurements
   timestamp = datetime.now()

@@ -4,6 +4,8 @@ import sensors, controller
 import dataManager as dataMng
 import time, uuid
 import statistics as stat
+from configparser import ConfigParser
+config = ConfigParser()
 
 def start():
   testsFailed = []
@@ -166,7 +168,17 @@ def start():
   print("Generate Device ID")
   deviceId = str(uuid.uuid4())
   print(deviceId)
-  
+
+  config.read('config.ini')
+  config.add_section('main')
+  config.set('main', 'deviceId', deviceId)
+
+  config.add_section('ph_sensor')
+  config.set('ph_sensor', 'ph4', ph4MeanValue)
+  config.set('ph_sensor', 'ph7', ph7MeanValue)
+
+  with open('config.ini', 'w') as f:
+      config.write(f)
 
 if __name__ == '__main__':
   start()
