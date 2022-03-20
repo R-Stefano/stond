@@ -2,7 +2,7 @@ from datetime import datetime
 from os import stat
 import sensors, controller
 import dataManager as dataMng
-import time
+import time, uuid
 import statistics as stat
 
 def start():
@@ -118,31 +118,47 @@ def start():
   print(">>" + message)
   print(sensors.water.phSensorWorking, sensors.water.read_ph())
   ph4Values = [0, 0, 0, 0, 0]
+  ph4RefValue = 0
   try:
       while True:
           sensors.water.read_ph()
           ph4Values.append(sensors.water.raw_ph)
-          print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, stat.mean(ph4Values[-5:]), stat.stdev(ph4Values[-5:])), end="\r")
+          ph4RefValue = stat.mean(ph4Values[-5:])
+          print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph4RefValue, stat.stdev(ph4Values[-5:])), end="\r")
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
-      print("Value for pH 4 is:")
+      print("Value for pH 4 is {:.2f}".format(ph4RefValue))
       pass
 
-  message = "PH SENSOR Should read 7"
+  message = "Immerge PH SENSOR in solution pH 7"
   print(">>" + message)
-  while (sensors.water.read_ph() < 6.9 or sensors.water.read_ph() > 7.1):
-    print(sensors.water.phSensorWorking, sensors.water.read_ph())
-    time.sleep(1)
+  ph7Values = [0, 0, 0, 0, 0]
+  ph7RefValue = 0
+  try:
+      while True:
+          sensors.water.read_ph()
+          ph7Values.append(sensors.water.raw_ph)
+          ph7RefValue = stat.mean(ph7Values[-5:])
+          print('{:.2f} | avg {:.2f} | std {:.2f}'.format(sensors.water.raw_ph, ph7RefValue, stat.stdev(ph7Values[-5:])), end="\r")
+          time.sleep(1)
+          pass # Do something
+  except KeyboardInterrupt:
+      print("Value for pH 7 is {:.2f}".format(ph7RefValue))
+      pass
 
   print("WATER TEMP CHECKS")
-  message = "Water Temperature Should working"
+  message = "Water Temperature Should be ok"
   print(">>" + message)
-  sensors.water.read_temperature()
-  print(sensors.water.temperatureSensorWorking, sensors.water.temperature)
+  print(sensors.water.temperatureSensorWorking, sensors.water.read_temperature())
   while (sensors.water.read_temperature() == 0):
-    print(sensors.water.temperatureSensorWorking, sensors.water.temperature)
+    print(sensors.environment.temperatureHumiditySensorWorking, sensors.water.read_temperature(), end="\r")
     time.sleep(1)
+
+  print("Generate Device ID")
+  deviceId = str(uuid.uuid4())
+  print(deviceId)
+  
 
 if __name__ == '__main__':
   start()
