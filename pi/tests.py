@@ -127,7 +127,7 @@ def start():
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
-      print(ph4RefValue[-5:])
+      print(ph4Values[-5:], ph4RefValue)
       print("Value for pH 4 is {:.2f}".format(ph4RefValue))
       pass
 
@@ -144,7 +144,7 @@ def start():
           time.sleep(1)
           pass # Do something
   except KeyboardInterrupt:
-      print(ph7Values[-5:])
+      print(ph7Values[-5:], ph7RefValue)
       print("Value for pH 7 is {:.2f}".format(ph7RefValue))
       pass
 
