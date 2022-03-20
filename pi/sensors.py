@@ -27,13 +27,7 @@ logger = LoggerManager.logger
 class System():
     def __init__(self):
         self.cpu_temperature = 0
-
-        if (eval(configs.get('main', 'debug'))):
-            self._cpu = MagicMock()
-            self._cpu.temperature = 0
-        else:
-            self._cpu = CPUTemperature()
-
+        self._cpu = CPUTemperature()
 
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
