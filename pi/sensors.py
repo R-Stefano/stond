@@ -2,11 +2,13 @@ from tkinter import E
 from gpiozero import CPUTemperature
 import busio, digitalio, board # General librariers
 import glob, subprocess, time, os # General librariers
-import configs # Internal libraries
 from unittest.mock import MagicMock
 from datetime import datetime
 import socket
-import main.configs as configs
+from configparser import ConfigParser
+
+configs = ConfigParser()
+configs.read('config.ini')
 
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
@@ -26,7 +28,7 @@ class System():
     def __init__(self):
         self.cpu_temperature = 0
 
-        if (configs.debug):
+        if (eval(configs.get('main', 'debug'))):
             self._cpu = MagicMock()
             self._cpu.temperature = 0
         else:

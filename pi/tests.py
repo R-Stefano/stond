@@ -157,7 +157,6 @@ def start():
   print("WATER TEMP CHECKS")
   message = "Water Temperature Should be ok"
   print(">>" + message)
-  print(sensors.water.temperatureSensorWorking)
   print(sensors.water.temperatureSensorWorking, sensors.water.read_temperature())
   while (sensors.water.read_temperature() == 0):
     print(sensors.environment.temperatureHumiditySensorWorking, sensors.water.read_temperature(), end="\r")
@@ -170,12 +169,14 @@ def start():
   config.read('config.ini')
   config.add_section('main')
   config.set('main', 'deviceId', deviceId)
+  config.set('main', 'debug',    'False')
+  config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
+  config.set('main', 'snapshotInterval', '5')
 
   config.add_section('ph_sensor')
   #Calcuate ph coeff
   m = (4 - 7)/(ph4MeanValue - ph7MeanValue)
   b = - (m * ph7MeanValue) - 7
-  print(m, b)
   config.set('ph_sensor', 'param1', str(m))
   config.set('ph_sensor', 'param2', str(b))
 
