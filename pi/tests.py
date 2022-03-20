@@ -117,7 +117,7 @@ def start():
   message = "Immerge PH SENSOR in solution pH 4"
   print(">>" + message)
   print(sensors.water.phSensorWorking, sensors.water.read_ph())
-  ph4Values = []
+  ph4Values = [0, 0, 0, 0, 0]
   try:
       while True:
           sensors.water.read_ph()
