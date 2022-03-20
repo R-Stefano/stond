@@ -132,7 +132,7 @@ def start():
         print('>> Reading #{}  {:.2f} | avg {:.2f} | std {:.2f}'.format(len(ph4Values), sensors.water.raw_ph, ph4MeanValue, ph4StdValue), end="\r")
 
       time.sleep(1)
-
+  print()
   print(">> Value for pH 4 is {}".format(ph4MeanValue))
 
   message = "Immerge PH SENSOR in solution pH 7"
@@ -151,6 +151,7 @@ def start():
       print('>> Reading #{}  {:.2f} | avg {:.2f} | std {:.2f}'.format(len(ph7Values), sensors.water.raw_ph, ph7MeanValue, ph7StdValue), end="\r")
 
     time.sleep(1)
+  print()
   print(">> Value for pH 7 is {}".format(ph7MeanValue))
 
   print("WATER TEMP CHECKS")
@@ -171,6 +172,10 @@ def start():
   config.set('main', 'deviceId', deviceId)
 
   config.add_section('ph_sensor')
+  #Calcuate ph coeff
+  m = (4 - 7)/(ph4MeanValue - ph7MeanValue)
+  b = m * ph7MeanValue - 7
+  print(m, b)
   config.set('ph_sensor', 'ph4', str(ph4MeanValue))
   config.set('ph_sensor', 'ph7', str(ph7MeanValue))
 
