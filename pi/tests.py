@@ -95,8 +95,10 @@ def start():
   print("WATER LEVEL CHECKS")
   message = "Water Level Should read 1"
   print(">>" + message)
+  print(sensors.water.levelSensorWorking, sensors.water.read_level())
+
   while (sensors.water.read_level() == 0):
-    print(sensors.water.levelSensorWorking, sensors.water.level)
+    print(sensors.water.levelSensorWorking, sensors.water.read_level(), end='', flush=True)
     time.sleep(1)
 
   print("ENV TEMP & HUMIDITY LEVEL CHECKS")
@@ -106,15 +108,22 @@ def start():
   print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity)
   while (temp == 0 or humidity == 0):
     temp, humidity = sensors.environment.readTempHumidity()
-    print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity)
+    print(sensors.environment.temperatureHumiditySensorWorking, temp, humidity, end='', flush=True)
     time.sleep(1)
   
-  print("PH SENSOR CHECKS")
-  message = "PH SENSOR Should read 4"
+  print("PH SENSOR SETUP")
+  message = "Immerge PH SENSOR in solution pH 4"
   print(">>" + message)
-  while (sensors.water.read_ph() < 3.9 or sensors.water.read_ph() > 4.1):
-    print(sensors.water.phSensorWorking, sensors.water.read_ph())
-    time.sleep(1)
+  print(sensors.water.phSensorWorking, sensors.water.read_ph())
+  try:
+      while True:
+          sensors.water.read_ph()
+          print(sensors.water.raw_ph, end='', flush=True)
+          time.sleep(1)
+          pass # Do something
+  except KeyboardInterrupt:
+      print("Value for pH 4 is:")
+      pass
 
   message = "PH SENSOR Should read 7"
   print(">>" + message)
