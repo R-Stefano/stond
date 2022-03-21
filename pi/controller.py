@@ -11,7 +11,7 @@ class FanActuator():
         # Internal Variables
         self.BOTTOM_FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
         self.TOP_FAN_PIN = 13 # GPIO13 PWM0 (Physical PIN 33)
-        self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
+        self.PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
         self.FAN_OFF = 0 
@@ -34,8 +34,8 @@ class FanActuator():
             self.fan_bottom = gpio.PWM(self.BOTTOM_FAN_PIN, self.PWM_FREQ)
             self.fan_top = gpio.PWM(self.TOP_FAN_PIN, self.PWM_FREQ)
 
-            self.fan_bottom.start(self.FAN_MAX) ## HARDCODED TO MAX FOR THE MOMENT
-            self.fan_top.start(self.FAN_OFF)
+            self.fan_bottom.ChangeDutyCycle(self.FAN_MAX) ## HARDCODED TO MAX FOR THE MOMENT
+            self.fan_top.ChangeDutyCycle(self.FAN_OFF)
 
             self.isWorking = True
         except Exception as e:
@@ -48,9 +48,9 @@ class FanActuator():
         self.speed = round(speed, 2)
 
         if (fanName == "top"):
-            self.fan_top.start(self.speed)
+            self.fan_top.ChangeDutyCycle(self.speed)
         elif (fanName == "bottom"):
-            self.fan_bottom.start(self.speed)
+            self.fan_bottom.ChangeDutyCycle(self.speed)
 
         if (speed == 0):
             self.status = "OFF"
