@@ -21,9 +21,9 @@ def start():
   config.set('main', 'snapshotInterval', '5')
 
   config.add_section('ph_sensor')
-  config.set('ph_sensor', 'param1', str(m))
-  config.set('ph_sensor', 'param2', str(b))
-  
+  config.set('ph_sensor', 'param1', str(0))
+  config.set('ph_sensor', 'param2', str(0))
+
   testsFailed = []
   print("FAN CHECKS")
   '''
