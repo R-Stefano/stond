@@ -13,16 +13,16 @@ def start():
   deviceId = str(uuid.uuid4())
   print(deviceId)
 
-  config.read('config.ini')
-  config.add_section('main')
-  config.set('main', 'deviceId', deviceId)
-  config.set('main', 'debug',    'False')
-  config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
-  config.set('main', 'snapshotInterval', '5')
+  #config.read('config.ini')
+  #config.add_section('main')
+  #config.set('main', 'deviceId', deviceId)
+  #config.set('main', 'debug',    'False')
+  #config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
+  #config.set('main', 'snapshotInterval', '5')
 
-  config.add_section('ph_sensor')
-  config.set('ph_sensor', 'param1', str(0))
-  config.set('ph_sensor', 'param2', str(0))
+  #config.add_section('ph_sensor')
+  #config.set('ph_sensor', 'param1', str(0))
+  #config.set('ph_sensor', 'param2', str(0))
 
   testsFailed = []
   print("FAN CHECKS")
