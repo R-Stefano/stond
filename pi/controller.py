@@ -19,9 +19,10 @@ class FanActuator():
         self.BACKUP_SPEED = 50 # In case can't read Temp - use this speed
 
         #Public variables 
-        self.status = "OFF"
+        self.status = "OFF" #TODO: DEPRECATED
         self.isWorking = False
-        self.speed = self.FAN_OFF
+        self.speed_top = 0
+        self.speed_bottom = 0
 
         # Startup Fans
         self.start()
@@ -34,8 +35,10 @@ class FanActuator():
             self.fan_bottom = gpio.PWM(self.BOTTOM_FAN_PIN, self.PWM_FREQ)
             self.fan_top = gpio.PWM(self.TOP_FAN_PIN, self.PWM_FREQ)
 
-            self.fan_bottom.start(100) ## HARDCODED TO MAX FOR THE MOMENT
+            self.fan_bottom.start(0)
             self.fan_top.start(0)
+
+            self.setFanSpeed(100, "bottom") # Harcode to max at the moment
 
             self.isWorking = True
         except Exception as e:
@@ -45,17 +48,19 @@ class FanActuator():
 
     def setFanSpeed(self, speed, fanName):
         print(speed, fanName)
-        self.speed = round(speed, 2)
+        speed = round(speed, 2)
 
         if (fanName == "top"):
-            self.fan_top.ChangeDutyCycle(self.speed)
+            self.fan_top.ChangeDutyCycle(speed)
+            self.speed_top = speed
         elif (fanName == "bottom"):
-            self.fan_bottom.ChangeDutyCycle(self.speed)
+            self.fan_bottom.ChangeDutyCycle(speed)
+            self.speed_bottom = speed
 
         if (speed == 0):
-            self.status = "OFF"
+            self.status = "OFF" #TODO: DEPRECATED
         else:
-            self.status = "ON"
+            self.status = "ON" #TODO: DEPRECATED
 
         logger.debug("[FAN] Update Speed")
 

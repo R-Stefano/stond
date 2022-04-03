@@ -66,7 +66,8 @@ def displayData():
   ]
 
   actuatorsData = [
-      {'name': 'ventilation', 'value': controller.ventilation.speed,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation Top',    'value': controller.ventilation.speed_top,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation Bottom', 'value': controller.ventilation.speed_bottom,      'isWorking': controller.ventilation.isWorking},
       {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
   ]
 
