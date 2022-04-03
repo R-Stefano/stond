@@ -35,7 +35,8 @@ class FanActuator():
             self.fan_top = gpio.PWM(self.TOP_FAN_PIN, self.PWM_FREQ)
 
             self.fan_bottom.start(100) ## HARDCODED TO MAX FOR THE MOMENT
-            self.fan_top.start(0)
+            #self.fan_top.start(0)
+            self.fan_top.stop()
 
             self.isWorking = True
         except Exception as e:
