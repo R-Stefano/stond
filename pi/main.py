@@ -11,7 +11,11 @@ config.read('config.ini')
 logger = LoggerManager.logger
 
 def run():
-  print(config.get('main', 'deviceId'))
+  try:
+    print(config.get('main', 'deviceId'))
+  except Exception as e:
+    print("Device ID not found")
+
   print()
   # Update measurements
   timestamp = datetime.now()
