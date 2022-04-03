@@ -8,6 +8,22 @@ from configparser import ConfigParser
 config = ConfigParser()
 
 def start():
+  print("CONFIGURATION SETUP")
+  print("Generate Device ID")
+  deviceId = str(uuid.uuid4())
+  print(deviceId)
+
+  config.read('config.ini')
+  config.add_section('main')
+  config.set('main', 'deviceId', deviceId)
+  config.set('main', 'debug',    'False')
+  config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
+  config.set('main', 'snapshotInterval', '5')
+
+  config.add_section('ph_sensor')
+  config.set('ph_sensor', 'param1', str(m))
+  config.set('ph_sensor', 'param2', str(b))
+  
   testsFailed = []
   print("FAN CHECKS")
   '''
@@ -162,18 +178,6 @@ def start():
     print(sensors.environment.temperatureHumiditySensorWorking, sensors.water.read_temperature(), end="\r")
     time.sleep(1)
 
-  print("Generate Device ID")
-  deviceId = str(uuid.uuid4())
-  print(deviceId)
-
-  config.read('config.ini')
-  config.add_section('main')
-  config.set('main', 'deviceId', deviceId)
-  config.set('main', 'debug',    'False')
-  config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
-  config.set('main', 'snapshotInterval', '5')
-
-  config.add_section('ph_sensor')
   #Calcuate ph coeff
   m = (4 - 7)/(ph4MeanValue - ph7MeanValue)
   b = - (m * ph7MeanValue) - 7
