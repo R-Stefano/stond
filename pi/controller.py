@@ -11,7 +11,7 @@ class FanActuator():
         # Internal Variables
         self.BOTTOM_FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
         self.TOP_FAN_PIN = 13 # GPIO13 PWM0 (Physical PIN 33)
-        self.PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
+        self.PWM_FREQ = 25 # [kHz] 25kHz for Noctua PWM control
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
         self.FAN_OFF = 0 
