@@ -7,22 +7,27 @@ import statistics as stat
 from configparser import ConfigParser
 config = ConfigParser()
 
-def start():
+
+def initializeConfiguration():
+  # Reset Configuration 
   print("CONFIGURATION SETUP")
   print("Generate Device ID")
   deviceId = str(uuid.uuid4())
   print(deviceId)
 
-  #config.read('config.ini')
-  #config.add_section('main')
-  #config.set('main', 'deviceId', deviceId)
-  #config.set('main', 'debug',    'False')
-  #config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
-  #config.set('main', 'snapshotInterval', '5')
+  config.read('config.ini')
+  config.add_section('main')
+  config.set('main', 'deviceId', deviceId)
+  config.set('main', 'debug',    'False')
+  config.set('main', 'apiUrl',   "https://stoned-api-f4lrk4qixq-nw.a.run.app")
+  config.set('main', 'snapshotInterval', '5')
 
-  #config.add_section('ph_sensor')
-  #config.set('ph_sensor', 'param1', str(0))
-  #config.set('ph_sensor', 'param2', str(0))
+  config.add_section('ph_sensor')
+  config.set('ph_sensor', 'param1', str(0))
+  config.set('ph_sensor', 'param2', str(0))
+
+
+def start():
 
   testsFailed = []
   print("FAN CHECKS")
@@ -188,4 +193,5 @@ def start():
       config.write(f)
 
 if __name__ == '__main__':
+  initializeConfiguration()
   start()
