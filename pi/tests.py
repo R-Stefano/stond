@@ -26,8 +26,11 @@ def initializeConfiguration():
   config.set('ph_sensor', 'param1', str(0))
   config.set('ph_sensor', 'param2', str(0))
 
+  with open('config.ini', 'w') as f:
+      config.write(f)
 
 def start():
+  config.read('config.ini')
 
   testsFailed = []
   print("FAN CHECKS")
