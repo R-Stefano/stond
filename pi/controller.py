@@ -152,7 +152,7 @@ class HeaterActuator():
 
     def start(self):
         try:
-            gpio.setup(self.LED_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+            gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
             self.isWorking = True
         except Exception as e:
             logger.info("[HEATER] not working")
