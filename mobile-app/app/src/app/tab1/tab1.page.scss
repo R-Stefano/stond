@@ -94,4 +94,5 @@ div#timestamp-wrapper {
     color: var(--ion-grey-light);
     display: flex;
     flex-direction: row-reverse;
+    grid-column: 1/-1;
 }
