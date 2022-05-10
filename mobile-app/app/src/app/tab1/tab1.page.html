@@ -34,19 +34,42 @@
       </div>
     </div>
   
+    <h3>Components</h3>
     <div class="section" id="buttons" *ngIf="deviceStatus">
-      <div class="card button ion-activatable" (click)="onLightButtonClick()">
-        <span>LED</span>
-        <ion-icon name="light" [ngClass]="{'success': deviceStatus.actuators.LED.status == 'ON', 'error': deviceStatus.actuators.LED.status == 'OFF'}"></ion-icon>
-        <span class="status">{{deviceStatus.actuators.LED.status | uppercase}}</span>
-        <ion-ripple-effect></ion-ripple-effect>
-      </div>
-  
-      <div class="card button ion-activatable" (click)="onVentilationButtonClick()">
-        <span>VENTILATION</span>
-        <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}"></ion-icon>
-        <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
-        <ion-ripple-effect></ion-ripple-effect>
+      <div class="card">
+        <div class="component">
+          <span>Fan Top</span>
+          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}" (click)="onComponentButtonClick()"></ion-icon>
+          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
+        </div>
+
+        <div class="component">
+          <span>Fan Base</span>
+          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}" (click)="onComponentButtonClick()"></ion-icon>
+          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>LED</span>
+          <ion-icon name="light" [ngClass]="{'success': deviceStatus.actuators.LED.status == 'ON', 'error': deviceStatus.actuators.LED.status == 'OFF'}"></ion-icon>
+          <span class="status">{{deviceStatus.actuators.LED.status | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>Heater</span>
+          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}"></ion-icon>
+          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>Humidifier</span>
+          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}"></ion-icon>
+          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
       </div>
     </div>
   
@@ -105,6 +128,10 @@
         <span class="value">N/A</span>
         <span class="title">Nutrients</span>
         <ion-ripple-effect></ion-ripple-effect>
+      </div>
+
+      <div id="timestamp-wrapper">
+        Refreshed At: {{refreshedAt | date:'MMM d, h:mm:ss'}}
       </div>
     </div>
   </div>

@@ -120,18 +120,6 @@ export class SensorComponent implements OnInit {
     this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => this.sensor = sensor)
 
     this.getHistoryData()
-
-    /*
-    this._subscriptions.push(setInterval(() => {
-      const timestamp = new Date()
-  
-      if (timestamp.getSeconds() == 5) {
-        this.getHistoryData()
-        this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => this.sensor = sensor)
-        console.log(this._subscriptions)
-      }
-    }, 1000))
-    */
   }
   
   ngAfterViewInit() {
@@ -154,7 +142,7 @@ export class SensorComponent implements OnInit {
 
   getHistoryData() {
     const params = {}
-    const timeNow = moment()
+    const timeNow = moment().utc()
     switch (this.scaleSelected) {
       case '1H':
         params['timestamp'] = `${timeNow.subtract({hours: 1}).format()}`
@@ -208,58 +196,12 @@ export class SensorComponent implements OnInit {
       dataSeries = dataSeries.filter(record => record)
       // display current value
       this.currentDataPoint = dataSeries[dataSeries.length - 1]
-
-      // refresh chart
-      this._chartConfigs.data.datasets[0].data = dataSeries
-      this.lineChartObj.destroy()
-      this.lineChartObj = new Chart(this.lineChartElRef.nativeElement, this._chartConfigs);
-
-    })
-  }
-
-  // DEPRECATED
-  private _fetchDataOld() {
-    this._api.getSensorHistory(this._route.snapshot.paramMap.get('sensorId'), {scale: this.scaleSelected}).subscribe((sensorReadings: SensorReading[]) => {
-      //Format date - group by: 1m, 5m, 20m, 10h
-      const newData = sensorReadings.reduce((group, reading) => {
-        let dateFormatted = moment(reading.timestamp).set({second:0, millisecond:0})
-        let remainder = 0
-        switch (this.scaleSelected) {
-          case '1H':
-            break;
-          case '6H':
-            remainder = 5 - (dateFormatted.minute() % 5);
-            dateFormatted.add(remainder, "minutes")
-            break;
-          case '1D':
-            remainder = 20 - (dateFormatted.minute() % 20);
-            dateFormatted.add(remainder, "minutes")
-            break;
-          case '30D':
-            remainder = 10 - (dateFormatted.hours() % 10);
-            dateFormatted.add(remainder, "hours")
-            break;
-        }
-
-        const groupRecord = group[dateFormatted.format()] || {y: dateFormatted, data: []}
-        groupRecord.data.push(reading.value)
-        group[dateFormatted.format()] = groupRecord
-        return group
-      }, {} )
       
-      // average values
-      const dataSeries = []
-      for (var key in newData) {
-        dataSeries.push({x: newData[key].y, y: newData[key].data.reduce((prev, curr) => prev += parseFloat(curr), 0) / newData[key].data.length})
-      }
-
-      // display current value
-      this.currentDataPoint = dataSeries[dataSeries.length - 1]
-
       // refresh chart
       this._chartConfigs.data.datasets[0].data = dataSeries
       this.lineChartObj.destroy()
       this.lineChartObj = new Chart(this.lineChartElRef.nativeElement, this._chartConfigs);
+
     })
   }
 }

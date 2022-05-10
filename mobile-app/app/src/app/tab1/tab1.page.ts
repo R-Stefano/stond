@@ -1,5 +1,6 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../core/api.service';
 import { SocketService } from '../core/socket.service';
@@ -103,6 +104,7 @@ export class Tab1Page {
   private _subscriptions = [];
   public deviceStatus: DeviceStatus;
   public currentSeasonID: number = 1
+  public refreshedAt: Date;
 
   public strain = {
     refImage: 'https://images.hytiva.com/Black-Widow.jpg?mw420-mh420',
@@ -146,14 +148,8 @@ export class Tab1Page {
     this.displayPageHeaderInToolbar = this.pageHeader.nativeElement.getBoundingClientRect().top < 30;
   }
 
-  onVentilationButtonClick() {
-    const newValue = this.deviceStatus.actuators.ventilation.status == 'ON' ? 'OFF' : 'ON'
-    //this._socketMng.updateDeviceVentilation({status: newValue})
-  }
+  onComponentButtonClick() {
 
-  onLightButtonClick() {
-    const newValue = this.deviceStatus.actuators.LED.status == 'ON' ? 'OFF' : 'ON'
-    //this._socketMng.updateDeviceLight({status: newValue})
   }
 
   onOpenSensorDetails(sensorId: string) {
@@ -164,7 +160,7 @@ export class Tab1Page {
   onRefresh() {
     this._api.getDeviceStatus().subscribe((deviceStatus: DeviceStatus) => {
       this.deviceStatus = new DeviceStatus(deviceStatus)
-      console.log(this.deviceStatus)
+      this.refreshedAt = moment().utc().toDate()
     })
   }
 
