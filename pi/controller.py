@@ -136,6 +136,46 @@ class LightsActuator():
             self.status = "OFF"
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
 
+class HeaterActuator():
+    def __init__(self):
+        # Internal Variables
+        self.HEATER_RELAY_GPIO_PIN = 20
+        self.MIN_TEMP = 24
+        self.MAX_TEMP = 28
+
+        #Public variables 
+        self.status = "OFF"
+        self.isWorking = False
+
+        # Startup LEDs
+        self.start()
+
+    def start(self):
+        try:
+            gpio.setup(self.LED_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+            self.isWorking = True
+        except Exception as e:
+            logger.info("[HEATER] not working")
+            logger.error(e)
+            self.isWorking = False
+
+    def controlTemperature(self, overrideAction = None):
+        if (not self.isWorking):
+            self.start()
+
+        currentTemp = sensors.environment.temperature
+
+        if currentTemp < self.MIN_TEMP: # Turn on the heater if box below min temperature
+            self.status = "ON"
+            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.HIGH)
+        elif currentTemp > self.MAX_TEMP: # Turn off the heater if box below min temperature
+            self.status = "OFF"
+            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
+        else:
+            self.status = "OFF"
+            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
+
+
 '''
 
 class Humidifier():
@@ -175,3 +215,4 @@ def humidity(humidity):
 
 ventilation = FanActuator()
 led = LightsActuator()
+heater = HeaterActuator()

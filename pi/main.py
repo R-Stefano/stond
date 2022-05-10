@@ -26,7 +26,10 @@ def run():
   #Control
   controller.ventilation.controlFanSpeed("top")
   controller.led.controlLights()
+  controller.heater.controlTemperature()
+  
   #controller.humidity(env_humidity)
+
 
   dataMng.displayData()
   #Save
