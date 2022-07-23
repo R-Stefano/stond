@@ -1,16 +1,16 @@
 steps:
 # Build testing web app
-- name: 'gcr.io/cloud-builders/npm:node-16.10.0'
+- name: 'gcr.io/cloud-builders/npm:node-12.18.3'
   args: [ 'install' ]
   dir: 'mobile-app/app'
   
 # Install node packages
-- name: 'gcr.io/cloud-builders/npm:node-16.10.0'
+- name: 'gcr.io/cloud-builders/npm:node-12.18.3'
   args: [ 'install' ]
   dir: 'mobile-app/'
   
   # Build testing web app
-- name: 'gcr.io/cloud-builders/npm:node-16.10.0'
+- name: 'gcr.io/cloud-builders/npm:node-12.18.3'
   args: [ 'run', 'build:prod']
   dir: 'mobile-app/app'
 
