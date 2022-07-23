@@ -1,0 +1,7 @@
+runtime: nodejs10
+service: production-web
+
+handlers:
+  - url: .*
+    script: auto
+    secure: always

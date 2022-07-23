@@ -21,6 +21,7 @@ echo "gpu_mem=128" | sudo tee /boot/config.txt -a
 sudo modprobe w1-gpio
 sudo modprobe w1-therm
 
+#### Move to some other file
 echo "[AFRODITE SETUP] Add script on startup"
 sudo cp afrodite.service /lib/systemd/system/afrodite.service
 sudo systemctl enable afrodite.service

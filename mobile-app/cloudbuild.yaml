@@ -1,0 +1,20 @@
+steps:
+# Build testing web app
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'install' ]
+  dir: 'mobile-app/app'
+  
+  # Build testing web app
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'run', 'build:prod']
+  dir: 'mobile-app/app'
+
+# Install node packages
+- name: 'gcr.io/cloud-builders/npm'
+  args: [ 'install' ]
+  dir: 'mobile-app/'
+  
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy", "--version", "current"]
+  dir: 'mobile-app/'
+timeout: "1600s"
