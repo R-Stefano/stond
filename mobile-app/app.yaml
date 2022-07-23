@@ -1,5 +1,5 @@
 runtime: nodejs12
-service: production-web
+service: default
 
 handlers:
   - url: .*
