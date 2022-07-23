@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "author": "Afrodite",
   "homepage": "https://afrodite.io/",
+  "engines": {
+    "node": "14.15.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
