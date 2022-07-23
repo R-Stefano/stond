@@ -4,7 +4,7 @@
   "author": "Afrodite",
   "homepage": "https://afrodite.io/",
   "engines": {
-    "node": "14.15.0"
+    "node": "16.10.0"
   },
   "scripts": {
     "ng": "ng",
