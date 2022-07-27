@@ -11,7 +11,7 @@ exports.save = async (fileBase64, fileType, destPath = null) => {
     /**
      * Upload the file and return filename
      */
-    const filename = `${uuidv1().replace(/-/g, '')}`
+    const filename = uuidv1()
     const localFilePath  = path.join(os.tmpdir(), filename);
     const buffer = Buffer.from(fileBase64, 'base64');
     fs.writeFileSync(localFilePath, buffer);
