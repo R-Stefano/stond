@@ -2,6 +2,7 @@ const db = require('../libs/db')
 const Op = require('sequelize').Op;
 const configs = require('../configs')
 const moment = require('moment')
+const service = require('./main')
 
 exports.ventilation = async (deviceId, status) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
