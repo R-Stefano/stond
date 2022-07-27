@@ -18,6 +18,6 @@ module.exports = {
 		"authToken": "76a95164db067ecdd3ff10e59eb903e0"
 	},
 	"cloud": {
-		"bucket_name": ""
+		"bucket_name": "afrodite"
 	}
 }
