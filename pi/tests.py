@@ -12,7 +12,7 @@ def initializeConfiguration():
   # Reset Configuration 
   print("CONFIGURATION SETUP")
   print("Generate Device ID")
-  deviceId = str(uuid.uuid4())
+  deviceId = "e0db0991-5c15-4a98-bd05-7ed14cefbca5"#str(uuid.uuid4())
   print(deviceId)
 
   config.read('config.ini')
