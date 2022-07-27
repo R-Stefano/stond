@@ -44,9 +44,10 @@ def sendData():
     with open('/home/pi/stond/pi/snapshots/' + imageFiles[0], "rb") as image_file:
       data = base64.b64encode(image_file.read())
       timestamp = imageFiles[0].split(".")[0]
-      print(timestamp)      
+      print(imageFiles[0], timestamp)      
       response = requests.post(configs.apiUrl + "/api/devices/" + configs.deviceId + "/snapshot", json = {
         "timestamp": timestamp,
+        "isWorking": sensors.system.cameraWorking,
         "base64": data
       })
       if (response.status_code != 200):
