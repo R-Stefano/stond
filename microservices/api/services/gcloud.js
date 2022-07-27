@@ -7,6 +7,8 @@ const path = require('path')
 const os = require('os')
 const fs = require('fs');
 
+process.env['GOOGLE_APPLICATION_CREDENTIALS'] = path.join(__dirname, '../libs/developer-account.json')
+
 exports.save = async (fileBase64, fileType, destPath = null) => {
     /**
      * Upload the file and return filename
