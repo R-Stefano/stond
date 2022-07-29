@@ -54,6 +54,7 @@ class System():
         self.cpu_temperature = self._cpu.temperature
 
     def take_picture(self):
+        logger.debug("[SYSTEM] Camera Snapshot")
         self.camera.start_preview()
         time.sleep(5)
         self.camera.capture('/home/pi/stond/pi/snapshots/' + datetime.utcnow().isoformat() + '.jpg')

@@ -22,7 +22,7 @@ def run():
   sensors.environment.readTempHumidity()
 
   # take a picture every hour
-  if (timestamp.minute == 0):
+  if (timestamp.second ==  0):
     sensors.system.take_picture()
   
   #Control
