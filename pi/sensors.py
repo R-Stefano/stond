@@ -55,10 +55,14 @@ class System():
 
     def take_picture(self):
         logger.debug("[SYSTEM] Camera Snapshot")
-        self.camera.start_preview()
-        time.sleep(5)
-        self.camera.capture('/home/pi/stond/pi/snapshots/' + datetime.utcnow().isoformat() + '.jpg')
-        self.camera.stop_preview()
+        try :
+            self.camera.start_preview()
+            time.sleep(5)
+            self.camera.capture('/home/pi/stond/pi/snapshots/' + datetime.utcnow().isoformat() + '.jpg')
+            self.camera.stop_preview()
+        except Exception as e:
+            logger.info("[CAMERA] Impossible Take Photo")
+            logger.error(e)
 
 # Humidity and Temp
 class HumidityTempSensor():
