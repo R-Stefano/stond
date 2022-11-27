@@ -139,7 +139,7 @@ class LightsActuator():
 class HeaterActuator():
     def __init__(self):
         # Internal Variables
-        self.HEATER_RELAY_GPIO_PIN = 20
+        self.HEATER_RELAY_GPIO_PIN = 23
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
 
@@ -168,51 +168,48 @@ class HeaterActuator():
         if currentTemp < self.MIN_TEMP: # Turn on the heater if box below min temperature
             self.status = "ON"
             gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.HIGH)
-        elif currentTemp > self.MAX_TEMP: # Turn off the heater if box below min temperature
-            self.status = "OFF"
-            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
-        else:
+        elif currentTemp > self.MAX_TEMP: # Turn off the heater if box above max temperature
             self.status = "OFF"
             gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
 
 
-'''
-
-class Humidifier():
+class HumidityActuator():
     def __init__(self):
+        # Internal Variables
+        self.HUMIDIFIER_GPIO_PIN = 25
+        self.MIN_HUMIDITY = 60
+        self.MAX_HUMIDITY = 90
+
+        #Public variables 
         self.status = "OFF"
         self.isWorking = False
-        self.HUMIDIFIER_GPIO_PIN = 27
+
+        # Startup Humidifier
+        self.start()
+
+    def start(self):
         try:
-            RPi.GPIO.setup(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.OUT)
-            RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
+            gpio.setup(self.HUMIDIFIER_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HUMIDIFIER OFF
             self.isWorking = True
         except Exception as e:
-            logger.add("info", "Humidifier not working")
-            logger.add("error", e)
+            logger.info("[HUMIDIFIER] not working")
+            logger.error(e)
+            self.isWorking = False
 
-    def turnOn(self):
-        self.status = "ON"
-        RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.HIGH)
-        return
+    def controlHumidity(self, overrideAction = None):
+        if (not self.isWorking):
+            self.start()
 
-    def turnOff(self):
-        self.status = "OFF"
-        RPi.GPIO.output(self.HUMIDIFIER_GPIO_PIN, RPi.GPIO.LOW)
-        return
-'''
+        currentHumidity = sensors.environment.temperature
 
-'''
-
-humidifier = Humidifier()
-
-def humidity(humidity):
-    if (humidity > 80):
-        humidifier.turnOff()
-    else:
-        humidifier.turnOn()
-'''
+        if currentHumidity < self.MIN_HUMIDITY: # Turn on the humidifier if box below min humidity
+            self.status = "ON"
+            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.HIGH)
+        elif currentHumidity > self.MAX_HUMIDITY: # Turn off the humidifier if box above max humidity
+            self.status = "OFF"
+            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
 
 ventilation = FanActuator()
 led = LightsActuator()
 heater = HeaterActuator()
+humidifier = HumidityActuator()

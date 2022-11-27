@@ -29,8 +29,7 @@ def run():
   controller.ventilation.controlFanSpeed("top")
   controller.led.controlLights()
   controller.heater.controlTemperature()
-  
-  #controller.humidity(env_humidity)
+  controller.humidifier.controlHumidity()
 
 
   dataMng.displayData()
