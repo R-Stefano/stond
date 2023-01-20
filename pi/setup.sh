@@ -5,7 +5,6 @@
 # After flashed
 # git clone https://github.com/R-Stefano/stond.git
 
-
 cd $(dirname "$(realpath $0)")
 
 echo "[AFRODITE SETUP] Installing Libraries"
@@ -20,15 +19,6 @@ echo "start_x=1" | sudo tee /boot/config.txt -a
 echo "gpu_mem=128" | sudo tee /boot/config.txt -a
 sudo modprobe w1-gpio
 sudo modprobe w1-therm
-
-#### Move to some other file
-echo "[AFRODITE SETUP] Add script on startup"
-sudo cp afrodite.service /lib/systemd/system/afrodite.service
-sudo systemctl enable afrodite.service
-
-# Check is running: 
-# - ps -aux | grep python3
-# - sudo systemctl status afrodite.service
 
 echo "[AFRODITE SETUP] Restarting to Enable Changes"
 sudo reboot

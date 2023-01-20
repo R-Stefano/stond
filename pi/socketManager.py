@@ -1,4 +1,4 @@
-import configs, socketio
+#import, socketio
 '''
 sio = socketio.Client()
 sio.connect(configs.apiUrl)

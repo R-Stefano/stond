@@ -1,7 +1,8 @@
 from datetime import datetime
 import LoggerManager
 import sensors
-import RPi.GPIO as gpio # allo to call GPIO pins
+from RPi import GPI0 as gpio # allo to call GPIO pins
+
 
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
 logger = LoggerManager.logger
@@ -47,7 +48,6 @@ class FanActuator():
             self.isWorking = False
 
     def setFanSpeed(self, speed, fanName):
-        print(speed, fanName)
         speed = round(speed, 2)
 
         if (fanName == "top"):
@@ -118,6 +118,7 @@ class LightsActuator():
             self.isWorking = False
 
     def controlLights(self, overrideAction = None):
+        logger.debug("[LED] Try Update State")
         if (not self.isWorking):
             self.start()
 
@@ -135,8 +136,9 @@ class LightsActuator():
         else:
             self.status = "OFF"
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
+        logger.debug("[LED] New State {}".format(self.status))
 
-class HeaterActuator():
+class HVACActuator():
     def __init__(self):
         # Internal Variables
         self.HEATER_RELAY_GPIO_PIN = 23
@@ -155,11 +157,12 @@ class HeaterActuator():
             gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
             self.isWorking = True
         except Exception as e:
-            logger.info("[HEATER] not working")
+            logger.info("[HVAC] not working")
             logger.error(e)
             self.isWorking = False
 
     def controlTemperature(self, overrideAction = None):
+        logger.debug("[HVAC] Try Update State")
         if (not self.isWorking):
             self.start()
 
@@ -172,6 +175,7 @@ class HeaterActuator():
             self.status = "OFF"
             gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
 
+        logger.debug("[HVAC] New State {}".format(self.status))
 
 class HumidityActuator():
     def __init__(self):
@@ -197,6 +201,8 @@ class HumidityActuator():
             self.isWorking = False
 
     def controlHumidity(self, overrideAction = None):
+        logger.debug("[HUMIDIFIER] Try Update State")
+
         if (not self.isWorking):
             self.start()
 
@@ -209,7 +215,9 @@ class HumidityActuator():
             self.status = "OFF"
             gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
 
+        logger.debug("[HUMIDIFIER] New State {}".format(self.status))
+
 ventilation = FanActuator()
 led = LightsActuator()
-heater = HeaterActuator()
+hvac = HVACActuator()
 humidifier = HumidityActuator()

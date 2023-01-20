@@ -1,14 +1,11 @@
 from tkinter import E
-from gpiozero import CPUTemperature
+import gpiozero
 import busio, digitalio, board # General librariers
 import glob, subprocess, time, os # General librariers
 from unittest.mock import MagicMock
 from datetime import datetime
 import socket
-from configparser import ConfigParser
-
-configs = ConfigParser()
-configs.read('/home/pi/stond/pi/config.ini')
+import main
 
 # PH SENSOR
 import adafruit_mcp3xxx.mcp3008 as MCP
@@ -19,7 +16,8 @@ from adafruit_bme280 import basic as adafruit_bme280
 # CAMERA
 from picamera import PiCamera
 
-import RPi.GPIO as gpio # allo to call GPIO pins
+from RPi import GPI0 as gpio # allow to call GPIO pins
+
 import LoggerManager
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
 logger = LoggerManager.logger
@@ -27,7 +25,8 @@ logger = LoggerManager.logger
 class System():
     def __init__(self):
         self.cpu_temperature = 0
-        self._cpu = CPUTemperature()
+        self.cpu = gpiozero.CPUTemperature()
+        self.cameraSnapshotsDirPath = os.path.join(os.getcwd(), 'snapshots')
 
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
@@ -36,8 +35,9 @@ class System():
         # Setup camera
         try:
             # Create storage folder
-            if (not os.path.exists('/home/pi/stond/pi/snapshots/')):
-                os.mkdir('/home/pi/stond/pi/snapshots/')
+            if (not self.cameraSnapshotsDirPath):
+                logger.debug("[CAMERA] snapshot folder does not exist - creating one")
+                os.mkdir(self.cameraSnapshotsDirPath)
                 
             self.camera = PiCamera()
             self.camera.resolution = (2592, 1944)
@@ -51,7 +51,7 @@ class System():
 
     def read_cpu (self):
         logger.debug("[SYSTEM] Reading CPU")
-        self.cpu_temperature = self._cpu.temperature
+        self.cpu_temperature = self.cpu.temperature
 
     def take_picture(self):
         logger.debug("[SYSTEM] Camera Snapshot")
@@ -163,7 +163,7 @@ class WaterSensor():
             logger.error(e)
             self.levelSensorWorking = False
 
-    def read_ph(self):
+    def get_raw_ph(self):
         logger.debug("[E201-C-BNC] Reading PH")
 
         if (not self.phSensorWorking):
@@ -172,13 +172,17 @@ class WaterSensor():
         try:
             self.raw_ph = self.mcp.read(self.MCP3008_PH_PIN)
             # map 0-1024 to 0-14
-            self.ph = abs(round(float(configs.get('ph_sensor', 'param1')) * self.raw_ph + float(configs.get('ph_sensor', 'param2')), 2))
         except Exception as e:
             logger.info("[E201-C-BNC] Impossible Reading PH")
             logger.error(e)
+            self.raw_ph = 0
             self.ph = 0
             self.phSensorWorking = False
+        return self.raw_ph
 
+    def read_ph(self):
+        self.get_raw_ph()
+        self.ph = abs(round(float(main.configs.get('ph_sensor', 'param1')) * self.raw_ph + float(main.configs.get('ph_sensor', 'param2')), 2))
         return self.ph
 
     def read_ppm(self):

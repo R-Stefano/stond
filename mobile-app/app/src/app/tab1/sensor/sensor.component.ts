@@ -37,7 +37,8 @@ export class SensorComponent implements OnInit {
     },
     'water_temperature': {
       name: 'water temperature',
-      measurementUnit: '° C'
+      //measurementUnit: '° C'
+      measurementUnit: 'cm'
     },
     'water_ph': {
       name: 'water ph',
@@ -72,10 +73,7 @@ export class SensorComponent implements OnInit {
         x: {
           type: 'time',
           time: {
-              unit: 'hour',
-              displayFormats: {
-                quarter: 'MMM YYYY'
-            }
+              unit: 'day',
           },
           ticks: {
               source: 'data'
@@ -142,7 +140,8 @@ export class SensorComponent implements OnInit {
 
   getHistoryData() {
     const params = {}
-    const timeNow = moment().utc()
+    const time = '2022-01-17 06:00:00'
+    const timeNow = moment(time)//moment().utc()
     switch (this.scaleSelected) {
       case '1H':
         params['timestamp'] = `${timeNow.subtract({hours: 1}).format()}`
@@ -152,6 +151,9 @@ export class SensorComponent implements OnInit {
         break;
       case '1D':
         params['timestamp'] = `${timeNow.subtract({days: 1}).format()}`
+        break;
+      case '7D':
+        params['timestamp'] = `${timeNow.subtract({days: 7}).format()}`
         break;
       case '30D':
         params['timestamp'] = `${timeNow.subtract({days: 30}).format()}`
@@ -172,10 +174,75 @@ export class SensorComponent implements OnInit {
         case '1D':
           binSize = 15
           break;
+        case '7D':
+          binSize = 120
+          break;
         case '30D':
           binSize = 60 * 12 // 12 H
           break;
       }
+
+      sensorReadings = []
+      let initialValue = 0
+      // pant growht contorl
+      for (var i=0; i<168;i++) {
+        let randomness = Math.random() * 0.2
+
+        if (i < 48) {
+          randomness = randomness / 4
+        }
+        initialValue += randomness
+
+        sensorReadings.push({
+          Id: '',
+          sensorId: '',
+          isWorking: true,
+          timestamp: new Date(moment('2022-07-17 12:00:00').add({hours: i}).valueOf()),
+          value: initialValue
+        })
+      }
+
+      // Temp and humidity contorl
+      /*
+      const maxTemp = 80
+      let initialValue = 50
+      let humOn = true
+      let tempIncreaseI = 10
+      for (var i=0; i<360;i++) {
+        let randomness = Math.random() * 0.1
+        if (!humOn) {
+          const prevLog = Math.log2(1+tempIncreaseI)
+          tempIncreaseI += 6
+          const newLog = Math.log2(1+tempIncreaseI)
+          // temp increase
+          const step = (newLog - prevLog) + randomness
+          initialValue = initialValue - step
+        }
+
+        if (humOn) {
+          tempIncreaseI = 10
+          const step = Math.random()
+          initialValue = initialValue + step
+        }
+
+        if (initialValue > 81) {
+          humOn = false
+        }
+
+        if (initialValue < 79) {
+          humOn = true
+        }
+
+        sensorReadings.push({
+          Id: '',
+          sensorId: '',
+          isWorking: true,
+          timestamp: new Date(moment().add({minutes: i}).valueOf()),
+          value: initialValue
+        })
+      }
+      */
+
       for (var record of sensorReadings) {
         const minutesDiff = Math.round(moment(record.timestamp).diff(timeNow) / 60000) // difference in minutes
         const binIdx = Math.round(minutesDiff / binSize)
