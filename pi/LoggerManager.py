@@ -3,7 +3,7 @@ from logging.handlers import TimedRotatingFileHandler
 import socketManager as socketMng
 
 # create logger
-FORMATTER = logging.Formatter("%(asctime)s [%(levelname)s] %(name)s - %(message)s", datefmt='%m/%d/%Y %I:%M:%S %p')
+FORMATTER = logging.Formatter("%(asctime)s [%(levelname)s] - %(message)s", datefmt='%m/%d/%Y %I:%M:%S %p')
 LOG_FILE = os.path.dirname(__file__) + "/system.log"
 
 logger = logging.getLogger(LOG_FILE)

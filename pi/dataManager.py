@@ -22,7 +22,7 @@ def sendData():
       {'name': 'env_humidity',      'timestamp': datetime.utcnow().isoformat(), 'value': sensors.environment.humidity,    'isWorking': sensors.environment.temperatureHumiditySensorWorking}
     ],
     'actuators': [
-      {'name': 'ventilation', 'status': controller.ventilation.status, 'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation', 'status': controller.ventilation.fan2_status, 'isWorking': controller.ventilation.isWorking},
       {'name': 'LED',         'status': controller.led.status, 'isWorking': controller.led.isWorking},
     ]
   }
@@ -75,8 +75,8 @@ def displaySensorData():
 
 def displayActuatorsData():
   actuatorsData = [
-      {'name': 'ventilation Top',    'value': controller.ventilation.speed_top,      'isWorking': controller.ventilation.isWorking},
-      {'name': 'ventilation Bottom', 'value': controller.ventilation.speed_bottom,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation Top',    'value': controller.ventilation.fan2_speed,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation Bottom', 'value': controller.ventilation.fan1_speed,      'isWorking': controller.ventilation.isWorking},
       {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
   ]
 
@@ -96,8 +96,8 @@ def displayData():
   ]
 
   actuatorsData = [
-      {'name': 'ventilation Top',    'value': controller.ventilation.speed_top,      'isWorking': controller.ventilation.isWorking},
-      {'name': 'ventilation Bottom', 'value': controller.ventilation.speed_bottom,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation Top',    'value': controller.ventilation.fan2_speed,      'isWorking': controller.ventilation.isWorking},
+      {'name': 'ventilation Bottom', 'value': controller.ventilation.fan1_speed,      'isWorking': controller.ventilation.isWorking},
       {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
   ]
 

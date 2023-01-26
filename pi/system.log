@@ -1,641 +1,225 @@
-01/20/2023 10:38:38 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:38:38 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:38:59 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:38:59 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:38:59 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:39:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:39:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:39:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:39:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:39:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:39:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:39:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:39:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:39:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:39:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:42:22 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:42:22 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:42:22 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:42:22 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:42:22 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:42:22 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:42:22 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:42:22 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:42:22 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:42:22 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:42:22 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:42:22 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:42:43 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:42:43 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:42:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:42:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:42:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:42:43 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:42:43 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:42:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:42:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:42:43 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:42:43 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:42:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:43:11 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:43:11 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:43:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:43:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:43:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:43:11 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:43:11 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:43:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:43:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:43:11 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:43:11 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:43:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:44:55 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:44:55 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:44:55 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:44:55 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:44:55 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:44:55 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:44:55 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:44:55 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:44:55 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:44:55 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:44:55 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:44:55 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:46:33 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:46:33 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:46:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:46:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:46:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:46:33 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:46:33 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:46:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:46:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:46:33 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:46:33 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:46:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:46:44 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:46:44 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:46:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:46:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:46:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:46:44 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:46:44 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:46:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:46:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:46:44 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:46:44 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:46:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:51:15 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:51:15 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:51:15 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:51:15 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:51:15 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:51:15 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:51:15 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:51:15 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:51:15 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:51:15 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:51:15 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:51:15 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:51:32 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:51:32 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:51:32 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:51:32 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:52:30 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:52:30 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:52:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:52:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:52:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:52:30 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:52:30 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:52:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:52:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:52:30 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:52:30 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:52:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:53:05 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:53:05 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:53:05 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:53:05 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:53:05 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:53:05 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:53:05 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:53:05 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:53:05 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Reading Water Temperature
-01/20/2023 10:53:05 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [DS18B20] Impossible Reading Temperature
-01/20/2023 10:53:05 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - expected str, bytes or os.PathLike object, not MagicMock
-01/20/2023 10:53:05 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:54:54 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:54:54 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:54:54 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:54:54 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:54:54 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:54:54 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:54:54 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:54:54 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:54:54 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FS-IR02] Reading Water level
-01/20/2023 10:55:33 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:55:33 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:55:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:55:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:55:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:55:33 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:55:33 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:55:33 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:55:37 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:55:37 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:55:37 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:55:37 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:55:37 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Reading PH
-01/20/2023 10:55:37 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [E201-C-BNC] Impossible Reading PH
-01/20/2023 10:55:37 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - No section: 'ph_sensor'
-01/20/2023 10:55:37 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 10:56:23 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 10:56:23 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 10:56:23 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 10:56:23 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 10:56:23 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:03:28 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:03:28 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:03:28 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:03:28 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:03:28 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:03:42 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:03:42 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:03:42 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:03:42 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:03:42 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:15:38 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:15:38 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:15:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:15:51 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:15:51 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:15:51 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:16:11 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:16:11 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:16:11 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:25:01 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:25:01 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:25:01 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:26:19 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:26:19 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:26:19 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:26:43 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:26:43 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:26:43 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:28:44 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:28:44 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:28:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:28:46 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:28:46 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:28:46 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:29:09 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:29:09 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:29:09 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:29:12 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:29:12 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:29:12 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:32:34 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:32:34 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:32:34 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:32:44 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:32:44 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:32:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:32:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:32:44 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:37:56 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:37:56 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:37:56 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405ae410>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405c64d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405cb4d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405d24d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405c6a90>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405aedd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405d2950>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405e6a50>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405e6b10>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405d2390>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405974d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405cb2d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405f7390>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405f7dd0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - Impossible processing request
-01/20/2023 11:38:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/e0db0991-5c15-4a98-bd05-7ed14cefbca5/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd7405c6ad0>: Failed to establish a new connection: [Errno 61] Connection refused'))
-01/20/2023 11:38:25 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:38:25 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:38:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:48 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:38:48 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:38:48 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:38:53 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:38:53 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:38:53 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:02 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:41:02 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:41:02 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:18 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:41:18 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:41:18 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:20 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:25 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:30 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:35 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:35 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:35 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:35 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:41:35 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:41:35 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:41:36 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:41:36 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:41:36 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:42:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:42:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:42:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:43:00 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:43:00 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:43:00 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:43:36 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:43:36 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:43:36 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:43:36 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:43:36 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:44:07 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:44:07 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:44:07 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:44:07 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:44:07 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:44:56 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:44:56 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:44:56 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:44:56 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] OFF
-01/20/2023 11:44:56 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] ON
-01/20/2023 11:44:56 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:44:56 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:45:27 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:45:27 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Update State
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] OFF
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Update State
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] ON
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:45:27 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:45:39 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:45:39 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State ON
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:45:39 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:58:49 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:58:49 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State ON
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:58:49 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 11:59:38 AM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 11:59:38 AM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State ON
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 11:59:38 AM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:16:02 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:16:02 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:16:02 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:18:30 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:18:30 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:18:30 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:19:00 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:19:00 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:19:00 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:20:21 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:20:21 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:20:21 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:20:33 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:20:33 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:20:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:22:39 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:22:39 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:22:39 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:25:21 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:25:21 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:25:21 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:25:39 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:25:39 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:25:39 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:26:07 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:26:07 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:26:07 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:27:34 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:27:34 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:27:34 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:27:42 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:27:42 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:27:42 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:28:57 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:28:57 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:28:57 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:29:58 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:29:58 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:29:58 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:29:58 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:29:58 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:34:17 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:34:17 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:34:17 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State ON
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:34:18 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:35:29 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:39 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:35:40 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:36:20 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:36:20 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:36:20 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:36:29 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:36:29 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots/'
-01/20/2023 12:36:29 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:36:29 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:36:29 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:36:41 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:36:41 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 2] No such file or directory: '/home/pi/stond/pi/snapshots'
-01/20/2023 12:36:41 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:36:41 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:36:41 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:36:54 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:36:54 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:36:54 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:37:49 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] snapshot folder does not exist - creating one
-01/20/2023 12:37:49 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:37:49 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 17] File exists: './snapshots'
-01/20/2023 12:37:49 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:37:49 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:37:49 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:37:59 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] snapshot folder does not exist - creating one
-01/20/2023 12:37:59 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:37:59 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 17] File exists: './snapshots'
-01/20/2023 12:37:59 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:37:59 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:37:59 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:38:02 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] snapshot folder does not exist - creating one
-01/20/2023 12:38:02 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:38:02 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 17] File exists: './snapshots'
-01/20/2023 12:38:02 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:38:02 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:38:02 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:38:51 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] snapshot folder does not exist - creating one
-01/20/2023 12:38:51 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:38:51 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 17] File exists: './snapshots'
-01/20/2023 12:38:51 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:38:51 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:38:51 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:39:34 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] snapshot folder does not exist - creating one
-01/20/2023 12:39:34 PM [INFO] /Users/steve/Desktop/Projects/stond/pi/system.log - [CAMERA] (start) Not working
-01/20/2023 12:39:34 PM [ERROR] /Users/steve/Desktop/Projects/stond/pi/system.log - [Errno 17] File exists: './snapshots'
-01/20/2023 12:39:34 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:39:34 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:39:34 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:40:30 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:40:30 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:40:30 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:41:27 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:41:27 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:41:27 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:03 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:05 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [SYSTEM] Reading CPU
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [EC] Reading PPM
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [LED] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HVAC] New State OFF
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] Try Update State
-01/20/2023 12:42:10 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [HUMIDIFIER] New State ON
-01/20/2023 12:43:17 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Update Speed
+01/26/2023 08:30:46 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 100
+01/26/2023 08:30:46 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan2 Speed to 0
+01/26/2023 08:31:13 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 100
+01/26/2023 08:31:13 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan2 Speed to 0
+01/26/2023 08:31:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 100
+01/26/2023 08:31:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan2 Speed to 0
+01/26/2023 08:31:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 0
+01/26/2023 08:31:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 33
+01/26/2023 08:31:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 66
+01/26/2023 08:31:33 PM [DEBUG] /Users/steve/Desktop/Projects/stond/pi/system.log - [FAN] Set fan1 Speed to 100
+01/26/2023 08:32:17 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:32:17 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:32:17 PM [DEBUG] - [FAN] Set fan1 Speed to 0
+01/26/2023 08:32:17 PM [DEBUG] - [FAN] Set fan1 Speed to 33
+01/26/2023 08:32:17 PM [DEBUG] - [FAN] Set fan1 Speed to 66
+01/26/2023 08:32:17 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:34:24 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:34:24 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:34:24 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:34:24 PM [DEBUG] - [FAN] Set fan2 Speed to 33
+01/26/2023 08:34:24 PM [DEBUG] - [FAN] Set fan2 Speed to 66
+01/26/2023 08:34:24 PM [DEBUG] - [FAN] Set fan2 Speed to 100
+01/26/2023 08:35:21 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:35:21 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:35:21 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:35:21 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:35:21 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:35:22 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:35:22 PM [DEBUG] - [FAN] Set fan2 Speed to 33
+01/26/2023 08:35:22 PM [DEBUG] - [FAN] Set fan2 Speed to 66
+01/26/2023 08:35:22 PM [DEBUG] - [FAN] Set fan2 Speed to 100
+01/26/2023 08:39:56 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:39:56 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:39:56 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:39:56 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:39:56 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:40:00 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:40:00 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:40:00 PM [DEBUG] - [LED] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [LED] New State ON
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:40:00 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:40:00 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d3e8250>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d3f7290>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d401290>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d401d10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d3f7850>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:40:00 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:40:00 PM [DEBUG] - [LED] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [LED] New State ON
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:40:00 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d4070d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d40b0d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d4110d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d40bd90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d3c7610>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:40:00 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:40:00 PM [DEBUG] - [LED] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [LED] New State ON
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:40:00 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d4119d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d412310>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d406310>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d420310>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d3f7c50>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:40:00 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:40:00 PM [DEBUG] - [LED] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [LED] New State ON
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:40:00 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d420d10>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d412590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d415590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d40b590>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d40bc90>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:40:00 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:40:00 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:40:00 PM [DEBUG] - [LED] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [LED] New State ON
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:40:00 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:40:00 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d3f72d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d406990>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d4111d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d41b1d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:40:00 PM [INFO] - Impossible processing request
+01/26/2023 08:40:00 PM [ERROR] - HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /api/devices/39a500f3-46d4-4f7f-863e-91a2a1f3efea/status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd18d42e1d0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+01/26/2023 08:43:43 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:43:43 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:43:43 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:43:43 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:43:43 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:43:43 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:43:43 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:43:43 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:43:43 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:43:43 PM [DEBUG] - [LED] Start Control Routine
+01/26/2023 08:43:43 PM [DEBUG] - [LED] Control Routine - Update State OFF => ON
+01/26/2023 08:43:43 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:43:43 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:43:43 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:43:43 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON
+01/26/2023 08:45:31 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Set fan1 Speed to 100
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Set fan2 Speed to 0
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
+01/26/2023 08:45:31 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:45:31 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:45:31 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:45:31 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Set fan2 Speed to 25
+01/26/2023 08:45:31 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 25%
+01/26/2023 08:45:31 PM [DEBUG] - [LED] Start Control Routine
+01/26/2023 08:45:31 PM [DEBUG] - [LED] Control Routine - Update State OFF => ON
+01/26/2023 08:45:31 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:45:31 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:45:31 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:45:31 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON
+01/26/2023 08:45:41 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:45:41 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
+01/26/2023 08:45:41 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
+01/26/2023 08:45:41 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:45:41 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:45:41 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:45:41 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:45:41 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:45:41 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 25%
+01/26/2023 08:45:41 PM [DEBUG] - [LED] Start Control Routine
+01/26/2023 08:45:41 PM [DEBUG] - [LED] Control Routine - Update State OFF => ON
+01/26/2023 08:45:41 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:45:41 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:45:41 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:45:41 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON
+01/26/2023 08:46:24 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:46:24 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
+01/26/2023 08:46:24 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
+01/26/2023 08:46:24 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:46:24 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:46:24 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:46:24 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:46:24 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:46:24 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 25%
+01/26/2023 08:46:24 PM [DEBUG] - [LED] Start Control Routine
+01/26/2023 08:46:24 PM [DEBUG] - [LED] Control Routine - Update State OFF => ON
+01/26/2023 08:46:24 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:46:24 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:46:24 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:46:24 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON
+01/26/2023 08:46:53 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:46:53 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
+01/26/2023 08:46:53 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
+01/26/2023 08:46:53 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:46:53 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:46:53 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:46:53 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:46:53 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:46:53 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 25%
+01/26/2023 08:46:53 PM [DEBUG] - [LED] Start Control Routine
+01/26/2023 08:46:53 PM [DEBUG] - [LED] Control Routine - Update State OFF => ON
+01/26/2023 08:46:53 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:46:53 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:46:53 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:46:53 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON
+01/26/2023 08:47:01 PM [INFO] - [FAN] Start Initial Setup
+01/26/2023 08:47:01 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
+01/26/2023 08:47:01 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
+01/26/2023 08:47:01 PM [INFO] - [LED] Start Initial Setup
+01/26/2023 08:47:01 PM [INFO] - [HUMIDIFIER] Start Initial Setup
+01/26/2023 08:47:01 PM [DEBUG] - [SYSTEM] Reading CPU
+01/26/2023 08:47:01 PM [DEBUG] - [EC] Reading PPM
+01/26/2023 08:47:01 PM [DEBUG] - [FAN] Start Control Routine
+01/26/2023 08:47:01 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 25%
+01/26/2023 08:47:01 PM [DEBUG] - [LED] Start Control Routine
+01/26/2023 08:47:01 PM [DEBUG] - [LED] Control Routine - Update State OFF => ON
+01/26/2023 08:47:01 PM [DEBUG] - [HVAC] Try Update State
+01/26/2023 08:47:01 PM [DEBUG] - [HVAC] New State OFF
+01/26/2023 08:47:01 PM [DEBUG] - [HUMIDIFIER] Start Control Routine
+01/26/2023 08:47:01 PM [DEBUG] - [HUMIDIFIER] Control Routing - Update State OFF => ON

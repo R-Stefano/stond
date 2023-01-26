@@ -10,36 +10,44 @@ logger = LoggerManager.logger
 class FanActuator():
     def __init__(self):
         # Internal Variables
-        self.BOTTOM_FAN_PIN = 12 # GPIO12 PWM0 (Physical PIN 32)
-        self.TOP_FAN_PIN = 13 # GPIO13 PWM0 (Physical PIN 33)
+        self.FAN1_PIN = 12 # GPIO12 PWM0 (Physical PIN 32) - velocity control for fan BOTTOM
+        self.FAN1_ENABLER_PIN = 27 # GPIO27 (Physical PIN 13) - ON/OFF control for fan 1 
+        self.FAN2_PIN = 13 # GPIO13 PWM0 (Physical PIN 33) - velocity control for fan TOP
+        self.FAN2_ENABLER_PIN = 22 # GPIO22 (Physical PIN 15) - ON/OFF control for fan 2 
+
         self.PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
-        self.FAN_OFF = 0 
-        self.FAN_MAX = 100
         self.BACKUP_SPEED = 50 # In case can't read Temp - use this speed
 
         #Public variables 
-        self.status = "OFF" #TODO: DEPRECATED
         self.isWorking = False
-        self.speed_top = 0
-        self.speed_bottom = 0
+        self.fan1_speed = 0
+        self.fan1_status = "OFF"
+        self.fan2_speed = 0
+        self.fan2_status = "OFF"
 
         # Startup Fans
         self.start()
 
     def start(self):
         try:
-            gpio.setup(self.BOTTOM_FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
-            gpio.setup(self.TOP_FAN_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
+            logger.info("[FAN] Start Initial Setup")
+            #setup of PWM pins 
+            gpio.setup(self.FAN1_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
+            gpio.setup(self.FAN1_ENABLER_PIN, gpio.OUT, initial=gpio.LOW)
 
-            self.fan_bottom = gpio.PWM(self.BOTTOM_FAN_PIN, self.PWM_FREQ)
-            self.fan_top = gpio.PWM(self.TOP_FAN_PIN, self.PWM_FREQ)
+            gpio.setup(self.FAN2_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
+            gpio.setup(self.FAN2_ENABLER_PIN, gpio.OUT, initial=gpio.LOW)
 
-            self.fan_bottom.start(0)
-            self.fan_top.start(0)
+            self.fan1 = gpio.PWM(self.FAN1_PIN, self.PWM_FREQ)
+            self.fan2 = gpio.PWM(self.FAN2_PIN, self.PWM_FREQ)
 
-            self.setFanSpeed(100, "bottom") # Harcode to max at the moment
+            self.fan1.start(0)
+            self.fan2.start(0)
+
+            self.setFanSpeed("fan1", 100)
+            self.setFanSpeed("fan2", 0)
 
             self.isWorking = True
         except Exception as e:
@@ -47,45 +55,59 @@ class FanActuator():
             logger.error(e)
             self.isWorking = False
 
-    def setFanSpeed(self, speed, fanName):
+    def setFanSpeed(self, fanName, speed):
+        '''
+        fanName: fan1, fan2
+        speed: 0 - 100
+        '''
         speed = round(speed, 2)
 
-        if (fanName == "top"):
-            self.fan_top.ChangeDutyCycle(speed)
-            self.speed_top = speed
-        elif (fanName == "bottom"):
-            self.fan_bottom.ChangeDutyCycle(speed)
-            self.speed_bottom = speed
+        if (fanName == "fan1"):
+            self.fan1.ChangeDutyCycle(speed)
+            self.fan1_speed = speed
+            if (speed == 0):
+                self.fan1_status = "OFF"
+                gpio.output(self.FAN1_ENABLER_PIN, gpio.LOW)
+            else:
+                self.fan1_status = "ON"
+                gpio.output(self.FAN1_ENABLER_PIN, gpio.HIGH)
+        elif (fanName == "fan2"):
+            self.fan2.ChangeDutyCycle(speed)
+            self.fan2_speed = speed
+            if (speed == 0):
+                self.fan2_status = "OFF"
+                gpio.output(self.FAN2_ENABLER_PIN, gpio.LOW)
+            else:
+                self.fan2_status = "ON"
+                gpio.output(self.FAN2_ENABLER_PIN, gpio.HIGH)
 
-        if (speed == 0):
-            self.status = "OFF" #TODO: DEPRECATED
-        else:
-            self.status = "ON" #TODO: DEPRECATED
+        logger.debug("[FAN] Control Routine - Update {} speed to {}%".format(fanName, speed))
 
-        logger.debug("[FAN] Update Speed")
 
-    def controlFanSpeed(self, fanName = "top", overrideAction = None):
+    def controlFanSpeed(self, fanName = "fan2", overrideAction = None):
+        logger.debug("[FAN] Start Control Routine")
         if (not self.isWorking):
             self.start()
 
         if (overrideAction != None):
-            self.setFanSpeed(overrideAction, fanName)
+            logger.debug("[FAN] Override Action {}".format(overrideAction))
+            self.setFanSpeed(fanName, overrideAction)
             return
 
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
             logger.debug("[FAN] Temp Sensor not working. Setting emergency speed")
-            self.setFanSpeed(self.BACKUP_SPEED, fanName)
+            self.setFanSpeed(fanName, self.BACKUP_SPEED)
             return
 
         currentTemp = sensors.environment.temperature
         if currentTemp < self.MIN_TEMP: # Set fan speed to MINIMUM if the temperature is below MIN_TEMP
-            self.setFanSpeed(self.FAN_OFF, fanName)
+            self.setFanSpeed(fanName, 0)
         elif currentTemp > self.MAX_TEMP: # Set fan speed to MAXIMUM if the temperature is above MAX_TEMP
-            self.setFanSpeed(self.FAN_MAX, fanName)
+            self.setFanSpeed(fanName, 100)
         else: # Caculate dynamic fan speed
             powerPerc = (currentTemp - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
-            self.setFanSpeed(powerPerc * 100, fanName)
+            self.setFanSpeed(fanName, int(powerPerc * 100))
 
 class LightsActuator():
     def __init__(self):
@@ -110,6 +132,7 @@ class LightsActuator():
 
     def start(self):
         try:
+            logger.info("[LED] Start Initial Setup")
             gpio.setup(self.LED_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
             self.isWorking = True
         except Exception as e:
@@ -118,25 +141,33 @@ class LightsActuator():
             self.isWorking = False
 
     def controlLights(self, overrideAction = None):
-        logger.debug("[LED] Try Update State")
+        logger.debug("[LED] Start Control Routine")
         if (not self.isWorking):
             self.start()
 
         currentHr = datetime.utcnow().hour #UTC TIMEZONE
+        _newStatus = self.status
 
-        if (overrideAction and overrideAction == "ON"):
-            self.status = "ON"
-            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
-        elif (overrideAction and overrideAction == "OFF"):
-            self.status = "OFF"
-            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
-        elif (overrideAction == None and currentHr in self.LIGHT_HOURS):
-            self.status = "ON"
-            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
+        if (currentHr in self.LIGHT_HOURS):
+            _newStatus = "ON"
         else:
-            self.status = "OFF"
+            _newStatus = "OFF"
+
+        if (overrideAction != None):
+            logger.debug("[LED] Override Action {}".format(overrideAction))
+            _newStatus = overrideAction.upper()
+
+        if (self.status == _newStatus):
+            return
+
+        logger.debug("[LED] Control Routine - Update State {} => {}".format(self.status, _newStatus))
+
+        if (_newStatus == "OFF"):
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
-        logger.debug("[LED] New State {}".format(self.status))
+        elif (_newStatus == "ON"):
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
+
+        self.status = _newStatus
 
 class HVACActuator():
     def __init__(self):
@@ -193,6 +224,7 @@ class HumidityActuator():
 
     def start(self):
         try:
+            logger.info("[HUMIDIFIER] Start Initial Setup")
             gpio.setup(self.HUMIDIFIER_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HUMIDIFIER OFF
             self.isWorking = True
         except Exception as e:

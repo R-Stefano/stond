@@ -47,8 +47,7 @@ class Testing(unittest.TestCase):
         return
 
     def test_run(self):
-        args = SimpleNamespace(action='run')
-        main.start(args)
+        main.routine()
 
     def test_device_setup(self):
         args = SimpleNamespace(action='setup')
@@ -56,6 +55,26 @@ class Testing(unittest.TestCase):
 
     def test_sensors_state(self):
         args = SimpleNamespace(action='sensors')
+        main.start(args)
+
+    def test_fan1_state_control(self):
+        args = SimpleNamespace(action="fan1:off")
+        main.start(args)
+        args = SimpleNamespace(action="fan1:low")
+        main.start(args)
+        args = SimpleNamespace(action="fan1:medium")
+        main.start(args)
+        args = SimpleNamespace(action="fan1:high")
+        main.start(args)
+
+    def test_fan2_state_control(self):
+        args = SimpleNamespace(action="fan2:off")
+        main.start(args)
+        args = SimpleNamespace(action="fan2:low")
+        main.start(args)
+        args = SimpleNamespace(action="fan2:medium")
+        main.start(args)
+        args = SimpleNamespace(action="fan2:high")
         main.start(args)
 
     def test_led_state_control(self):

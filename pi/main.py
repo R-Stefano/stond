@@ -16,40 +16,36 @@ parser = argparse.ArgumentParser(description = 'Tests')
 parser.add_argument('action', type=str, help='The action to execute: sensors, led:on, hvac:off, hum:on', default="run", nargs='?')  
 args = parser.parse_args()
 
-def run():
+def routine():
   #socketMng.login()
-  while True:
-    timestamp = datetime.now()
+  # Update measurements
+  timestamp = datetime.now()
+  sensors.system.read_cpu()
+  sensors.water.read_ph()
+  sensors.water.read_ppm()
+  sensors.water.read_temperature()
+  sensors.water.read_level() # Output 1 if water touch the sensor
+  sensors.environment.readTempHumidity()
 
-    if ((timestamp.second % int(config.get('main', 'snapshotInterval'))) == 0):
-      print()
-      # Update measurements
-      timestamp = datetime.now()
-      sensors.system.read_cpu()
-      sensors.water.read_ph()
-      sensors.water.read_ppm()
-      sensors.water.read_temperature()
-      sensors.water.read_level() # Output 1 if water touch the sensor
-      sensors.environment.readTempHumidity()
-
-      # take a picture every hour
-      if (timestamp.minute == 0 and timestamp.second == 0):
-        sensors.system.take_picture()
-      
-      #Control
-      controller.ventilation.controlFanSpeed("top")
-      controller.led.controlLights()
-      controller.hvac.controlTemperature()
-      controller.humidifier.controlHumidity()
+  # take a picture every hour
+  if (timestamp.minute == 0 and timestamp.second == 0):
+    sensors.system.take_picture()
+  
+  #Control
+  controller.ventilation.controlFanSpeed("fan2")
+  controller.led.controlLights()
+  controller.hvac.controlTemperature()
+  controller.humidifier.controlHumidity()
 
 
-      dataMng.displayData()
-      #Save
-      if (timestamp.second == 0):
-        dataMng.sendData()
+  dataMng.displayData()
+  #Save
+  if (timestamp.second == 0):
+    dataMng.sendData()
 
-      #END SCRIPT
-      time.sleep(0.2)
+  #END SCRIPT
+  print()
+  time.sleep(0.2)
 
 def setupDevice():
   import statistics as stat
@@ -109,7 +105,12 @@ def setupDevice():
 
 def start(_args):
   if (_args.action == "run"):
-    run()
+    while True:
+      timestamp = datetime.now()
+
+      if ((timestamp.second % int(config.get('main', 'snapshotInterval'))) == 0):
+        routine()
+
   elif (_args.action == "setup"):
     setupDevice()
   elif (_args.action == "sensors"):
@@ -124,7 +125,15 @@ def start(_args):
     params = _args.action.split(":")
     actuator = params[0]
     state = params[1]
-    if (actuator == "led"):
+    if (actuator == "fan1" or actuator == "fan2"):
+      _valueMap = {
+        "off": 0,
+        "low": 33,
+        "medium": 66,
+        "high": 100 
+      }
+      controller.ventilation.setFanSpeed(actuator, _valueMap[state.lower()])
+    elif (actuator == "led"):
       controller.led.controlLights(state.upper())
     elif (actuator == "hum"):
       controller.humidifier.controlHumidity(state.upper())
