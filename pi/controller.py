@@ -201,21 +201,34 @@ class HumidityActuator():
             self.isWorking = False
 
     def controlHumidity(self, overrideAction = None):
-        logger.debug("[HUMIDIFIER] Try Update State")
+        logger.debug("[HUMIDIFIER] Start Control Routine")
+        currentHumidity = sensors.environment.temperature
+        _newStatus = self.status
 
         if (not self.isWorking):
             self.start()
 
-        currentHumidity = sensors.environment.temperature
-
         if currentHumidity < self.MIN_HUMIDITY: # Turn on the humidifier if box below min humidity
-            self.status = "ON"
-            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.HIGH)
+            _newStatus = "ON"
         elif currentHumidity > self.MAX_HUMIDITY: # Turn off the humidifier if box above max humidity
-            self.status = "OFF"
-            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
+            _newStatus = "OFF"
 
-        logger.debug("[HUMIDIFIER] New State {}".format(self.status))
+        if (overrideAction != None):
+            logger.debug("[HUMIDIFIER] Override Action {}".format(overrideAction))
+            _newStatus = overrideAction.upper()
+
+        if (self.status == _newStatus):
+            return
+
+        logger.debug("[HUMIDIFIER] Control Routing - Update State {} => {}".format(self.status, _newStatus))
+
+        if (_newStatus == "OFF"):
+            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
+        elif (_newStatus == "ON"):
+            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.HIGH)
+
+        self.status = _newStatus
+
 
 ventilation = FanActuator()
 led = LightsActuator()
