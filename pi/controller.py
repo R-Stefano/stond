@@ -1,7 +1,7 @@
 from datetime import datetime
 import LoggerManager
 import sensors
-from RPi import GPI0 as gpio # allo to call GPIO pins
+from RPi import GPIO as gpio # allo to call GPIO pins
 
 
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
