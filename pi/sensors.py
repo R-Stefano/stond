@@ -16,7 +16,7 @@ from adafruit_bme280 import basic as adafruit_bme280
 # CAMERA
 from picamera import PiCamera
 
-from RPi import GPI0 as gpio # allow to call GPIO pins
+from RPi import GPIO as gpio # allow to call GPIO pins
 
 import LoggerManager
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
