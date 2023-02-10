@@ -190,7 +190,9 @@ class HVACActuator():
 
     def start(self):
         try:
-            gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+            gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER HOT
+            gpio.setup(self.HVAC_START_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+
             self.isWorking = True
         except Exception as e:
             logger.info("[HVAC] not working")
@@ -203,16 +205,26 @@ class HVACActuator():
             self.start()
 
         currentTemp = sensors.environment.temperature
+        _newStatus = self.status
 
         if currentTemp < self.MIN_TEMP: # Turn on the heater if box below min temperature
-            self.status = "ON"
-            gpio.output(self.HVAC_START_GPIO_PIN, gpio.HIGH)
-            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.HIGH)
+            _newStatus = "ON"
         elif currentTemp > self.MAX_TEMP: # Turn off the heater if box above max temperature
-            self.status = "OFF"
+            _newStatus = "OFF"
+
+        if (overrideAction != None):
+            logger.debug("[HVAC] Override Action {}".format(overrideAction))
+            _newStatus = overrideAction.upper()
+
+        if (_newStatus == "OFF"):
             gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
             gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
+        elif (_newStatus == "ON"):
+            gpio.output(self.HVAC_START_GPIO_PIN, gpio.HIGH)
+            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.HIGH)
 
+        self.status = _newStatus
+    
         logger.debug("[HVAC] New State {}".format(self.status))
 
 class HumidityActuator():
@@ -233,6 +245,7 @@ class HumidityActuator():
         try:
             logger.info("[HUMIDIFIER] Start Initial Setup")
             gpio.setup(self.HUMIDIFIER_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HUMIDIFIER OFF
+            
             self.isWorking = True
         except Exception as e:
             logger.info("[HUMIDIFIER] not working")
