@@ -190,7 +190,9 @@ class HVACActuator():
 
     def start(self):
         try:
-            gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+            gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER HOT
+            gpio.setup(self.HVAC_START_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+
             self.isWorking = True
         except Exception as e:
             logger.info("[HVAC] not working")
@@ -243,6 +245,7 @@ class HumidityActuator():
         try:
             logger.info("[HUMIDIFIER] Start Initial Setup")
             gpio.setup(self.HUMIDIFIER_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HUMIDIFIER OFF
+            
             self.isWorking = True
         except Exception as e:
             logger.info("[HUMIDIFIER] not working")
