@@ -216,7 +216,7 @@ class HumidityActuator():
         self.MAX_HUMIDITY = 90
 
         #Public variables 
-        self.status = "OFF"
+        self.status = "ON"
         self.isWorking = False
 
         # Startup Humidifier
@@ -255,9 +255,9 @@ class HumidityActuator():
         logger.debug("[HUMIDIFIER] Control Routing - Update State {} => {}".format(self.status, _newStatus))
 
         if (_newStatus == "OFF"):
-            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
-        elif (_newStatus == "ON"):
             gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.HIGH)
+        elif (_newStatus == "ON"):
+            gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
 
         self.status = _newStatus
 
