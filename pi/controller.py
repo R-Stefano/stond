@@ -249,11 +249,6 @@ class HumidityActuator():
             logger.debug("[HUMIDIFIER] Override Action {}".format(overrideAction))
             _newStatus = overrideAction.upper()
 
-        if (self.status == _newStatus):
-            return
-
-        logger.debug("[HUMIDIFIER] Control Routing - Update State {} => {}".format(self.status, _newStatus))
-
         if (_newStatus == "OFF"):
             gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
         elif (_newStatus == "ON"):
