@@ -216,7 +216,7 @@ class HumidityActuator():
         self.MAX_HUMIDITY = 90
 
         #Public variables 
-        self.status = "OFF"
+        self.status = "ON"
         self.isWorking = False
 
         # Startup Humidifier
