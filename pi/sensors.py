@@ -16,7 +16,7 @@ from adafruit_bme280 import basic as adafruit_bme280
 # CAMERA
 from picamera import PiCamera
 
-from RPi import GPI0 as gpio # allow to call GPIO pins
+from RPi import GPIO as gpio # allow to call GPIO pins
 
 import LoggerManager
 gpio.setmode (gpio.BCM) # Use the Board Common pin numbers (GPIO)
@@ -182,7 +182,7 @@ class WaterSensor():
 
     def read_ph(self):
         self.get_raw_ph()
-        self.ph = abs(round(float(main.configs.get('ph_sensor', 'param1')) * self.raw_ph + float(main.configs.get('ph_sensor', 'param2')), 2))
+        self.ph = abs(round(float(main.config.get('ph_sensor', 'param1')) * self.raw_ph + float(main.config.get('ph_sensor', 'param2')), 2))
         return self.ph
 
     def read_ppm(self):
