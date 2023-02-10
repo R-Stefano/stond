@@ -171,8 +171,13 @@ class LightsActuator():
 
 class HVACActuator():
     def __init__(self):
+        '''
+        pin1 - set 0 => cold | 1 => hot
+        HVAC_START_GPIO_PIN - set 0 => OFF  | 1 => ON
+        '''
         # Internal Variables
         self.HEATER_RELAY_GPIO_PIN = 23
+        self.HVAC_START_GPIO_PIN = 24
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
 
@@ -201,9 +206,11 @@ class HVACActuator():
 
         if currentTemp < self.MIN_TEMP: # Turn on the heater if box below min temperature
             self.status = "ON"
+            gpio.output(self.HVAC_START_GPIO_PIN, gpio.HIGH)
             gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.HIGH)
         elif currentTemp > self.MAX_TEMP: # Turn off the heater if box above max temperature
             self.status = "OFF"
+            gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
             gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
 
         logger.debug("[HVAC] New State {}".format(self.status))
