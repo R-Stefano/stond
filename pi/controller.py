@@ -176,7 +176,7 @@ class HVACActuator():
         HVAC_START_GPIO_PIN - set 0 => OFF  | 1 => ON
         '''
         # Internal Variables
-        self.HEATER_RELAY_GPIO_PIN = 23
+        self.HVAC_MODE_GPIO_PIN = 23
         self.HVAC_START_GPIO_PIN = 24
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
@@ -190,7 +190,7 @@ class HVACActuator():
 
     def start(self):
         try:
-            gpio.setup(self.HEATER_RELAY_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER HOT
+            gpio.setup(self.HVAC_MODE_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER HOT
             gpio.setup(self.HVAC_START_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
 
             self.isWorking = True
@@ -218,10 +218,10 @@ class HVACActuator():
 
         if (_newStatus == "OFF"):
             gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
-            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.LOW)
+            gpio.output(self.HVAC_MODE_GPIO_PIN, gpio.LOW)
         elif (_newStatus == "ON"):
             gpio.output(self.HVAC_START_GPIO_PIN, gpio.HIGH)
-            gpio.output(self.HEATER_RELAY_GPIO_PIN, gpio.HIGH)
+            gpio.output(self.HVAC_MODE_GPIO_PIN, gpio.HIGH)
 
         self.status = _newStatus
     
