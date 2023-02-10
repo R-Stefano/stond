@@ -95,8 +95,6 @@ def setupDevice():
   #Calcuate ph coeff
   m = (4 - 7)/(ph4MeanValue - ph7MeanValue)
   b = - (m * ph7MeanValue) - 7
-  m = 3
-  b = 7
   config.set('ph_sensor', 'param1', str(m))
   config.set('ph_sensor', 'param2', str(b))
 
@@ -132,13 +130,17 @@ def start(_args):
         "medium": 66,
         "high": 100 
       }
-      controller.ventilation.setFanSpeed(actuator, _valueMap[state.lower()])
+      while True:
+        controller.ventilation.setFanSpeed(actuator, _valueMap[state.lower()])
     elif (actuator == "led"):
-      controller.led.controlLights(state.upper())
+      while True:
+        controller.led.controlLights(state.upper())
     elif (actuator == "hum"):
-      controller.humidifier.controlHumidity(state.upper())
+      while True:
+        controller.humidifier.controlHumidity(state.upper())
     elif (actuator == "hvac"):
-      controller.hvac.controlTemperature(state.upper())
+      while True:
+        controller.hvac.controlTemperature(state.upper())
 
 if __name__ == '__main__':
   try:
