@@ -100,7 +100,7 @@ class FanActuator():
         elif currentHum > self.MAX_HUM: # Set fan speed to MAXIMUM if the temperature is above MAX_TEMP
             self.setFanSpeed(fanName, 100)
         else: # Caculate dynamic fan speed
-            powerPerc = (currentHum - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
+            powerPerc = (currentHum - self.MIN_HUM)/(self.MAX_HUM - self.MIN_HUM) # get number between 0 and 1
             self.setFanSpeed(fanName, int(powerPerc * 100))
 
 class LightsActuator():
