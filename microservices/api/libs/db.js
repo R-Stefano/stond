@@ -29,11 +29,10 @@ db.sequelize = sequelize;
 
 /* STANDARD MODELS */
 db.device = require(dbModelsPath + "Device.js")(sequelize, Sequelize)
-db.sensor = require(dbModelsPath + "Sensor.js")(sequelize, Sequelize)
-db.sensorReading = require(dbModelsPath + "SensorReading.js")(sequelize, Sequelize)
-db.actuator = require(dbModelsPath + "Actuator.js")(sequelize, Sequelize)
+db.component = require(dbModelsPath + "Component.js")(sequelize, Sequelize)
+db.reading = require(dbModelsPath + "Reading.js")(sequelize, Sequelize)
 
-//db.device.belongsToMany(db.role, {as: 'roles', through: 'user_role', foreignKey: 'userID', otherKey: 'roleID'})
-db.sensor.hasMany(db.sensorReading, {as: 'readings', sourceKey: 'Id', targetKey: 'sensorId'})
-//db.permission.belongsTo(db.resource, {as: 'resource', sourceKey: 'resourceID', targetKey: 'ID'})
+db.device.hasMany(db.component, {as: 'components', sourceKey: 'id', targetKey: 'deviceId'})
+db.component.hasMany(db.reading, {as: 'readings', sourceKey: 'id', targetKey: 'componentId'})
+
 module.exports = db

@@ -21,9 +21,10 @@ class FanActuator():
         self.BACKUP_SPEED = 50 # In case can't read Temp - use this speed
 
         #Public variables 
-        self.isWorking = False
+        self.fan1_isWorking = False
         self.fan1_speed = 0
         self.fan1_status = "OFF"
+        self.fan2_isWorking = False
         self.fan2_speed = 0
         self.fan2_status = "OFF"
 
@@ -46,11 +47,13 @@ class FanActuator():
             self.fan1.start(0)
             self.fan2.start(0)
 
-            self.isWorking = True
+            self.fan1_isWorking = True
+            self.fan2_isWorking = True
         except Exception as e:
             logger.info("[FAN] Not working")
             logger.error(e)
-            self.isWorking = False
+            self.fan1_isWorking = False
+            self.fan2_isWorking = False
 
     def setFanSpeed(self, fanName, speed):
         '''
@@ -80,7 +83,7 @@ class FanActuator():
 
     def controlFanSpeed(self, fanName = "fan2", overrideAction = None):
         logger.debug("[{}] Start Control Routine".format(fanName.upper()))
-        if (not self.isWorking):
+        if (not self.fan1_isWorking or not self.fan2_isWorking):
             self.start()
 
         if (overrideAction != None):
@@ -153,6 +156,8 @@ class LightsActuator():
 
         if (self.status == _newStatus):
             return
+
+        logger.debug("[LED] STATE Changed {} => {}".format(self.status, _newStatus))
 
         if (_newStatus == "OFF"):
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
