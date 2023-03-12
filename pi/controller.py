@@ -46,9 +46,6 @@ class FanActuator():
             self.fan1.start(0)
             self.fan2.start(0)
 
-            self.setFanSpeed("fan1", 100)
-            self.setFanSpeed("fan2", 0)
-
             self.isWorking = True
         except Exception as e:
             logger.info("[FAN] Not working")
