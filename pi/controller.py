@@ -192,6 +192,7 @@ class HVACActuator():
         self.start()
 
     def start(self):
+        logger.info("[HVAC] Start Initial Setup")
         try:
             gpio.setup(self.HVAC_MODE_GPIO_PIN, gpio.OUT, initial=self._mode_to_signal[self.mode]) # set mode: 'cooler' or 'heater
             gpio.setup(self.HVAC_START_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HVAC OFF
@@ -210,7 +211,8 @@ class HVACActuator():
             return
         
         gpio.output(self.HVAC_MODE_GPIO_PIN, self._mode_to_signal[mode])
-        logger.debug("[HVAC] Mode Changed to {}".format(mode))
+        logger.debug("[HVAC] Mode Changed {} => {}".format(self.mode, mode))
+
         self.mode = mode
 
     def setStatus(self, status):
@@ -225,7 +227,7 @@ class HVACActuator():
         else:
             gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
 
-        logger.debug("[HVAC] Status Changed to {}".format(status))
+        logger.debug("[HVAC] State Changed {} => {}".format(self.status, status))
         self.status = status
 
     def controlTemperature(self, overrideAction = None):
@@ -259,8 +261,6 @@ class HVACActuator():
 
         if (_newStatus != self.status):
             self.setStatus(_newStatus)
-    
-        logger.debug("[HVAC] Mode {} Status {}".format(self.mode, self.status))
 
 class HumidityActuator():
     def __init__(self):
@@ -307,7 +307,7 @@ class HumidityActuator():
         if (self.status == _newStatus):
             return
 
-        logger.debug("[HUMIDIFIER] Control Routing - Update State {} => {}".format(self.status, _newStatus))
+        logger.debug("[HUMIDIFIER] State Changed {} => {}".format(self.status, _newStatus))
 
         if (_newStatus == "OFF"):
             gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.HIGH)
