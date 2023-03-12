@@ -46,9 +46,9 @@ class Testing(unittest.TestCase):
     def setUp(self):
         return
 
+    '''
     def test_run(self):
         main.routine()
-    '''
 
     def test_device_setup(self):
         args = SimpleNamespace(action='setup')
@@ -101,11 +101,11 @@ class Testing(unittest.TestCase):
     def test_hvac_cooler_state_on(self):
         args = SimpleNamespace(action="hvac:on:cooler")
         main.start(args)
+    '''
 
     def test_hvac_cooler_state_off(self):
         args = SimpleNamespace(action="hvac:off:cooler")
         main.start(args)
-    '''
 
     def tearDown(self):
         return

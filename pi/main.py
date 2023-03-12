@@ -133,15 +133,19 @@ def start(_args):
       }
       while True:
         controller.ventilation.setFanSpeed(actuator, _valueMap[state.lower()])
+        time.sleep(1)
     elif (actuator == "led"):
       while True:
         controller.led.controlLights(state.upper())
+        time.sleep(1)
     elif (actuator == "hum"):
       while True:
         controller.humidifier.controlHumidity(state.upper())
+        time.sleep(1)
     elif (actuator == "hvac"):
       while True:
         controller.hvac.controlTemperature("{}:{}".format(state, mode).upper())
+        time.sleep(1)
 
 if __name__ == '__main__':
   try:
