@@ -78,6 +78,7 @@ def displayActuatorsData():
       {'name': 'ventilation Top',    'value': controller.ventilation.fan2_speed,      'isWorking': controller.ventilation.isWorking},
       {'name': 'ventilation Bottom', 'value': controller.ventilation.fan1_speed,      'isWorking': controller.ventilation.isWorking},
       {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
+      {'name': 'HVAC',         'value': controller.hvac.status ,           'isWorking': controller.hvac.mode},
   ]
 
   print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))
@@ -99,6 +100,7 @@ def displayData():
       {'name': 'ventilation Top',    'value': controller.ventilation.fan2_speed,      'isWorking': controller.ventilation.isWorking},
       {'name': 'ventilation Bottom', 'value': controller.ventilation.fan1_speed,      'isWorking': controller.ventilation.isWorking},
       {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
+      {'name': 'HVAC',         'value': controller.hvac.status ,           'isWorking': controller.hvac.mode},
   ]
 
   print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))

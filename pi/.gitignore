@@ -1,2 +1,3 @@
 *.pyc
-*.log.*
+system.log
+system.*
