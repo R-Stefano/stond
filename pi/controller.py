@@ -16,8 +16,8 @@ class FanActuator():
         self.FAN2_ENABLER_PIN = 22 # GPIO22 (Physical PIN 15) - ON/OFF control for fan 2 
 
         self.PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
-        self.MIN_TEMP = 24
-        self.MAX_TEMP = 28
+        self.MIN_HUM = 50
+        self.MAX_HUM = 90
         self.BACKUP_SPEED = 50 # In case can't read Temp - use this speed
 
         #Public variables 
@@ -78,32 +78,29 @@ class FanActuator():
                 self.fan2_status = "ON"
                 gpio.output(self.FAN2_ENABLER_PIN, gpio.HIGH)
 
-        logger.debug("[FAN] Control Routine - Update {} speed to {}%".format(fanName, speed))
-
-
     def controlFanSpeed(self, fanName = "fan2", overrideAction = None):
-        logger.debug("[FAN] Start Control Routine")
+        logger.debug("[{}] Start Control Routine".format(fanName.upper()))
         if (not self.isWorking):
             self.start()
 
         if (overrideAction != None):
-            logger.debug("[FAN] Override Action {}".format(overrideAction))
+            logger.debug("[{}] Override Action {}".format(fanName.upper(), overrideAction))
             self.setFanSpeed(fanName, overrideAction)
             return
 
         # If anomaly with Temp Sensor - Set fixed speed
         if (not sensors.environment.temperatureHumiditySensorWorking):
-            logger.debug("[FAN] Temp Sensor not working. Setting emergency speed")
+            logger.debug("[{}] Temp Sensor not working. Setting emergency speed".format(fanName.upper()))
             self.setFanSpeed(fanName, self.BACKUP_SPEED)
             return
 
-        currentTemp = sensors.environment.temperature
-        if currentTemp < self.MIN_TEMP: # Set fan speed to MINIMUM if the temperature is below MIN_TEMP
+        currentHum = sensors.environment.humidity
+        if currentHum < self.MIN_HUM: # Set fan speed to MINIMUM if the temperature is below MIN_TEMP
             self.setFanSpeed(fanName, 0)
-        elif currentTemp > self.MAX_TEMP: # Set fan speed to MAXIMUM if the temperature is above MAX_TEMP
+        elif currentHum > self.MAX_HUM: # Set fan speed to MAXIMUM if the temperature is above MAX_TEMP
             self.setFanSpeed(fanName, 100)
         else: # Caculate dynamic fan speed
-            powerPerc = (currentTemp - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
+            powerPerc = (currentHum - self.MIN_TEMP)/(self.MAX_TEMP - self.MIN_TEMP) # get number between 0 and 1
             self.setFanSpeed(fanName, int(powerPerc * 100))
 
 class LightsActuator():
@@ -156,8 +153,6 @@ class LightsActuator():
 
         if (self.status == _newStatus):
             return
-
-        logger.debug("[LED] Control Routine - Update State {} => {}".format(self.status, _newStatus))
 
         if (_newStatus == "OFF"):
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)

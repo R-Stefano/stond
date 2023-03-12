@@ -32,6 +32,7 @@ def routine():
     sensors.system.take_picture()
   
   #Control
+  controller.ventilation.controlFanSpeed("fan1", 100)
   controller.ventilation.controlFanSpeed("fan2")
   controller.led.controlLights()
   controller.hvac.controlTemperature()
