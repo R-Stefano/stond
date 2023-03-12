@@ -26,30 +26,14 @@ router.post("/:id/snapshot", async (req, response, next) => {
     return
 })
 
-
-
-
-
 router.get("/:id/snapshot", async (req, response, next) => {
     const deviceId = req.params.id
     try {
-        const sensors = await service.device.getSensors(deviceId)
-        const actuators = await service.actuators.get(deviceId)
         const data = {
             deviceId: deviceId,
             sensors: {},
             actuators: {}
         }
-
-        sensors.map(sensor => data.sensors[sensor.name] = {
-            id: sensor.Id,
-            value: sensor.currentValue,
-            isWorking: sensor.isWorking
-        })
-        actuators.map(actuator => data.actuators[actuator.name] = {
-            status: actuator.status,
-            isWorking: actuator.isWorking
-        })
 
         response.status(200).json(data)
     } catch (e) {

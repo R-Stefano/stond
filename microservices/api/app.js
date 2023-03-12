@@ -41,13 +41,7 @@ app.use(function (req, res, next) {
 })
 
 
-const devices = require('./routes/devices')
-//const sensors = require('./routes/sensors')
-
-
-app.use('/api/devices', devices)
-//app.use('/api/sensors', sensors)
-
+app.use('/api/devices', require('./routes/devices'))
 
 const server = app.listen(port, function () {
   console.log(configs.sql)
