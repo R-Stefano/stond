@@ -121,8 +121,9 @@ def start(_args):
     dataMng.displaySensorData()
   else:
     params = _args.action.split(":")
-    actuator = params[0]
-    state = params[1]
+    actuator = params[0] # fan1, fan2, led, hum, hvac
+    state = params[1] # on or off
+    mode = params[2] # this currently only for hvac command. expected values: heater or cooler
     if (actuator == "fan1" or actuator == "fan2"):
       _valueMap = {
         "off": 0,
@@ -139,8 +140,9 @@ def start(_args):
       while True:
         controller.humidifier.controlHumidity(state.upper())
     elif (actuator == "hvac"):
+      controller.hvac.setMode(mode.upper())
       while True:
-        controller.hvac.controlTemperature(state.upper())
+        controller.hvac.setStatus(state.upper())
 
 if __name__ == '__main__':
   try:

@@ -18,12 +18,14 @@ TODO:
 - how to run only one test?
 
 ## testing - microcontroller
-- python3 main.py            - run the main routine
-- python3 main.py sensors    - snapshot of all sensors current state and readings
-- python3 main.py fan1:off   - manually turn FAN1 off. Fans available: fan1, fan2. Replace off with low,medium or high to control fan speed. 
-- python3 main.py led:on     - manually turn LED on. replace off with on to turn it off
-- python3 main.py hum:on     - manually turn Humidifier on. replace off with on to turn it off
-- python3 main.py hvac:on    - manually turn HVAC on. replace off with on to turn it off
+- python3 main.py                 - run the main routine
+- python3 main.py sensors         - snapshot of all sensors current state and readings
+- python3 main.py fan1:off        - manually turn FAN1 off. Fans available: fan1, fan2. Replace off with low,medium or high to control fan speed. 
+- python3 main.py led:on          - manually turn LED on. replace off with on to turn it off
+- python3 main.py hum:on          - manually turn Humidifier on. replace off with on to turn it off
+- python3 main.py hvac:on:heater    - manually turn HVAC heater mode on. replace off with on to turn it off
+- python3 main.py hvac:on:cooler    - manually turn HVAC cooler mode on. replace off with on to turn it off
+
 
 # DEPLOY - On new microcontroller
 1. ./setup.sh           - setup pins, install libraries

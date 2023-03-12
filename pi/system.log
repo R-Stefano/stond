@@ -1,12 +1,31 @@
-02/03/2023 01:57:44 PM [INFO] - [FAN] Start Initial Setup
-02/03/2023 01:57:44 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
-02/03/2023 01:57:44 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
-02/03/2023 01:57:44 PM [INFO] - [LED] Start Initial Setup
-02/03/2023 01:57:44 PM [INFO] - [HUMIDIFIER] Start Initial Setup
-02/03/2023 01:58:31 PM [INFO] - [FAN] Start Initial Setup
-02/03/2023 01:58:31 PM [DEBUG] - [FAN] Control Routine - Update fan1 speed to 100%
-02/03/2023 01:58:31 PM [DEBUG] - [FAN] Control Routine - Update fan2 speed to 0%
-02/03/2023 01:58:31 PM [INFO] - [LED] Start Initial Setup
-02/03/2023 01:58:31 PM [INFO] - [HUMIDIFIER] Start Initial Setup
-02/03/2023 01:58:31 PM [DEBUG] - [SYSTEM] Reading CPU
-02/03/2023 01:58:31 PM [DEBUG] - [EC] Reading PPM
+03/12/2023 11:38:59 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:38:59 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:38:59 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:39:12 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:39:12 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:39:12 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:39:12 AM [DEBUG] - [HVAC] Status Changed to ON
+03/12/2023 11:40:01 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:40:01 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:40:01 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:40:01 AM [DEBUG] - [HVAC] Status Changed to ON
+03/12/2023 11:40:13 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:40:13 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:40:13 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:40:26 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:40:26 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:40:26 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:40:26 AM [DEBUG] - [HVAC] Mode Changed to HEATER
+03/12/2023 11:40:30 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:40:30 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:40:30 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:40:30 AM [DEBUG] - [HVAC] Mode Changed to HEATER
+03/12/2023 11:40:46 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:40:46 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:40:46 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:40:46 AM [DEBUG] - [HVAC] Mode Changed to COOLER
+03/12/2023 11:40:56 AM [INFO] - [FAN] Start Initial Setup
+03/12/2023 11:40:56 AM [INFO] - [LED] Start Initial Setup
+03/12/2023 11:40:56 AM [INFO] - [HUMIDIFIER] Start Initial Setup
+03/12/2023 11:40:56 AM [DEBUG] - [HVAC] Mode Changed to COOLER
+03/12/2023 11:40:56 AM [DEBUG] - [HVAC] Status Changed to ON

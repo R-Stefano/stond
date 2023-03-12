@@ -10,9 +10,9 @@ logger = LoggerManager.logger
 class FanActuator():
     def __init__(self):
         # Internal Variables
-        self.FAN1_PIN = 13 # GPIO12 PWM0 (Physical PIN 32) - velocity control for fan BOTTOM
+        self.FAN1_PIN = 13 # GPIO13 PWM0 (Physical PIN 32) - velocity control for fan BOTTOM
         self.FAN1_ENABLER_PIN = 27 # GPIO27 (Physical PIN 13) - ON/OFF control for fan 1 
-        self.FAN2_PIN = 12 # GPIO13 PWM0 (Physical PIN 33) - velocity control for fan TOP
+        self.FAN2_PIN = 12 # GPIO12 PWM0 (Physical PIN 33) - velocity control for fan TOP
         self.FAN2_ENABLER_PIN = 22 # GPIO22 (Physical PIN 15) - ON/OFF control for fan 2 
 
         self.PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
@@ -173,12 +173,18 @@ class HVACActuator():
         HVAC_START_GPIO_PIN - set 0 => OFF  | 1 => ON
         '''
         # Internal Variables
-        self.HVAC_MODE_GPIO_PIN = 23
-        self.HVAC_START_GPIO_PIN = 24
+        self.HVAC_MODE_GPIO_PIN = 23 # GPIO23
+        self.HVAC_START_GPIO_PIN = 24 # GPIO24
         self.MIN_TEMP = 24
         self.MAX_TEMP = 28
 
+        self._mode_to_signal = {
+            'HEATER': gpio.LOW,
+            'COOLER': gpio.HIGH
+        }
+
         #Public variables 
+        self.mode = "HEATER" # heater or cooler # Start with HVAC heater mode
         self.status = "OFF"
         self.isWorking = False
 
@@ -187,8 +193,8 @@ class HVACActuator():
 
     def start(self):
         try:
-            gpio.setup(self.HVAC_MODE_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER HOT
-            gpio.setup(self.HVAC_START_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HEATER OFF
+            gpio.setup(self.HVAC_MODE_GPIO_PIN, gpio.OUT, initial=self._mode_to_signal[self.mode]) # set mode: 'cooler' or 'heater
+            gpio.setup(self.HVAC_START_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HVAC OFF
 
             self.isWorking = True
         except Exception as e:
@@ -196,22 +202,58 @@ class HVACActuator():
             logger.error(e)
             self.isWorking = False
 
+    def setMode(self, mode):
+        '''
+            set mode: 'cooler' or 'heater
+        '''
+        if (mode == self.mode):
+            return
+        
+        gpio.output(self.HVAC_MODE_GPIO_PIN, self._mode_to_signal[mode])
+        logger.debug("[HVAC] Mode Changed to {}".format(mode))
+        self.mode = mode
+
+    def setStatus(self, status):
+        '''
+            set status : 'ON' or 'OFF'
+        '''
+        if (status == self.status):
+            return
+        
+        if (status == "ON"):
+            gpio.output(self.HVAC_START_GPIO_PIN, gpio.HIGH)
+        else:
+            gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
+
+        logger.debug("[HVAC] Status Changed to {}".format(status))
+        self.status = status
+
     def controlTemperature(self, overrideAction = None):
+        '''
+        
+        '''
         logger.debug("[HVAC] Try Update State")
         if (not self.isWorking):
             self.start()
 
         currentTemp = sensors.environment.temperature
-        _newStatus = self.status
 
-        if currentTemp < self.MIN_TEMP: # Turn on the heater if box below min temperature
+        # Set HVAC on heater mode and turn it on
+        if currentTemp < self.MIN_TEMP:  # Turn on heater if box below min temperature
+            _newMode = "HEATER"
             _newStatus = "ON"
-        elif currentTemp > self.MAX_TEMP: # Turn off the heater if box above max temperature
-            _newStatus = "OFF"
+        elif currentTemp > self.MAX_TEMP: # Turn on cooler if box above max temperature
+            _newMode = "COOLER"
+            _newStatus = "ON"
+        else:
+            _newStatus = "OFF" # turn hvac off if box in temperature range
 
         if (overrideAction != None):
             logger.debug("[HVAC] Override Action {}".format(overrideAction))
             _newStatus = overrideAction.upper()
+
+        if (_newMode != self.mode):
+            self.setMode(_newMode)
 
         if (_newStatus == "OFF"):
             gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
