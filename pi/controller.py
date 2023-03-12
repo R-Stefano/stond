@@ -232,11 +232,13 @@ class HVACActuator():
         '''
         
         '''
-        logger.debug("[HVAC] Try Update State")
+        logger.debug("[HVAC] Start Control Routine")
         if (not self.isWorking):
             self.start()
 
         currentTemp = sensors.environment.temperature
+        _newMode = self.mode
+        _newStatus = self.status
 
         # Set HVAC on heater mode and turn it on
         if currentTemp < self.MIN_TEMP:  # Turn on heater if box below min temperature
@@ -250,21 +252,15 @@ class HVACActuator():
 
         if (overrideAction != None):
             logger.debug("[HVAC] Override Action {}".format(overrideAction))
-            _newStatus = overrideAction.upper()
+            [_newStatus, _newMode] = overrideAction.upper().split(":")
 
         if (_newMode != self.mode):
             self.setMode(_newMode)
 
-        if (_newStatus == "OFF"):
-            gpio.output(self.HVAC_START_GPIO_PIN, gpio.LOW)
-            gpio.output(self.HVAC_MODE_GPIO_PIN, gpio.LOW)
-        elif (_newStatus == "ON"):
-            gpio.output(self.HVAC_START_GPIO_PIN, gpio.HIGH)
-            gpio.output(self.HVAC_MODE_GPIO_PIN, gpio.HIGH)
-
-        self.status = _newStatus
+        if (_newStatus != self.status):
+            self.setStatus(_newStatus)
     
-        logger.debug("[HVAC] New State {}".format(self.status))
+        logger.debug("[HVAC] Mode {} Status {}".format(self.mode, self.status))
 
 class HumidityActuator():
     def __init__(self):

@@ -140,9 +140,8 @@ def start(_args):
       while True:
         controller.humidifier.controlHumidity(state.upper())
     elif (actuator == "hvac"):
-      controller.hvac.setMode(mode.upper())
       while True:
-        controller.hvac.setStatus(state.upper())
+        controller.hvac.controlTemperature("{}:{}".format(state, mode).upper())
 
 if __name__ == '__main__':
   try:
