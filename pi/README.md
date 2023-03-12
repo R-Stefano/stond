@@ -24,7 +24,7 @@ TODO:
 - python3 main.py led:on          - manually turn LED on. replace off with on to turn it off
 - python3 main.py hum:on          - manually turn Humidifier on. replace off with on to turn it off
 - python3 main.py hvac:on:heater    - manually turn HVAC heater mode on. replace off with on to turn it off
-- python3 main.py hvac:on:cooler    - manually turn HVAC cooler mode on. replace off with on to turn it off
+- `python3 main.py hvac:on:cooler`    - manually turn HVAC cooler mode on. replace off with on to turn it off
 
 
 # DEPLOY - On new microcontroller
