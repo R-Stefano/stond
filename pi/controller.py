@@ -10,9 +10,9 @@ logger = LoggerManager.logger
 class FanActuator():
     def __init__(self):
         # Internal Variables
-        self.FAN1_PIN = 12 # GPIO12 PWM0 (Physical PIN 32) - velocity control for fan BOTTOM
+        self.FAN1_PIN = 13 # GPIO12 PWM0 (Physical PIN 32) - velocity control for fan BOTTOM
         self.FAN1_ENABLER_PIN = 27 # GPIO27 (Physical PIN 13) - ON/OFF control for fan 1 
-        self.FAN2_PIN = 13 # GPIO13 PWM0 (Physical PIN 33) - velocity control for fan TOP
+        self.FAN2_PIN = 12 # GPIO13 PWM0 (Physical PIN 33) - velocity control for fan TOP
         self.FAN2_ENABLER_PIN = 22 # GPIO22 (Physical PIN 15) - ON/OFF control for fan 2 
 
         self.PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
