@@ -112,7 +112,7 @@ def setupDevice(debug=False):
   [response, exception] = api.registerDevice(deviceId)
 
   if (exception):
-      raise "Impossible to register device. More info in the log"
+      raise "Impossible to register device. More info in system.log"
   print("DEVICE SUBSCRIBED WITH ID\n\n")
   print(deviceId)
   print("\n\n")
@@ -122,7 +122,7 @@ def start(_args):
   if (_args.action == "run"):
     while True:
       timestamp = datetime.now()
-
+      print(config)
       if ((timestamp.second % int(config.get('main', 'snapshotInterval'))) == 0):
         routine()
 
