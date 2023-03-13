@@ -26,7 +26,7 @@ class System():
     def __init__(self):
         self.cpu_temperature = 0
         self.cpu = gpiozero.CPUTemperature()
-        self.cameraSnapshotsDirPath = os.path.join(os.getcwd(), 'snapshots')
+        self.cameraSnapshotsDirPath = os.path.join(os.getcwd(), 'snapshots/')
         self.cpuSensorWorking = True
 
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
