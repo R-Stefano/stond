@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080/',
-  deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5'
+  deviceId: 'e57a822a-9653-47fd-b921-d538f429a926'
 };
 
 /*

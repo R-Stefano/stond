@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Device } from './models';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,10 @@ export class ApiService {
     private _http: HttpClient,
   ) { }
 
-  getDeviceStatus() {
-    return this._http.get<any>(environment.apiUrl + `api/devices/${environment.deviceId}/status`)
+  getDevice(): Observable<Device> {
+    return this._http.get<any>(environment.apiUrl + `api/devices/${environment.deviceId}`).pipe(
+      map(device => new Device(device))
+    )
   }
 
   getSensor(sensorId: string) {

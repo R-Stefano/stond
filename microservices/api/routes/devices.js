@@ -26,16 +26,12 @@ router.post("/:id/snapshot", async (req, response, next) => {
     return
 })
 
-router.get("/:id/snapshot", async (req, response, next) => {
+router.get("/:id", async (req, response, next) => {
     const deviceId = req.params.id
     try {
-        const data = {
-            deviceId: deviceId,
-            sensors: {},
-            actuators: {}
-        }
 
-        response.status(200).json(data)
+        const device = await service.device.getById(deviceId)
+        response.status(200).json(device)
     } catch (e) {
         next(e)
     }
