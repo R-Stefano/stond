@@ -1,9 +1,10 @@
 
-import time, uuid
+import time, uuid, os
 from datetime import datetime
 from configparser import ConfigParser
 config = ConfigParser()
-config.read('config.ini')
+config.read(os.path.join(os.getcwd(), 'config.ini'))
+
 
 import sensors, controller, LoggerManager
 import socketManager as socketMng

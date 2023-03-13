@@ -35,7 +35,6 @@ class System():
 
         # Setup camera
         try:
-            print(self.cameraSnapshotsDirPath)
             # Create storage folder
             if (not os.path.exists(self.cameraSnapshotsDirPath)):
                 logger.debug("[CAMERA] snapshot folder does not exist - creating one")
@@ -43,7 +42,6 @@ class System():
                 
             self.camera = PiCamera()
             self.camera.resolution = (2592, 1944)
-
                 
             self.cameraWorking = True
         except Exception as e:

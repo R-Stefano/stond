@@ -93,7 +93,7 @@ def displayData(type = 'all'):
   elif (type == "actuators"):
     componentsToDisplay = [c for c in components if c['type'] == 'actuator']
 
-  print(type)
+  print()
   print('| {0:<20} | {1:<10} | {2:<10} | {3:<10} |'.format('name', 'isWorking', 'status', 'value'))
   print('-' * 63)
   for component in componentsToDisplay:
