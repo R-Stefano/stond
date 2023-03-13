@@ -109,7 +109,10 @@ def setupDevice(debug=False):
       config.write(f)
 
   # register device on server
-  api.registerDevice(deviceId)
+  [response, exception] = api.registerDevice(deviceId)
+
+  if (exception):
+      raise "Impossible to register device. More info in the log"
   print("DEVICE SUBSCRIBED WITH ID\n\n")
   print(deviceId)
   print("\n\n")
