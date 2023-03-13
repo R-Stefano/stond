@@ -28,7 +28,6 @@ const GCBucket = storage.bucket(configs.cloud.bucket_name);
 
 
 async function run() {
-    console.log(configs)
     await db.sequelize.sync({force: true})
 }
 
