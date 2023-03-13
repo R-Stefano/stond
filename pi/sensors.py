@@ -37,7 +37,7 @@ class System():
         try:
             print(self.cameraSnapshotsDirPath)
             # Create storage folder
-            if (not self.cameraSnapshotsDirPath):
+            if (not os.path.exists(self.cameraSnapshotsDirPath)):
                 logger.debug("[CAMERA] snapshot folder does not exist - creating one")
                 os.mkdir(self.cameraSnapshotsDirPath)
                 
