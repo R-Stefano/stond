@@ -20,7 +20,7 @@ export class Component {
     name:     string
     isWorking; boolean
     status:   string
-    value:    string | number | boolean
+    value:    any
     valueType: string
     updatedAt: Date
 
