@@ -123,7 +123,6 @@ def start(_args):
   if (_args.action == "run"):
     while True:
       logger.info(os.getcwd())
-      logger.info(os.cwd())
       logger.info(__file__)
       logger.info(os.path.dirname(__file__))
 
