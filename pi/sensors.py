@@ -35,6 +35,7 @@ class System():
 
         # Setup camera
         try:
+            print(self.cameraSnapshotsDirPath)
             # Create storage folder
             if (not self.cameraSnapshotsDirPath):
                 logger.debug("[CAMERA] snapshot folder does not exist - creating one")

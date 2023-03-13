@@ -122,7 +122,6 @@ def start(_args):
   if (_args.action == "run"):
     while True:
       timestamp = datetime.now()
-      print(config)
       if ((timestamp.second % int(config.get('main', 'snapshotInterval'))) == 0):
         routine()
 
