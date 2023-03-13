@@ -75,12 +75,12 @@ def uploadReadings():
     print(">> Upload {} readings".format(len(batch)))
 
     [response, exception] = main.api.uploadSnapshot(main.config.get('main', 'deviceId'), batch)
-    
+
     #if success remove readings from queue, if exception. Try again later
-    if (response):
+    if (response and response.status_code == 200):
       del readingsQueue[:batchSize]
 
-    if (exception):
+    if (exception or response.status_code != 200):
       break
 
     print("Readings queue left", len(readingsQueue))

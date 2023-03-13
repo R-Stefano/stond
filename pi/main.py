@@ -111,8 +111,8 @@ def setupDevice(debug=False):
 
   # register device on server
   [response, exception] = api.registerDevice(deviceId)
-
-  if (exception):
+  
+  if (exception or response.status_code != 200):
       raise "Impossible to register device. More info in system.log"
   print("DEVICE SUBSCRIBED WITH ID\n\n")
   print(deviceId)

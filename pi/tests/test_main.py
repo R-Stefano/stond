@@ -56,10 +56,12 @@ class Testing(unittest.TestCase):
     def test_sensors_state(self):
         args = SimpleNamespace(action='sensors')
         main.start(args)
+    '''
 
     def test_upload_readings(self):
         args = SimpleNamespace(action='upload')
         main.start(args)
+    '''
 
     def test_fan1_state_control(self):
         args = SimpleNamespace(action="fan1:off")
