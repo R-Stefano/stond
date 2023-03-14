@@ -1,4 +1,4 @@
-app/www/svg/*
+app/www/svg-extra/*
 node_modules/*
 app/node_modules/*
 app/android/*
