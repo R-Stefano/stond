@@ -33,7 +33,15 @@ div.card#strain div.image-wrapper {
     grid-column: 2;
 }
 
-// Buttons
+//camera
+div.section#camera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+// Actuators
 div.section#buttons div.card {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

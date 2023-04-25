@@ -33,95 +33,108 @@
         </div>
       </div>
     </div>
-  
-    <h3>Components</h3>
-    <div class="section" id="buttons" *ngIf="deviceStatus">
-      <div class="card">
-        <div class="component">
-          <span>Fan Top</span>
-          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}" (click)="onComponentButtonClick()"></ion-icon>
-          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
-        </div>
 
-        <div class="component">
-          <span>Fan Base</span>
-          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}" (click)="onComponentButtonClick()"></ion-icon>
-          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
-          <ion-ripple-effect></ion-ripple-effect>
-        </div>
-
-        <div class="component">
-          <span>LED</span>
-          <ion-icon name="light" [ngClass]="{'success': deviceStatus.actuators.LED.status == 'ON', 'error': deviceStatus.actuators.LED.status == 'OFF'}"></ion-icon>
-          <span class="status">{{deviceStatus.actuators.LED.status | uppercase}}</span>
-          <ion-ripple-effect></ion-ripple-effect>
-        </div>
-
-        <div class="component">
-          <span>Heater</span>
-          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}"></ion-icon>
-          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
-          <ion-ripple-effect></ion-ripple-effect>
-        </div>
-
-        <div class="component">
-          <span>Humidifier</span>
-          <ion-icon name="ventilation" [ngClass]="{'success': deviceStatus.actuators.ventilation.status == 'ON', 'error': deviceStatus.actuators.ventilation.status == 'OFF'}"></ion-icon>
-          <span class="status">{{deviceStatus.actuators.ventilation.status | uppercase}}</span>
-          <ion-ripple-effect></ion-ripple-effect>
-        </div>
-      </div>
+    <h3>Live</h3>
+    <div class="section" id="camera" *ngIf="device">
+      <img src="" alt="" *ngIf="device.getComponent('camera').isWorking">
+      <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('camera').isWorking"></ion-icon>
+      <span class="title" *ngIf="!device.getComponent('camera').isWorking">Camera Not Working</span>
     </div>
   
-    <div class="section">
-      <div class="card button line ion-activatable" (click)="onDetailsClick()">
-        <span>Details</span> <ion-icon name="navigate-next"></ion-icon>
-        <ion-ripple-effect></ion-ripple-effect>
+    <h3>Components</h3>
+    <div class="section" id="buttons" *ngIf="device">
+      <div class="card">
+        <div class="component">
+          <span>{{'LED' | titlecase}}</span>
+          <ion-icon name="light" [ngClass]="device.getComponent('led').valueScore"></ion-icon>
+          <span class="status">{{device.getComponent('led').status | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>{{'Humidifier' | titlecase}}</span>
+          <ion-icon name="humidifier" [ngClass]="device.getComponent('humidifier').valueScore"></ion-icon>
+          <span class="status">{{device.getComponent('humidifier').status | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>{{device.getComponent('hvac').value | titlecase}}</span>
+          <ion-icon name="heater" [ngClass]="device.getComponent('hvac').valueScore" *ngIf="device.getComponent('hvac').value == 'HEATER'"></ion-icon>
+          <ion-icon name="cooler" [ngClass]="device.getComponent('hvac').valueScore" *ngIf="device.getComponent('hvac').value == 'COOLER'"></ion-icon>
+
+          <span class="status">{{device.getComponent('hvac').status  | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>{{'fan top' | titlecase}}</span>
+          <ion-icon name="ventilation" [ngClass]="device.getComponent('fan_top').valueScore"></ion-icon>
+          <span class="status">{{device.getComponent('fan_top').status  | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
+
+        <div class="component">
+          <span>{{'fan bottom' | titlecase}}</span>
+          <ion-icon name="ventilation" [ngClass]="device.getComponent('fan_bottom').valueScore"></ion-icon>
+          <span class="status">{{device.getComponent('fan_bottom').status  | uppercase}}</span>
+          <ion-ripple-effect></ion-ripple-effect>
+        </div>
       </div>
     </div>
   
     <h3>Analytics</h3>
-    <div class="section" id="analytics" *ngIf="deviceStatus">
-      <div class="card button ion-activatable" (click)="onOpenSensorDetails(deviceStatus.sensors.env_temperature.id)">
+    <div class="section" id="analytics" *ngIf="device">
+      <div class="card button ion-activatable" (click)="onOpenSensorDetails(device.getComponent('env_temperature').id)">
         <ion-icon name="temperature"></ion-icon>
-        <ion-icon name="warning" class="not-working warning" *ngIf="!deviceStatus.sensors.env_temperature.isWorking"></ion-icon>
-        <span class="value" *ngIf="deviceStatus.sensors.env_temperature.isWorking" [ngClass]="{'success': deviceStatus.temperature_status == 'ok', 'warning': deviceStatus.temperature_status == 'warning', 'error': deviceStatus.temperature_status == 'error'}">{{deviceStatus.sensors.env_temperature.value | number:'1.1-1'}}° C</span>
+        <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('env_temperature').isWorking"></ion-icon>
+        <span class="value" *ngIf="device.getComponent('env_temperature').isWorking" [ngClass]="device.getComponent('env_temperature').valueScore">{{device.getComponent('env_temperature').value | number:'1.1-1'}}° C</span>
         <span class="title">Temperature</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
   
-      <div class="card button ion-activatable" (click)="onOpenSensorDetails(deviceStatus.sensors.water_ph.id)">
+      <div class="card button ion-activatable" (click)="onOpenSensorDetails(device.getComponent('water_ph').id)">
         <ion-icon name="ph"></ion-icon>
-        <ion-icon name="warning" class="not-working warning" *ngIf="!deviceStatus.sensors.water_ph.isWorking"></ion-icon>
-        <span class="value" *ngIf="deviceStatus.sensors.water_ph.isWorking" [ngClass]="{'success': deviceStatus.ph_status == 'ok', 'warning': deviceStatus.ph_status == 'warning', 'error': deviceStatus.ph_status == 'error'}">{{deviceStatus.sensors.water_ph.value | number:'1.1-1'}}</span>
+        <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('water_ph').isWorking"></ion-icon>
+        <span class="value" *ngIf="device.getComponent('water_ph').isWorking" [ngClass]="device.getComponent('water_ph').valueScore">{{device.getComponent('water_ph').value | number:'1.1-1'}}</span>
         <span class="title">pH</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
-  
-      <div class="card button ion-activatable" (click)="onOpenSensorDetails(deviceStatus.sensors.water_level.id)">
+
+      <div class="card button ion-activatable" (click)="onOpenSensorDetails(device.getComponent('water_level').id)">
         <ion-icon name="water-level"></ion-icon>
-        <ion-icon name="warning" class="not-working warning" *ngIf="!deviceStatus.sensors.water_level.isWorking"></ion-icon>
-        <span class="value success" *ngIf="deviceStatus.sensors.water_level.isWorking && deviceStatus.sensors.water_level.value == 1">OK</span>
-        <span class="value error"   *ngIf="deviceStatus.sensors.water_level.isWorking && deviceStatus.sensors.water_level.value == 0">LOW</span>
+        <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('water_level').isWorking"></ion-icon>
+        <span class="value success" *ngIf="device.getComponent('water_level').isWorking && device.getComponent('water_level').value == 1">OK</span>
+        <span class="value error"   *ngIf="device.getComponent('water_level').isWorking && device.getComponent('water_level').value == 0">LOW</span>
         <span class="title">Water Level</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
-  
-      <div class="card button ion-activatable" (click)="onOpenSensorDetails(deviceStatus.sensors.env_humidity.id)">
+
+      <div class="card button ion-activatable" (click)="onOpenSensorDetails(device.getComponent('env_humidity').id)">
         <ion-icon name="humidity"></ion-icon>
-        <ion-icon name="warning" class="not-working warning" *ngIf="!deviceStatus.sensors.env_humidity.isWorking"></ion-icon>
-        <span class="value" *ngIf="deviceStatus.sensors.env_humidity.isWorking" [ngClass]="{'success': deviceStatus.humidity_status == 'ok', 'warning': deviceStatus.humidity_status == 'warning', 'error': deviceStatus.humidity_status == 'error'}">{{deviceStatus.sensors.env_humidity.value | number:'1.1-1'}} %</span>
+        <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('env_humidity').isWorking"></ion-icon>
+        <span class="value" *ngIf="device.getComponent('env_humidity').isWorking" [ngClass]="device.getComponent('env_humidity').valueScore">{{device.getComponent('env_humidity').value | number:'1.1-1'}} %</span>
         <span class="title">Humidity</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
-  
-      <div class="card button ion-activatable" (click)="onOpenSensorDetails(deviceStatus.sensors.water_temperature.id)">
+
+      <div class="card button ion-activatable" (click)="onOpenSensorDetails(device.getComponent('water_temperature').id)">
         <ion-icon name="water-temperature"></ion-icon>
-        <ion-icon name="warning" class="not-working warning" *ngIf="!deviceStatus.sensors.water_temperature.isWorking"></ion-icon>
-        <span class="value" *ngIf="deviceStatus.sensors.water_temperature.isWorking" [ngClass]="{'success': deviceStatus.water_temp_status == 'ok', 'warning': deviceStatus.water_temp_status == 'warning', 'error': deviceStatus.water_temp_status == 'error'}">{{deviceStatus.sensors.water_temperature.value | number:'1.1-1'}}° C</span>
+        <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('water_temperature').isWorking"></ion-icon>
+        <span class="value" *ngIf="device.getComponent('water_temperature').isWorking" [ngClass]="device.getComponent('water_temperature').valueScore">{{device.getComponent('water_temperature').value | number:'1.1-1'}}° C</span>
         <span class="title">Water Temp</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
+
+      <div class="card button ion-activatable" (click)="onOpenSensorDetails(device.getComponent('cpu_temperature').id)">
+        <ion-icon name="cpu"></ion-icon>
+        <ion-icon name="warning" class="not-working warning" *ngIf="!device.getComponent('cpu_temperature').isWorking"></ion-icon>
+        <span class="value" *ngIf="device.getComponent('cpu_temperature').isWorking" [ngClass]="device.getComponent('cpu_temperature').valueScore">{{device.getComponent('cpu_temperature').value | number:'1.1-1'}}° C</span>
+        <span class="title">CPU Temp</span>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
+
+      <!--
   
       <div class="card button ion-activatable">
         <ion-icon name="nutrients"></ion-icon>
@@ -129,9 +142,17 @@
         <span class="title">Nutrients</span>
         <ion-ripple-effect></ion-ripple-effect>
       </div>
+      -->
 
       <div id="timestamp-wrapper">
-        Refreshed At: {{refreshedAt | date:'MMM d, HH:mm:ss'}}
+        Updated At: {{device.lastSnapshotReceivedAt | date:'MMM d, HH:mm:ss'}}
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="card button line ion-activatable" (click)="onDetailsClick()">
+        <span>Details</span> <ion-icon name="navigate-next"></ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
       </div>
     </div>
   </div>

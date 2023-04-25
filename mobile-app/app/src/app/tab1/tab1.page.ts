@@ -1,96 +1,9 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../core/api.service';
+import { Device } from '../core/models';
 import { SocketService } from '../core/socket.service';
-
-export class DeviceStatus {
-  sensors: {
-    env_temperature: {
-      id: string,
-      isWorking: boolean,
-      value: number
-    },
-    env_humidity: {
-      id: string,
-      isWorking: boolean,
-      value: number
-    },
-    water_ph: {
-      id: string,
-      isWorking: boolean,
-      value: number
-    },
-    water_level: {
-      id: string,
-      isWorking: boolean,
-      value: number
-    },
-    water_temperature: {
-      id: string,
-      isWorking: boolean,
-      value: number
-    }
-  }
-  actuators: {
-    ventilation: {
-      isWorking: boolean,
-      status: string
-    },
-    LED: {
-      isWorking: boolean,
-      status: string
-    }
-  }
-  constructor(data) {
-    Object.assign(this, data);
-  }
-
-  get temperature_status(): string {
-    if (this.sensors.env_temperature.value > 23 && this.sensors.env_temperature.value < 26) {
-      return 'ok'
-    }
-    else if (this.sensors.env_temperature.value > 20 && this.sensors.env_temperature.value < 29) {
-      return 'warning'
-    } else {
-      return 'error'
-    }
-  }
-
-  get ph_status(): string {
-    if (this.sensors.water_ph.value > 5.5 && this.sensors.water_ph.value < 6.5) {
-      return 'ok'
-    }
-    else if (this.sensors.water_ph.value > 4.5 && this.sensors.water_ph.value < 7.5) {
-      return 'warning'
-    } else {
-      return 'error'
-    }
-  }
-
-  get humidity_status(): string {
-    if (this.sensors.env_humidity.value > 40 && this.sensors.env_humidity.value < 60) {
-      return 'ok'
-    }
-    else if (this.sensors.env_humidity.value > 30 && this.sensors.env_humidity.value < 70) {
-      return 'warning'
-    } else {
-      return 'error'
-    }
-  }
-
-  get water_temp_status(): string {
-    if (this.sensors.water_temperature.value < 20) {
-      return 'ok'
-    }
-    else if (this.sensors.water_temperature.value < 24) {
-      return 'warning'
-    } else {
-      return 'error'
-    }
-  }
-}
 
 @Component({
   selector: 'app-tab1',
@@ -102,9 +15,8 @@ export class Tab1Page {
   public displayPageHeaderInToolbar: boolean = false;
   
   private _subscriptions = [];
-  public deviceStatus: DeviceStatus;
+  public device: Device;
   public currentSeasonID: number = 1
-  public refreshedAt: Date;
 
   public strain = {
     refImage: 'https://images.hytiva.com/Black-Widow.jpg?mw420-mh420',
@@ -158,9 +70,9 @@ export class Tab1Page {
   }
 
   onRefresh() {
-    this._api.getDeviceStatus().subscribe((deviceStatus: DeviceStatus) => {
-      this.deviceStatus = new DeviceStatus(deviceStatus)
-      this.refreshedAt = moment().utc().toDate()
+    this._api.getDevice().subscribe((device: Device) => {
+      console.log(device)
+      this.device = device
     })
   }
 

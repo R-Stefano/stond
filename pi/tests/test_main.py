@@ -45,19 +45,24 @@ class Testing(unittest.TestCase):
 
     def setUp(self):
         return
-
     '''
     def test_run(self):
         main.routine()
 
     def test_device_setup(self):
-        args = SimpleNamespace(action='setup')
+        args = SimpleNamespace(action='setup:debug')
         main.start(args)
-    '''
+
     def test_sensors_state(self):
         args = SimpleNamespace(action='sensors')
         main.start(args)
     '''
+
+    def test_upload_readings(self):
+        args = SimpleNamespace(action='upload')
+        main.start(args)
+    '''
+
     def test_fan1_state_control(self):
         args = SimpleNamespace(action="fan1:off")
         main.start(args)
@@ -90,12 +95,23 @@ class Testing(unittest.TestCase):
         args = SimpleNamespace(action="hum:off")
         main.start(args)
 
-    def test_hvac_state_control(self):
-        args = SimpleNamespace(action="hvac:on")
+    def test_hvac_heater_state_on(self):
+        args = SimpleNamespace(action="hvac:on:heater")
         main.start(args)
-        args = SimpleNamespace(action="hvac:off")
+
+    def test_hvac_heater_state_on(self):
+        args = SimpleNamespace(action="hvac:off:heater")
+        main.start(args)
+
+    def test_hvac_cooler_state_on(self):
+        args = SimpleNamespace(action="hvac:on:cooler")
+        main.start(args)
+
+    def test_hvac_cooler_state_off(self):
+        args = SimpleNamespace(action="hvac:off:cooler")
         main.start(args)
     '''
+
     def tearDown(self):
         return
 if __name__ == '__main__':

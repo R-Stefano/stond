@@ -2,28 +2,12 @@ const express = require('express');
 const router = express.Router();
 const service = require('../services/main')
 
-router.get("/:Id/status", async (req, response, next) => {
-    const deviceId = req.params.Id
+router.post("/", async (req, response, next) => {
+    const deviceId = req.body.id
+
     try {
-        const sensors = await service.device.getSensors(deviceId)
-        const actuators = await service.actuators.get(deviceId)
-        const data = {
-            deviceId: deviceId,
-            sensors: {},
-            actuators: {}
-        }
-
-        sensors.map(sensor => data.sensors[sensor.name] = {
-            id: sensor.Id,
-            value: sensor.currentValue,
-            isWorking: sensor.isWorking
-        })
-        actuators.map(actuator => data.actuators[actuator.name] = {
-            status: actuator.status,
-            isWorking: actuator.isWorking
-        })
-
-        response.status(200).json(data)
+        const device = await service.device.create(deviceId)
+        response.status(200).json(device)
     } catch (e) {
         next(e)
     }
@@ -31,12 +15,9 @@ router.get("/:Id/status", async (req, response, next) => {
     return
 })
 
-router.put("/:Id/status", async (req, response, next) => {
-    const deviceId = req.params.Id
-
+router.post("/:id/snapshot", async (req, response, next) => {
     try {
-        await service.sensors.update(deviceId, req.body.sensors)
-        await service.actuators.update(deviceId, req.body.actuators)
+        await service.device.uploadSnapshot(req.params.id, req.body)
         response.status(200).json("ok")
     } catch (e) {
         next(e)
@@ -45,12 +26,12 @@ router.put("/:Id/status", async (req, response, next) => {
     return
 })
 
-router.post("/:Id/snapshot", async (req, response, next) => {
-    const deviceId = req.params.Id
-
+router.get("/:id", async (req, response, next) => {
+    const deviceId = req.params.id
     try {
-        await service.device.uploadSnapshot(deviceId, req.body)
-        response.status(200).json("ok")
+
+        const device = await service.device.getById(deviceId)
+        response.status(200).json(device)
     } catch (e) {
         next(e)
     }

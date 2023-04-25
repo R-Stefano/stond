@@ -1,8 +1,23 @@
 import sensors, requests, controller, LoggerManager, base64, os
 from datetime import datetime
 logger = LoggerManager.logger
-buffer = [] # Stores all the requests to send to the server - upcoming or failed for later retry
+readingsQueue = [] # Stores all the requests to send to the server - upcoming or failed for later retry
 import main
+
+components = [
+  {"type": 'actuator', "name": 'led',                 "actuatorKey": "led",         "isWorkingKey": "isWorking",                      "statusKey": "status",                           "valueKey": "status"},
+  {"type": 'actuator', "name": 'humidifier',          "actuatorKey": "humidifier",  "isWorkingKey": "isWorking",                      "statusKey": "status",                           "valueKey": "status"},
+  {"type": 'actuator', "name": 'hvac',                "actuatorKey": "hvac",        "isWorkingKey": "isWorking",                      "statusKey": "status",                           "valueKey": "mode"},
+  {"type": 'actuator', "name": 'fan_bottom',          "actuatorKey": "ventilation", "isWorkingKey": "fan1_isWorking",                 "statusKey": "fan1_status",                      "valueKey": "fan1_speed"},
+  {"type": 'actuator', "name": 'fan_top',             "actuatorKey": "ventilation", "isWorkingKey": "fan2_isWorking",                 "statusKey": "fan2_status",                      "valueKey": "fan2_speed"},
+  {"type": 'sensor',   "name": 'cpu_temperature',     "sensorKey": "system",      "isWorkingKey": "cpuSensorWorking",                 "statusKey": "cpuSensorWorking",                 "valueKey": "cpu_temperature"},
+  {"type": 'sensor',   "name": 'camera',              "sensorKey": "system",      "isWorkingKey": "cameraWorking",                    "statusKey": "cameraWorking",                    "valueKey": "cameraWorking"},
+  {"type": 'sensor',   "name": 'env_temperature',     "sensorKey": "environment", "isWorkingKey": "temperatureHumiditySensorWorking", "statusKey": "temperatureHumiditySensorWorking", "valueKey": "temperature"},
+  {"type": 'sensor',   "name": 'env_humidity',        "sensorKey": "environment", "isWorkingKey": "temperatureHumiditySensorWorking", "statusKey": "temperatureHumiditySensorWorking", "valueKey": "humidity"},
+  {"type": 'sensor',   "name": 'water_temperature',   "sensorKey": "water",       "isWorkingKey": "temperatureSensorWorking",         "statusKey": "temperatureSensorWorking",         "valueKey": "temperature"},
+  {"type": 'sensor',   "name": 'water_level',         "sensorKey": "water",       "isWorkingKey": "levelSensorWorking",               "statusKey": "levelSensorWorking",               "valueKey": "level"},
+  {"type": 'sensor',   "name": 'water_ph',            "sensorKey": "water",       "isWorkingKey": "phSensorWorking",                  "statusKey": "phSensorWorking",                  "valueKey": "ph"},
+]
 
 class SensorObject():
   def __init__(self, name):
@@ -10,102 +25,93 @@ class SensorObject():
     self.value = None
     self.isWorking = False
 
+def readComponents():
+  '''
+    Add data to queue of readings to push to the server
+  '''
+  for component in components:
+    body = {
+      "componentName": component['name'],  
+      "timestamp": datetime.utcnow().isoformat(),
+      "isWorking": None,
+      "status": None,
+      "value": None,
+    }
 
-def sendData():
-  data = {
-    'deviceId': main.config.get('main', 'deviceId'),
-    'sensors': [
-      {'name': 'water_temperature', 'timestamp': datetime.utcnow().isoformat(), 'value': sensors.water.temperature,       'isWorking': sensors.water.temperatureSensorWorking},
-      {'name': 'water_level',       'timestamp': datetime.utcnow().isoformat(), 'value': sensors.water.level,             'isWorking': sensors.water.levelSensorWorking},
-      {'name': 'water_ph',          'timestamp': datetime.utcnow().isoformat(), 'value': sensors.water.ph,                'isWorking': sensors.water.phSensorWorking},
-      {'name': 'env_temperature',   'timestamp': datetime.utcnow().isoformat(), 'value': sensors.environment.temperature, 'isWorking': sensors.environment.temperatureHumiditySensorWorking},
-      {'name': 'env_humidity',      'timestamp': datetime.utcnow().isoformat(), 'value': sensors.environment.humidity,    'isWorking': sensors.environment.temperatureHumiditySensorWorking}
-    ],
-    'actuators': [
-      {'name': 'ventilation', 'status': controller.ventilation.fan2_status, 'isWorking': controller.ventilation.isWorking},
-      {'name': 'LED',         'status': controller.led.status, 'isWorking': controller.led.isWorking},
-    ]
-  }
-  buffer.append(data)
+    if (component['type'] == "sensor"):
+      sensorObject = getattr(sensors, component['sensorKey'])
+      body["isWorking"] = getattr(sensorObject, component['isWorkingKey'])
+      body["status"] = "ON" if getattr(sensorObject, component['statusKey']) == 1 else "OFF"
+      body["value"] = getattr(sensorObject, component['valueKey'])
+    elif (component['type'] == "actuator"):
+      actuatorObject = getattr(controller, component['actuatorKey'])
+      body["isWorking"] = getattr(actuatorObject, component['isWorkingKey'])
+      body["status"] = getattr(actuatorObject, component['statusKey'])
+      body["value"] = getattr(actuatorObject, component['valueKey'])
 
-  requestsCounter = 0
-  while (requestsCounter < 5 and len(buffer) > 0):
-    data = buffer.pop()
-    try:
-      requests.put(main.config.get('main', 'apiUrl') + "/api/devices/" + main.config.get('main', 'deviceId') + "/status", json = data)
-    except Exception as e:
-      logger.info("Impossible processing request")
-      logger.error(e)
-      buffer.append(data)
-    requestsCounter += 1
+    #process camera seperatly
+    if component['name'] == "camera":
+      imageFiles = os.listdir(sensors.system.cameraSnapshotsDirPath)
+      if (len(imageFiles) == 0):
+        continue # don't send camera reading if no image to upload
 
-  imageFiles = os.listdir(sensors.system.cameraSnapshotsDirPath)
-  if (len(imageFiles) > 0):
-    # check if file in snapshots folder - if so, upload
-    with open(os.path.join(sensors.system.cameraSnapshotsDirPath, imageFiles[0]), "rb") as image_file:
-      data = base64.b64encode(image_file.read())
-      timestamp = imageFiles[0].split(".")[0]
-      print(imageFiles[0], timestamp)      
-      response = requests.post(main.config.get('main', 'apiUrl') + "/api/devices/" + main.config.get('main', 'deviceId') + "/snapshot", json = {
-        "timestamp": timestamp,
-        "isWorking": sensors.system.cameraWorking,
-        "base64": data
-      })
-      if (response.status_code != 200):
-        logger.error("Impossible processing request. Error {} | {}".format(response.status_code, response.text))
-      else:
-        #  delete file if success
-        os.remove(os.path.join(sensors.system.cameraSnapshotsDirPath, imageFiles[0]))
+      with open(os.path.join(sensors.system.cameraSnapshotsDirPath, imageFiles[0]), "rb") as image_file:
+        body["value"] = base64.b64encode(image_file.read()) #load base64 image
+        body["timestamp"] = imageFiles[0].split(".")[0]
 
-def displaySensorData():
-  sensorsData = [
-      {'name': 'cpu_temperature', 'value': sensors.system.cpu_temperature, 'isWorking': 1},
-      {'name': 'water_temperature', 'value': sensors.water.temperature, 'isWorking': sensors.water.temperatureSensorWorking},
-      {'name': 'water_level', 'value': sensors.water.level, 'isWorking': sensors.water.levelSensorWorking},
-      {'name': 'water_ph', 'value': sensors.water.ph, 'isWorking': sensors.water.phSensorWorking},
-      {'name': 'env_temperature', 'value': sensors.environment.temperature, 'isWorking': sensors.environment.temperatureHumiditySensorWorking},
-      {'name': 'env_humidity', 'value': sensors.environment.humidity, 'isWorking': sensors.environment.temperatureHumiditySensorWorking}
-  ]
+      #  delete file once processed
+      os.remove(os.path.join(sensors.system.cameraSnapshotsDirPath, imageFiles[0]))
 
-  print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))
-  print('-' * 50)
+    readingsQueue.append(body)
 
-  for sensor in sensorsData:
-    print('| {0:<20} | {1:<10} | {2:<10} |'.format(sensor['name'], sensor['isWorking'], sensor['value']))
+def uploadReadings():
+  '''
+  push readings to the server
+  '''
+  print("Readings to upload", len(readingsQueue))
+  batchSize = 20
+  while len(readingsQueue) > 0:
+    batch = readingsQueue[:batchSize]
+    print(">> Upload {} readings".format(len(batch)))
 
-def displayActuatorsData():
-  actuatorsData = [
-      {'name': 'ventilation Top',    'value': controller.ventilation.fan2_speed,      'isWorking': controller.ventilation.isWorking},
-      {'name': 'ventilation Bottom', 'value': controller.ventilation.fan1_speed,      'isWorking': controller.ventilation.isWorking},
-      {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
-  ]
+    [response, exception] = main.api.uploadSnapshot(main.config.get('main', 'deviceId'), batch)
 
-  print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))
-  print('-' * 50)
-  for actuator in actuatorsData:
-    print('| {0:<20} | {1:<10} | {2:<10} |'.format(actuator['name'], actuator['isWorking'], actuator['value']))
+    #if success remove readings from queue, if exception. Try again later
+    if (response and response.status_code == 200):
+      del readingsQueue[:batchSize]
 
-def displayData():
-  sensorsData = [
-      {'name': 'cpu_temperature', 'value': sensors.system.cpu_temperature, 'isWorking': 1},
-      {'name': 'water_temperature', 'value': sensors.water.temperature, 'isWorking': sensors.water.temperatureSensorWorking},
-      {'name': 'water_level', 'value': sensors.water.level, 'isWorking': sensors.water.levelSensorWorking},
-      {'name': 'water_ph', 'value': sensors.water.ph, 'isWorking': sensors.water.phSensorWorking},
-      {'name': 'env_temperature', 'value': sensors.environment.temperature, 'isWorking': sensors.environment.temperatureHumiditySensorWorking},
-      {'name': 'env_humidity', 'value': sensors.environment.humidity, 'isWorking': sensors.environment.temperatureHumiditySensorWorking}
-  ]
+    if (exception or response.status_code != 200):
+      break
 
-  actuatorsData = [
-      {'name': 'ventilation Top',    'value': controller.ventilation.fan2_speed,      'isWorking': controller.ventilation.isWorking},
-      {'name': 'ventilation Bottom', 'value': controller.ventilation.fan1_speed,      'isWorking': controller.ventilation.isWorking},
-      {'name': 'LED',         'value': controller.led.status,             'isWorking': controller.led.isWorking},
-  ]
+    print("Readings queue left", len(readingsQueue))
 
-  print('| {0:<20} | {1:<10} | {2:<10} |'.format('name', 'status', 'value'))
-  print('-' * 50)
 
-  for sensor in sensorsData:
-    print('| {0:<20} | {1:<10} | {2:<10} |'.format(sensor['name'], sensor['isWorking'], sensor['value']))
+def displayData(type = 'all'):
+  componentsToDisplay = components
+  if (type == "sensors"):
+    componentsToDisplay = [c for c in components if c['type'] == 'sensor']
+  elif (type == "actuators"):
+    componentsToDisplay = [c for c in components if c['type'] == 'actuator']
 
-  for actuator in actuatorsData:
-    print('| {0:<20} | {1:<10} | {2:<10} |'.format(actuator['name'], actuator['isWorking'], actuator['value']))
+  print()
+  print('| {0:<20} | {1:<10} | {2:<10} | {3:<10} |'.format('name', 'isWorking', 'status', 'value'))
+  print('-' * 63)
+  for component in componentsToDisplay:
+    if (component['type'] == "sensor"):
+      sensorObject = getattr(sensors, component['sensorKey'])
+      print('| {0:<20} | {1:<10} | {2:<10} | {3:<10} |'.format(
+        component['name'], 
+        getattr(sensorObject, component['isWorkingKey']), 
+        "ON" if getattr(sensorObject, component['statusKey']) == 1 else "OFF", 
+        getattr(sensorObject, component['valueKey'])
+      ))
+    elif (component['type'] == "actuator"):
+      sensorObject = getattr(controller, component['actuatorKey'])
+      print('| {0:<20} | {1:<10} | {2:<10} | {3:<10} |'.format(
+        component['name'], 
+        getattr(sensorObject, component['isWorkingKey']), 
+        getattr(sensorObject, component['statusKey']), 
+        getattr(sensorObject, component['valueKey'])
+      ))
+
+

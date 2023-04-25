@@ -26,7 +26,8 @@ class System():
     def __init__(self):
         self.cpu_temperature = 0
         self.cpu = gpiozero.CPUTemperature()
-        self.cameraSnapshotsDirPath = os.path.join(os.getcwd(), 'snapshots')
+        self.cameraSnapshotsDirPath = os.path.join(os.path.dirname(__file__), 'snapshots/')
+        self.cpuSensorWorking = True
 
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
@@ -35,13 +36,12 @@ class System():
         # Setup camera
         try:
             # Create storage folder
-            if (not self.cameraSnapshotsDirPath):
+            if (not os.path.exists(self.cameraSnapshotsDirPath)):
                 logger.debug("[CAMERA] snapshot folder does not exist - creating one")
                 os.mkdir(self.cameraSnapshotsDirPath)
                 
             self.camera = PiCamera()
             self.camera.resolution = (2592, 1944)
-
                 
             self.cameraWorking = True
         except Exception as e:

@@ -28,27 +28,7 @@ const GCBucket = storage.bucket(configs.cloud.bucket_name);
 
 
 async function run() {
-    await db.sequelize.sync({alter: true})
-
-    console.log("DONE!")
-
-    const sensors = [
-        {name: 'env_temperature',   deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', currentValue: null, isWorking: 1},
-        {name: 'env_humidity',      deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', currentValue: null, isWorking: 1},
-        {name: 'water_temperature', deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', currentValue: null, isWorking: 1},
-        {name: 'water_level',       deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', currentValue: null, isWorking: 1},
-        {name: 'water_ph',          deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', currentValue: null, isWorking: 1},
-    ]
-
-    await Promise.all(sensors.map(sensor => db.sensor.findOrCreate({where: {name: sensor.name, deviceId: sensor.deviceId}, defaults: {name: sensor.name, deviceId: sensor.deviceId, currentValue: null, isWorking: sensor.isWorking}})))
-
-    const actuators = [
-        {name: 'ventilation',          deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', status: 'OFF', isWorking: 1, statusChangedAt: new Date()},
-        {name: 'LED',                  deviceId: 'e0db0991-5c15-4a98-bd05-7ed14cefbca5', status: 'OFF', isWorking: 1, statusChangedAt: new Date()},
-
-    ]
-    await Promise.all(actuators.map(actuator => db.actuator.findOrCreate({where: {name: actuator.name, deviceId: actuator.deviceId}, defaults: {name: actuator.name, deviceId: actuator.deviceId, status: null, isWorking: actuator.isWorking, statusChangedAt: actuator.statusChangedAt}})))
-
+    await db.sequelize.sync({force: true})
 }
 
 run()

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/api.service';
-import { Sensor, SensorReading } from 'src/app/core/models';
+import { SensorReading } from 'src/app/core/models';
 import * as moment from 'moment';
 import 'chartjs-adapter-moment'
 import { Chart, BarController, LineController, BarElement, LineElement, PointElement,CategoryScale, LinearScale, TimeScale, ChartConfiguration} from 'chart.js';
@@ -22,7 +22,7 @@ export class SensorComponent implements OnInit {
   lineChartObj: any;
 
   public scaleSelected = '1H'
-  public sensor: Sensor;
+  //public sensor: Sensor;
   public sensorName: string = ""
   public currentDataPoint;
 
@@ -115,7 +115,7 @@ export class SensorComponent implements OnInit {
 
   ngOnInit() {
     //fetch sensor info
-    this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => this.sensor = sensor)
+    //this._api.getSensor(this._route.snapshot.paramMap.get('sensorId')).subscribe((sensor: Sensor) => this.sensor = sensor)
 
     this.getHistoryData()
   }
