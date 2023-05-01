@@ -103,7 +103,7 @@ def setupDevice(debug=False):
   #Calcuate ph coeff
   #m = (4 - 7)/(ph4MeanValue - ph7MeanValue + 0.00000001)
   #b = - (m * ph7MeanValue) - 7
-  m = (7-4)/(ph7MeanValue - ph4MeanValue)
+  m = ph7MeanValue
   b = ph4MeanValue
   config.set('ph_sensor', 'param1', str(m))
   config.set('ph_sensor', 'param2', str(b))
