@@ -183,7 +183,8 @@ class WaterSensor():
     def read_ph(self):
         self.get_raw_ph()
         #self.ph = abs(round(float(main.config.get('ph_sensor', 'param1')) * self.raw_ph + float(main.config.get('ph_sensor', 'param2')), 2))
-        self.ph = round(float(main.config.get('ph_sensor', 'param1')) * (float(main.config.get('ph_sensor', 'param2')) - self.raw_ph) + 4, 2)
+        self.ph = round(float(main.config.get('ph_sensor', 'param1')) * (self.raw_ph - float(main.config.get('ph_sensor', 'param2'))) + 4, 2)
+        logger.debug(self.raw_ph)
         return self.ph
 
     def read_ppm(self):
