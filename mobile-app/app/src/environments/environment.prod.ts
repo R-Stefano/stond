@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   apiUrl: 'https://stoned-api-f4lrk4qixq-nw.a.run.app/',
-  deviceId: 'e57a822a-9653-47fd-b921-d538f429a926'
+  deviceId: '0e4a53c7-5475-476e-9862-19f3e1824c58'
 };
