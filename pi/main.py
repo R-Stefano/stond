@@ -101,8 +101,10 @@ def setupDevice(debug=False):
   print(">> Value for pH 7 is {}".format(ph7MeanValue))
 
   #Calcuate ph coeff
-  m = (4 - 7)/(ph4MeanValue - ph7MeanValue + 0.00000001)
-  b = - (m * ph7MeanValue) - 7
+  #m = (4 - 7)/(ph4MeanValue - ph7MeanValue + 0.00000001)
+  #b = - (m * ph7MeanValue) - 7
+  m = ph7MeanValue
+  b = ph4MeanValue
   config.set('ph_sensor', 'param1', str(m))
   config.set('ph_sensor', 'param2', str(b))
 
