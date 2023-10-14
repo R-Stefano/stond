@@ -160,9 +160,9 @@ class LightsActuator():
         logger.debug("[LED] STATE Changed {} => {}".format(self.status, _newStatus))
 
         if (_newStatus == "OFF"):
-            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
-        elif (_newStatus == "ON"):
             gpio.output(self.LED_RELAY_GPIO_PIN, gpio.HIGH)
+        elif (_newStatus == "ON"):
+            gpio.output(self.LED_RELAY_GPIO_PIN, gpio.LOW)
 
         self.status = _newStatus
 
