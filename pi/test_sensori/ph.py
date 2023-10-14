@@ -1,14 +1,11 @@
 import busio, digitalio, board
-import time
-import sys
-sys.path.insert(1,'/home/pi/stond/pi')
-import main
+import time, os
 
 import adafruit_mcp3xxx.mcp3008 as MCP
 
 from configparser import ConfigParser
 config = ConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
+config.read(os.path.join('/home/pi/stond/pi', 'config.ini'))
 
 WATER_PH_PIN = board.D5 # GPIO5 (Physical PIN 29)
 MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
