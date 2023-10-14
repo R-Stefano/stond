@@ -17,7 +17,11 @@ while(1):
             print(e)
             humidity = 0
             temperature = 0
-        print("Hum: "+humidity+" Temp= "+temperature+"\n")
+        print("Hum: ")
+        print(humidity)
+        print(" Temp= ")
+        print(temperature)
+        print("\n")
     except Exception as e:
         print("\n[BME280] (start) Not working    ")
         print(e)
