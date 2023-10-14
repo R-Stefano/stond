@@ -1,4 +1,5 @@
 import board
+import time
 
 from adafruit_bme280 import basic as adafruit_bme280
 
@@ -25,3 +26,4 @@ while(1):
     except Exception as e:
         print("\n[BME280] (start) Not working    ")
         print(e)
+    time.sleep(1)
