@@ -35,7 +35,7 @@ def routine():
   
   #Control
   controller.ventilation.controlFanSpeed("fan1", 100)
-  controller.ventilation.controlFanSpeed("fan2")
+  controller.ventilation.controlFanSpeed("fan2", 100)
   controller.led.controlLights()
   controller.hvac.controlTemperature()
   controller.humidifier.controlHumidity()
