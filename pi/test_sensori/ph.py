@@ -1,4 +1,5 @@
 import busio, digitalio, board
+import main
 
 import adafruit_mcp3xxx.mcp3008 as MCP
 
