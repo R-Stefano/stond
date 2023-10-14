@@ -8,7 +8,7 @@ MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
 
 try:
     spi = busio.SPI(clock=board.SCLK, MISO=board.MISO, MOSI=board.MOSI) # create the spi bus
-    cs = digitalio.DigitalInOut(self.WATER_PH_PIN) # PIN 29 GPIO5 - create the cs (chip select)
+    cs = digitalio.DigitalInOut(WATER_PH_PIN) # PIN 29 GPIO5 - create the cs (chip select)
     mcp = MCP.MCP3008(spi, cs)
 
     print("[E201-C-BNC] Reading PH")
