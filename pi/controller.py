@@ -289,7 +289,7 @@ class HumidityActuator():
 
     def controlHumidity(self, overrideAction = None):
         logger.debug("[HUMIDIFIER] Start Control Routine")
-        currentHumidity = sensors.environment.temperature
+        currentHumidity = sensors.environment.humidity
         _newStatus = self.status
 
         if (not self.isWorking):
