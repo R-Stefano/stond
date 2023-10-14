@@ -6,6 +6,10 @@ import main
 
 import adafruit_mcp3xxx.mcp3008 as MCP
 
+from configparser import ConfigParser
+config = ConfigParser()
+config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
+
 WATER_PH_PIN = board.D5 # GPIO5 (Physical PIN 29)
 MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
 
@@ -23,8 +27,8 @@ while(1):
             print("[E201-C-BNC] Impossible Reading PH")
             print(e)
 
-        in_min = float(main.config.get('ph_sensor', 'param2'))
-        in_max = float(main.config.get('ph_sensor', 'param1')) 
+        in_min = float(config.get('ph_sensor', 'param2'))
+        in_max = float(config.get('ph_sensor', 'param1')) 
         ph = round((raw_ph - in_min)*(7-4)/(in_max-in_min) + 4, 2)
         print("ph value: ",ph)
         print("ph volt: ",raw_ph)
