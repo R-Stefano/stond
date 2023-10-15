@@ -22,16 +22,18 @@ try:
     elif (state == "on"):
         gpio.output(HVAC_START_GPIO_PIN, gpio.HIGH)
         print("[HVAC] Start Setup ON")
-        if (mode == "hot"):
-            gpio.output(HVAC_START_GPIO_PIN, gpio.LOW)
-            print("[HVAC] Start Setup HOT")
-        elif(mode == "cold"):
-            gpio.output(HVAC_START_GPIO_PIN, gpio.HIGH)
-            print("[HVAC] Start Setup COLD")
-        else:
-            print("no mode selected")
     else:
         print("no action selected")
+
+    if (mode == "hot"):
+        gpio.output(HVAC_MODE_GPIO_PIN, gpio.LOW)
+        print("[HVAC] Start Setup HOT")
+    elif(mode == "cold"):
+        gpio.output(HVAC_MODE_GPIO_PIN, gpio.HIGH)
+        print("[HVAC] Start Setup COLD")
+    else:
+        print("no mode selected")
+        
 except Exception as e:
     print("[HVAC] not working")
     print(e)
