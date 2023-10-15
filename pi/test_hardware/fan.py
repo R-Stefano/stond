@@ -13,12 +13,17 @@ FAN2_ENABLER_PIN = 22 # GPIO22 (Physical PIN 15) - ON/OFF control for fan 2
 PWM_FREQ = 100 # [kHz] 25kHz for Noctua PWM control
 
 gpio.setmode (gpio.BCM)
-gpio.setup(FAN1_PIN, gpio.OUT, initial=gpio.LOW)
+gpio.setup(FAN1_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
 gpio.setup(FAN1_ENABLER_PIN, gpio.OUT, initial=gpio.LOW)
-gpio.setup(FAN2_PIN, gpio.OUT, initial=gpio.LOW)
+
+gpio.setup(FAN2_PIN, gpio.OUT, initial=gpio.LOW) # Start with FAN OFF
 gpio.setup(FAN2_ENABLER_PIN, gpio.OUT, initial=gpio.LOW)
+
 fan1 = gpio.PWM(FAN1_PIN, PWM_FREQ)
 fan2 = gpio.PWM(FAN2_PIN, PWM_FREQ)
+
+fan1.start(0)
+fan2.start(0)
 
 
 params = args.action.split(":")
