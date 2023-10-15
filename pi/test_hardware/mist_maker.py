@@ -1,6 +1,6 @@
 from RPi import GPIO as gpio
 
-import argparse
+import argparse, time
 parser = argparse.ArgumentParser(description = 'Tests')
 parser.add_argument('action', type=str, help='The action to execute: sensors, led:on, hvac:off, hum:on', default="run", nargs='?')  
 args = parser.parse_args()
@@ -20,3 +20,4 @@ while(1):
     except Exception as e:
         print("[HUMIDIFIER] not working")
         print(e)
+    time.sleep(1)
