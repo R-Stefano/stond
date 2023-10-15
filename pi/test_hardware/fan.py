@@ -24,10 +24,7 @@ fan2 = gpio.PWM(FAN2_PIN, PWM_FREQ)
 params = args.action.split(":")
 fan = params[0] 
 speed = params[1]
-if(speed>=0):
-    speed = round(speed, 2)
-else:
-    speed = 0
+speed = round(speed, 2)
 
 if(fan == "fan1"):
     try:
