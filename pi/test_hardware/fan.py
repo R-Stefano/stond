@@ -24,16 +24,20 @@ fan2 = gpio.PWM(FAN2_PIN, PWM_FREQ)
 params = args.action.split(":")
 fan = params[0] 
 speed = params[1]
-speed = round(speed, 2)
 
 if(fan == "fan1"):
     try:
-        fan1.ChangeDutyCycle(speed)
-        if (speed == 0):
+        if (speed == "low"):
             print("fan1 OFF")
+            fan1.ChangeDutyCycle(0)
             gpio.output(FAN1_ENABLER_PIN, gpio.LOW)
-        else:
-            print("fan1 vel: ",speed,"%")
+        elif (speed == "medium"):
+            fan1.ChangeDutyCycle(50)
+            print("fan1 vel: 50%")
+            gpio.output(FAN1_ENABLER_PIN, gpio.HIGH)
+        elif (speed == "high"):
+            fan1.ChangeDutyCycle(100)
+            print("fan1 vel: 100%")
             gpio.output(FAN1_ENABLER_PIN, gpio.HIGH)
     except Exception as e:
         print("[FAN1] not working")
@@ -41,12 +45,17 @@ if(fan == "fan1"):
 
 elif(fan == "fan2"):
     try:
-        fan2.ChangeDutyCycle(speed)
-        if (speed == 0):
+        if (speed == "low"):
+            fan2.ChangeDutyCycle(0)
             print("fan2 OFF")
             gpio.output(FAN2_ENABLER_PIN, gpio.LOW)
-        else:
-            print("fan2 vel: ",speed,"%")
+        elif (speed == "medium"):
+            fan2.ChangeDutyCycle(50)
+            print("fan2 vel: 50%")
+            gpio.output(FAN2_ENABLER_PIN, gpio.HIGH)
+        elif (speed == "high"):
+            fan2.ChangeDutyCycle(100)
+            print("fan2 vel: 100%")
             gpio.output(FAN2_ENABLER_PIN, gpio.HIGH)
 
     except Exception as e:
