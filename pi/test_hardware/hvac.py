@@ -5,8 +5,8 @@ parser = argparse.ArgumentParser(description = 'Tests')
 parser.add_argument('action', type=str, help='The action to execute: sensors, led:on, hvac:off, hum:on', default="run", nargs='?')  
 args = parser.parse_args()
 
-HVAC_MODE_GPIO_PIN = 24 # GPIO23
-HVAC_START_GPIO_PIN = 23 # GPIO24
+HVAC_MODE_GPIO_PIN = 23 # GPIO23
+HVAC_START_GPIO_PIN = 24 # GPIO24
 
 gpio.setmode (gpio.BCM)
 gpio.setup(HVAC_MODE_GPIO_PIN, gpio.OUT, initial=gpio.LOW)
