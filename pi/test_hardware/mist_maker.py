@@ -6,6 +6,7 @@ parser.add_argument('action', type=str, help='The action to execute: sensors, le
 args = parser.parse_args()
 
 HUMIDIFIER_GPIO_PIN = 25
+gpio.setup(HUMIDIFIER_GPIO_PIN, gpio.OUT, initial=gpio.LOW) # Start with HUMIDIFIER OFF
 while(1):
     try:
         print("[HUMIDIFIER] Start Initial Setup")
