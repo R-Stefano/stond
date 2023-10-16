@@ -39,7 +39,7 @@ def routine():
   controller.led.controlLights()
   controller.hvac.controlTemperature()
   sensors.water.read_ph(controller.humidifier.controlHumidity())
-
+  print(controller.humidifier.controlHumidity())
 
   dataMng.displayData()
   #Save
