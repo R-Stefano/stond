@@ -28,12 +28,11 @@ while(1):
         except Exception as e:
             print("[E201-C-BNC] Impossible Reading PH")
             print(e)
-
+        if (args.action == "on"):
+            raw_ph = raw_ph+310
         in_min = float(config.get('ph_sensor', 'param2'))
         in_max = float(config.get('ph_sensor', 'param1')) 
         ph = round((raw_ph - in_min)*(7-4)/(in_max-in_min) + 4, 2)
-        if (args.action == "on"):
-            ph = ph+310
         print("ph value: ",ph)
         print("ph volt: ",raw_ph)
 
