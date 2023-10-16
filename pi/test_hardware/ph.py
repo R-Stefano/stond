@@ -29,7 +29,7 @@ while(1):
             print("[E201-C-BNC] Impossible Reading PH")
             print(e)
         if (args.action == "on"):
-            raw_ph = raw_ph+100
+            raw_ph = raw_ph-200
         in_min = float(config.get('ph_sensor', 'param2'))
         in_max = float(config.get('ph_sensor', 'param1')) 
         ph = round((raw_ph - in_min)*(7-4)/(in_max-in_min) + 4, 2)
