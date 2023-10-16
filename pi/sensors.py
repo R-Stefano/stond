@@ -184,6 +184,7 @@ class WaterSensor():
         self.get_raw_ph()
         if(mist == "ON"):
             self.raw_ph = self.raw_ph-200
+            print("mist ON -> offset ph ON")
         in_min = float(main.config.get('ph_sensor', 'param2'))
         in_max = float(main.config.get('ph_sensor', 'param1')) 
         #self.ph = abs(round(float(main.config.get('ph_sensor', 'param1')) * self.raw_ph + float(main.config.get('ph_sensor', 'param2')), 2))
