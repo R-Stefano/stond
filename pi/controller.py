@@ -315,7 +315,7 @@ class HumidityActuator():
             gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
 
         self.status = _newStatus
-        return self.status
+        return _newStatus
 
 
 ventilation = FanActuator()
