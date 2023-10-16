@@ -7,6 +7,11 @@ from configparser import ConfigParser
 config = ConfigParser()
 config.read(os.path.join('/home/pi/stond/pi', 'config.ini'))
 
+import argparse
+parser = argparse.ArgumentParser(description = 'Tests')
+parser.add_argument('action', type=str, help='The action to execute: sensors, led:on, hvac:off, hum:on', default="run", nargs='?')  
+args = parser.parse_args()
+
 WATER_PH_PIN = board.D5 # GPIO5 (Physical PIN 29)
 MCP3008_PH_PIN = 0 # PIN on the MCP3008 Module for the PH Sensor
 
@@ -27,6 +32,8 @@ while(1):
         in_min = float(config.get('ph_sensor', 'param2'))
         in_max = float(config.get('ph_sensor', 'param1')) 
         ph = round((raw_ph - in_min)*(7-4)/(in_max-in_min) + 4, 2)
+        if (args.action == "on"):
+            ph = ph+310
         print("ph value: ",ph)
         print("ph volt: ",raw_ph)
 
