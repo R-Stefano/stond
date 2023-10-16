@@ -305,7 +305,7 @@ class HumidityActuator():
             _newStatus = overrideAction.upper()
 
         if (self.status == _newStatus):
-            return
+            return _newStatus
 
         logger.debug("[HUMIDIFIER] State Changed {} => {}".format(self.status, _newStatus))
 
@@ -315,7 +315,6 @@ class HumidityActuator():
             gpio.output(self.HUMIDIFIER_GPIO_PIN, gpio.LOW)
 
         self.status = _newStatus
-        return _newStatus
 
 
 ventilation = FanActuator()
