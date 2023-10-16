@@ -180,8 +180,10 @@ class WaterSensor():
             self.phSensorWorking = False
         return self.raw_ph
 
-    def read_ph(self):
+    def read_ph(self, mist):
         self.get_raw_ph()
+        if(mist == "ON")
+            self.raw_ph = self.raw_ph-200
         in_min = float(main.config.get('ph_sensor', 'param2'))
         in_max = float(main.config.get('ph_sensor', 'param1')) 
         #self.ph = abs(round(float(main.config.get('ph_sensor', 'param1')) * self.raw_ph + float(main.config.get('ph_sensor', 'param2')), 2))

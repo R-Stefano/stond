@@ -38,7 +38,7 @@ def routine():
   controller.ventilation.controlFanSpeed("fan2", 100)
   controller.led.controlLights()
   controller.hvac.controlTemperature()
-  controller.humidifier.controlHumidity()
+  sensors.water.read_ph(controller.humidifier.controlHumidity())
 
 
   dataMng.displayData()
