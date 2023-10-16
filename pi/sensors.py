@@ -180,7 +180,7 @@ class WaterSensor():
             self.phSensorWorking = False
         return self.raw_ph
 
-    def read_ph(self, mist):
+    def read_ph(self, mist = "OFF"):
         self.get_raw_ph()
         if(mist == "ON"):
             self.raw_ph = self.raw_ph-200
