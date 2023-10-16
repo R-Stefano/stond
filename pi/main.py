@@ -23,7 +23,7 @@ def routine():
   # Update measurements
   timestamp = datetime.now()
   sensors.system.read_cpu()
-  sensors.water.read_ph()
+  #sensors.water.read_ph()
   sensors.water.read_ppm()
   sensors.water.read_temperature()
   sensors.water.read_level() # Output 1 if water touch the sensor
