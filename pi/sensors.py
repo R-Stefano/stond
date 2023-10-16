@@ -182,7 +182,7 @@ class WaterSensor():
 
     def read_ph(self, mist):
         self.get_raw_ph()
-        if(mist == "ON")
+        if(mist == "ON"):
             self.raw_ph = self.raw_ph-200
         in_min = float(main.config.get('ph_sensor', 'param2'))
         in_max = float(main.config.get('ph_sensor', 'param1')) 
