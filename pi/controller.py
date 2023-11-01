@@ -249,7 +249,7 @@ class HVACActuator():
         elif currentTemp > self.MAX_TEMP: # Turn on cooler if box above max temperature
             _newMode = "COOLER"
             _newStatus = "ON"
-        else:
+        elif(currentTemp > (self.MIN_TEMP + 1) and currentTemp < (self.MAX_TEMP - 1)):
             _newStatus = "OFF" # turn hvac off if box in temperature range
 
         if (overrideAction != None):
