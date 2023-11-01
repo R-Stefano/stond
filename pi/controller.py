@@ -267,7 +267,7 @@ class HumidityActuator():
         # Internal Variables
         self.HUMIDIFIER_GPIO_PIN = 25
         self.MIN_HUMIDITY = 60
-        self.MAX_HUMIDITY = 90
+        self.MAX_HUMIDITY = 80
 
         #Public variables 
         self.status = "ON"
